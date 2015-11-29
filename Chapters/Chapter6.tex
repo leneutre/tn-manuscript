@@ -1,0 +1,34 @@
+% Chapter Template
+
+\chapter{Conclusion and Future Work} % Main chapter title
+
+\label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 6. \emph{Conclusion and Future Work}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+This chapter summaries the thesis results, discusses a few limitation, and introduces possible future work. 
+
+\section{Summary}
+
+In this thesis, we have investigated three critical problems of current security protocol design in IoT, particularly in secure device pairing and neighbour discovery protocol, that received very little attention on physical security properties, physical attacks, and formal analysis. As our first contribution, we introduced our novel pairing protocol that is secure and efficient than other competitions in communication cost, but remains the attack probability. Precisely, it only uses two messages on wireless channels, and one on a public out-of-band channel. The protocol was proved in both our model, and a computational model. Additionally, an implementation on an embedded system was conducted to show the usefulness of our protocol. 
+
+We investigated that secure device pairing are strongly affected by many physical aspects that cannot be resolved by any classical formal method. Taking the obstacles into account, our model as the second contribution is constructed on famous Strand Spaces with supplement notations of channel. Our model also captures both physical attacks and specific attacks on secure channels. Thus, thank to our model, the flaw in Wong-Stajano has been at the first time unearthed in our model. Precisely, the key agreement in this protocol does not hold for both Initiator and Responder. Along with the improved model, we proposed a procedure that transforms a model in our extended formalism of an initial protocol using OOB channels to a model in original Strand Spaces of a protocol that does not use any OOB channel. In addition, the translation exactly preserves security properties of initial protocol. As a result, our translation allows us to formalise out-of-band channels-based protocols in current automatic verification tools. 
+
+Our another main contribution is a study of current neighbour discovery protocols in wireless network, and formal models for such protocols. We spotted a problem where signal range of two principals is different. As a result, when analysed in our model, the time-based, or distance-based schemes do not exactly provide link agreement among principals. Finally, some protocols have been analysed in our model as our proof of concept. 
+ 
+Our final contribution was proposing a new secure and robust bootstrapping scheme for constrain devices. Our scheme takes more advantages than other competitors since it does not require pre-shared key, implanted public keys, and even PKI system. Furthermore, it still works when a home gateway is down, and a new thing is second-handed stuff. 
+
+\section{Perspective}
+
+In Chapter 3, our model takes reasonable assumptions on which both principals in the protocol are honest, and out-of-band channels are at least authenticated. Hence, to take internal attacks into account, our model should express the attacks at a specific probability.
+
+As introduced in Chapter 4, our formal model successfully reasons about physical properties-related protocols through specific examples. Currently, the model focuses on some particular physical aspects, yet does not include device mobility. For further work, we continue enlarging our model to cover dynamic networks, and topology aspects as well. After successfully reasoning about ND protocols, we keep going to adapt our model to secure routing protocols, or secure protocols in vehicle networks. We strongly believe that our model achieves more promising results. 
+
+In chapter 5, our bootstrap framework is partly implemented in a prototype hardware. So, we are going to completely deploy the scheme using adaptation of current authentication systems such as RADIUS, PANA on 802.15.4 wireless technology. Obviously, this work is not too complicated to be complete. As a consequence, the framework will be comprehensively evaluated security, usability, and performance when fully constructed. 
+
+As a fact of that, manual proving task is prone to errors, we should looking for a way to implement our model into an automatic proving tool. In literature, Song~\cite{Song:1999:ANE:794199.795118} proposed an algorithm based on Strand Spaces model. And, the algorithm was also deployed in a tool named Athena. Unfortunately, we cannot access this tool since its authors do not publish their source code. Certainly, rebuilding the source code will take a plenty of time, so this work is planned in close future. 
+
+In long-term, we will bind all separated and unfinished pieces of current work. Moreover, an automatic or assistant proving tool is our first main goal. The tool, of course, will be fully adapted to study wider wireless protocol families, rather than two protocols discussed in this thesis. Visualising attacks could be interesting as well. Along with developing tools, a complete bootstrapping framework for IoT applications will be discussed more to become an industrial standard. 

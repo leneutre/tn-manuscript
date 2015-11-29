@@ -1,0 +1,130 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Database file #1: Bibliography.bib
+Warning--entry type for "ndp" isn't style-file defined
+--line 3308 of file Bibliography.bib
+Warning--entry type for "Clausen:2003:OLS:RFC3626" isn't style-file defined
+--line 3493 of file Bibliography.bib
+Warning--entry type for "formalmethod" isn't style-file defined
+--line 4739 of file Bibliography.bib
+Repeated entry---line 4779 of file Bibliography.bib
+ : @rfc{Clausen:2003:OLS:RFC3626
+ :                              ,
+I'm skipping whatever remains of this entry
+Too many commas in name 1 of "Liang Xiao, Larry Greenstein, Narayan Mandayam, Wade Trappe" for entry LiangXiao2008
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "B. Sarikaya, Y. Ohba, R. Moskowitz, Z. Cao, R. Cragie" for entry secureboot
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "B. Sarikaya, Y. Ohba, R. Moskowitz, Z. Cao, R. Cragie" for entry secureboot
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "G. Montenegro, N. Kushalnagar, J. Hui, D. Culler" for entry 6lowpan
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "C. Rigney, S. Willen, A. Rubens, Merit, W. Simpson" for entry RADIUS
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "C. Rigney, S. Willen, A. Rubens, Merit, W. Simpson" for entry RADIUS
+while executing---line 1233 of file unsrtnat.bst
+Name 1 in "D. Forsberg, Y. Ohba, B. Patil, H. Tschofenig, and A. Yegin" has a comma at the end for entry rfc5191
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "D. Forsberg, Y. Ohba, B. Patil, H. Tschofenig, and A. Yegin" for entry rfc5191
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "H. Harney, U. Meth, A. Colegrove, G. Gross" for entry gsakmp
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "J. Arkko, E. Carrara, F. Lindholm, M. Naslund, K. Norrman" for entry MIKEY
+while executing---line 1233 of file unsrtnat.bst
+Too many commas in name 1 of "J. Arkko, E. Carrara, F. Lindholm, M. Naslund, K. Norrman" for entry MIKEY
+while executing---line 1233 of file unsrtnat.bst
+Warning--empty year in formalmethod
+Warning--empty author in Acs:2005aa
+Warning--empty journal in RaphaelJamet
+Warning--empty year in RaphaelJamet
+Warning--empty year in RaphaelJamet
+Warning--empty journal in SrdjanCapkun2006
+Warning--empty year in SrdjanCapkun2006
+Warning--empty year in SrdjanCapkun2006
+Warning--empty institution in Mayrhofer06anauthentication
+Warning--empty year in Buhan_feelingis
+Warning--empty booktitle in Smetters02talkingto
+Warning--empty booktitle in Mana2
+Warning--empty year in ndp
+Warning--empty journal in Yih-ChunHu2002
+Warning--empty year in Yih-ChunHu2002
+Warning--empty year in Yih-ChunHu2002
+Warning--empty journal in FaridNait-Abdesselam2008
+Warning--empty year in FaridNait-Abdesselam2008
+Warning--empty year in FaridNait-Abdesselam2008
+Warning--empty journal in LOUKASLAZOS
+Warning--empty year in LOUKASLAZOS
+Warning--empty year in LOUKASLAZOS
+Warning--empty journal in LoukasLazos2005
+Warning--empty year in LoukasLazos2005
+Warning--empty year in LoukasLazos2005
+Warning--empty journal in Kasper
+Warning--empty year in Kasper
+Warning--empty year in Kasper
+Warning--empty journal in OktayUreten2007
+Warning--empty year in OktayUreten2007
+Warning--empty year in OktayUreten2007
+Warning--empty journal in VladimirBrik
+Warning--empty year in VladimirBrik
+Warning--empty year in VladimirBrik
+Warning--empty journal in SumanJana
+Warning--empty year in SumanJana
+Warning--empty year in SumanJana
+Too many commas in name 1 of "Liang Xiao, Larry Greenstein, Narayan Mandayam, Wade Trappe" for entry LiangXiao2008
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "Liang Xiao, Larry Greenstein, Narayan Mandayam, Wade Trappe" for entry LiangXiao2008
+while executing---line 1315 of file unsrtnat.bst
+Warning--empty journal in LiangXiao2008
+Warning--empty journal in LiangXiao2009
+Warning--empty year in LiangXiao2009
+Warning--empty year in LiangXiao2009
+Warning--empty journal in RuiZhang2010
+Warning--empty year in RuiZhang2010
+Warning--empty year in RuiZhang2010
+Warning--empty journal in WeichaoWang2007
+Warning--empty year in WeichaoWang2007
+Warning--empty year in WeichaoWang2007
+Warning--empty journal in RiteshMaheshwari
+Warning--empty year in RiteshMaheshwari
+Warning--empty year in RiteshMaheshwari
+Too many commas in name 1 of "B. Sarikaya, Y. Ohba, R. Moskowitz, Z. Cao, R. Cragie" for entry secureboot
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "B. Sarikaya, Y. Ohba, R. Moskowitz, Z. Cao, R. Cragie" for entry secureboot
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "B. Sarikaya, Y. Ohba, R. Moskowitz, Z. Cao, R. Cragie" for entry secureboot
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "B. Sarikaya, Y. Ohba, R. Moskowitz, Z. Cao, R. Cragie" for entry secureboot
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "G. Montenegro, N. Kushalnagar, J. Hui, D. Culler" for entry 6lowpan
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "G. Montenegro, N. Kushalnagar, J. Hui, D. Culler" for entry 6lowpan
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "C. Rigney, S. Willen, A. Rubens, Merit, W. Simpson" for entry RADIUS
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "C. Rigney, S. Willen, A. Rubens, Merit, W. Simpson" for entry RADIUS
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "C. Rigney, S. Willen, A. Rubens, Merit, W. Simpson" for entry RADIUS
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "C. Rigney, S. Willen, A. Rubens, Merit, W. Simpson" for entry RADIUS
+while executing---line 1315 of file unsrtnat.bst
+Name 1 in "D. Forsberg, Y. Ohba, B. Patil, H. Tschofenig, and A. Yegin" has a comma at the end for entry rfc5191
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "D. Forsberg, Y. Ohba, B. Patil, H. Tschofenig, and A. Yegin" for entry rfc5191
+while executing---line 1315 of file unsrtnat.bst
+Name 1 in "D. Forsberg, Y. Ohba, B. Patil, H. Tschofenig, and A. Yegin" has a comma at the end for entry rfc5191
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "D. Forsberg, Y. Ohba, B. Patil, H. Tschofenig, and A. Yegin" for entry rfc5191
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "H. Harney, U. Meth, A. Colegrove, G. Gross" for entry gsakmp
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "H. Harney, U. Meth, A. Colegrove, G. Gross" for entry gsakmp
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "J. Arkko, E. Carrara, F. Lindholm, M. Naslund, K. Norrman" for entry MIKEY
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "J. Arkko, E. Carrara, F. Lindholm, M. Naslund, K. Norrman" for entry MIKEY
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "J. Arkko, E. Carrara, F. Lindholm, M. Naslund, K. Norrman" for entry MIKEY
+while executing---line 1315 of file unsrtnat.bst
+Too many commas in name 1 of "J. Arkko, E. Carrara, F. Lindholm, M. Naslund, K. Norrman" for entry MIKEY
+while executing---line 1315 of file unsrtnat.bst
+(There were 34 error messages)

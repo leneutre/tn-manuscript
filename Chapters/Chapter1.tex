@@ -1,0 +1,80 @@
+% Chapter Template
+\chapter{Introduction} % Main Chapter title
+
+\label{Chapter1} % Change X to a consecutive number; for referencing this Chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 1. \emph{Introduction}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+The term "Internet of Things"(IoT) is defined for such a huge picture as millions number of connected devices cooperating to accomplish some specific tasks required by users. Devices for instance are mobile phones, smart TVs, smart lights, fans, and etc that are normally constrained in resources. By the year 2020, it is expected to 16 billion interconnected devices~\cite{iotsurvey}. Hence, applications of IoT are truly large and potential in both research and industrial areas. 
+
+Basing on the work~\cite{TUD-CS-2015198}, the properties of the Internet of Thing could be distinguished by four things, namely: the uncontrolled environment, the heterogeneity, the need for scalability, and constrained resources:
+\begin{itemize}
+\item The \emph{uncontrolled environment} is a place where many devices travel to untrustworthy surroundings. 
+\item The \emph{heterogeneity} is described that various devices from various manufactories can interoperate together. 
+\item \emph{Scalability} is demanded for scalable systems consisting of a vast amount of interconnected devices. 
+\item \emph{Constrained resources} in power capacity, computational capacity, memory and interfaces are normally found on devices in IoT. 
+\end{itemize}
+
+The major current challenges in IoT have included: low energy consumption requirement, limited radio radio frequency bandwidth requirement, and security requirement. To address these challenges, IoT fans are trying to propose their own new concepts of technologies including documents,schemes, and protocols. But, many aspects of IoT have not been standardised yet, especially regarding to secure mechanisms. 
+
+Secure mechanism aims to ensure things working properly in environments with presence of many adversaries. As one of main parts of secure mechanism, security protocols (also called cryptographic protocols) provide goals (or properties) such as secrecy (data is transferred such that only an intended receiver is able to understand) and authentication(providing the proof of origin of data to remote principals). 
+
+In this first chapter, we offer a brief introduction of secure physical communication for IoT, the need for lightweight secure mechanisms, and formal verification. We also give an overview of the main contribution of our work. We close this chapter with the outline of this thesis. 
+
+\section{Motivation}
+
+%rewrite
+%As mentioned above, traditional security mechanisms successfully offer security properties such as data origin authentication and data confidentiality. However, in some circumstances, when establishing a secure communication, some physical characteristics of channels, location, or distance must be considered. In particular, as a main building block of IoT, wireless communication introduces a lot of traditional and brand new obstacles for existing security protocols because in some cases, the protocols have to guarantee non-cryptographic properties to deal with bounding distance, or secure location.
+
+For example, creating security domains from unassociated constrained devices is a key operation in the IoT network. Playing as a crucial role in IoT, device pairing protocols are responsible for two non-prior knowledge wireless devices to establish a secure connection. However, it is formally shown that pairing goals could not be offered by just cryptographic primitives~\cite{Burrows90alogic}. To provide solution, a pre-authenticated auxiliary channel, human assisted or location limited, usually called out-of-band channel (OOB) is used. Thus, a great number of device pairing protocols with various OOB channels as documented in~\cite{6687314} have been introduced. Despite of that, many of them feature some flaws, e.g the Wong-Stajano protocol ~\cite{10.1109/MPRV.2007.76} as an instance. Additionally, they are currently not sufficiently effective on security requirement, and low bandwidth networks due to constructing on high secure channels, and large amount of exchange data. 
+
+Another important family of protocols in IoT is neighbour discovery protocols. Theoretically, they are designed to allow each participant to correctly identify other participants who are actual neighbours. Hence, discovery mechanisms fundamentially consider location information or even wireless signal range of each principal. However, wireless devices in current proposals are normally assumed to have the same physical wireless interfaces, this is not always true in practice. As a consequence, security flaws appear in some existing protocols such as ADVSIG~\cite{Raffo:2004:ASS:1029102.1029106} and Brands and Chaum protocol \cite{Brands:1994aa}.
+%put the reference of Bidan
+
+So far, we need both a more effective and provable security mechanisms and methods that allow us to avoid flaws as early as possible before our protocols are deployed. Formal methods are introduced as well-suited tools for our needs to reduce flaws at the protocol design step.
+
+Reasoning about security properties for wireless protocols, a number of existing work have been proposed in literature. Interestingly, most of them are extended work of classic formal models such as BAN logic~\cite{Burrows:1990:LA:77648.77649}, inductive approach~\cite{Paulson:1998:IAV:353677.353681}, authentication logic~\cite{Meadows:2007aa}, deductive model checking~\cite{5678752}, Petri Nets~\cite{Peterson:1977:PN:356698.356702}, simulation paradigm~\cite{Acs:2005aa}, Spi calculus~\cite{Abadi:1997:CCP:266420.266432}, and Strand Spaces model~\cite{674832}.
+
+Thank to these models, a wide range of protocols has been formally analysed. For instance, MANET routing problems have been studied in~\cite{4678548, Jensen:1995:CPN:216127, 1286194, Acs:2005aa, 4428765, Acs:2006:MAS:1180345.1180352, Yang03modelingvulnerabilities, 4481351,Li:2007:ESS:1338438.1338469} while neighbour discovery and distance bounding problems have been considered in ~\cite{RaphaelJamet, SrdjanCapkun2006,Crazzolara:2001:PNC:645609.662336, Basin:2009:LGP:1616077.1616079, Sharp:2007:TTS:2391910.2391948, Meadows:2007aa}
+
+As we mentioned above, despite of helpfulness on analysing cryptographic protocols, classical formal methods were just designed for classical security properties such as data origin authentication and secrecy. For this reason, they are not suitable for reasoning about physical properties. In meanwhile, some existing extensions concerned on several aspects of physical properties in literature, but their attacker model is mainly based on classical and strong Dolev-Yao model~\cite{dolev-yao}. Hence, in some cases, attackers can not be visually conducted, e.g, using a high power antenna to lift up the signal propagation distance, an attacker can persuade a victim to believe existence of connections between them. 
+
+\section{Reseach Objective}
+
+The main objective of this PhD research is to study security mechanisms in context of Internet of Things, particularly in secure device pairing and secure neighbour discovery. This objective encompasses the following challenges which are to be specifically addressed:
+\begin{itemize}
+\item The design of security mechanisms should answer the constrained characteristics of devices in Internet of Things. For this purposes, the mechanisms would be effective in term of communication and computation, robustness.
+\item Security of proposed mechanisms must be against malicious physical attacks such as relaying, delaying, replaying, spoofing. 
+\item The developed key agreements and link agreements between devices, and their accompanying security framework must be validated using formal methods to avoid undesired attacks.  
+\end{itemize}
+
+In addition to the main goals, a straightforward, robust formal model analysing a wide range of secure wireless protocols facilitates reasoning about both cryptographic properties and physical properties. Physical attacks should be addressed in the model as well.  
+
+Worthy to note, the proposed formal model would fulfil our requirements:
+\begin{enumerate}
+\item the model is straightforward and robust; 
+\item the model has some facilities to enable reasoning about physical goals; or it is feasible to integrate extensions without heavy modification of core theories;
+\item physical attacks must be considered in the core model;
+\item the model is able to visually produce attack scenarios if such scenarios exist; 
+\item the model can be potentially deployed in an automatic verification tool. 
+\end{enumerate}
+
+\section{Contribution}
+
+In this thesis, we focus on crucial aspects for security of wireless protocols: effectiveness, physical security properties, and formal verification. Our contributions are following: 
+
+\begin{enumerate}
+
+\item We introduce a new device pairing protocol that is more secure and efficient than other competitors in term of communication cost, and remains the same attack probability. Then, as a proof of concept, we implement our protocol in an embedded system to show its usefulness.
+\item We build our formalism based on the famous Strand Spaces model to capture the physical security characteristic of out-of-band channels. The adversary capabilities are also extended on these channels. Thank to our model, a flaw is discovered in Wong-Stajano, that has not introduced before. Additionally, we propose a procedure that transforms a model in our formalism of an initial protocol with out-of-band channels into a model in original Strand Spaces of a protocol that does not use any OOB channel while preserving security properties of initial protocol. 
+\item We make a comprehensive study on neighbour discovery protocol. Then, we find out a problem when signal ranges of two principals are different. As a consequence, we point out that time-based, or distance-based mechanisms cannot provide exact link agreement among principals. Apparently, neighbour discovery protocols using these techniques are proved as incorrect protocols. 
+\item Based on above mentioned enhanced security protocols and our formal method, we introduce a new concept of the secure bootstrapping scheme for Internet of Things that enables a resource constrained thing as a new member to securely join into a home network in circumstances where the home gateway is down, or the thing is second-handed. Furthermore, our scheme does not require pre-shared keys, or public keys, or even does not require a PKI infrastructure. Formal proofs of security properties are given as well. 
+\end{enumerate}
+
+\section{Thesis Outline}
+This thesis is divided into 6 chapters with chapter 1 being this introduction. In chapter 2, we study a family of secure device pairing protocols using out-of-band channel. We give an detail of current device pairing approaches and discuss the different aspects of them. We also in this chapter propose our novel key agreement protocol using out-of-band channel. As proof of concept, an implementation of this protocol is deployed into two embedded systems. Chapter 3 is devoted to analyse formally security properties of secure device pairing protocols. We present our improved Strand Spaces theory, Wong-Stajano protocol flaw, and proof of our protocol. We also present a way to translate a protocol modelled in our extended Strand Spaces into a protocol modelled in original Strand Spaces without out-of-band channels. Chapter 4 studies neighbour discovery protocols and formal analysis of these protocols. We continue using Strand Space model as our tool in this chapter. In chapter 5, we propose a new secure bootstrapping scheme for constrained devices in Internet of Things. Chapter 6 concludes our thesis and presents future work. 
+
+

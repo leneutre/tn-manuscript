@@ -1,0 +1,1259 @@
+\begin{thebibliography}{157}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Burrows et~al.(1990{\natexlab{a}})Burrows, Abadi, and
+  Needham]{Burrows90alogic}
+Michael Burrows, Mart{\'\i}n Abadi, and Roger Needham.
+\newblock A logic of authentication.
+\newblock \emph{ACM TRANSACTIONS ON COMPUTER SYSTEMS}, 8:\penalty0 18--36,
+  1990{\natexlab{a}}.
+
+\bibitem[Mirzadeh et~al.(2014)Mirzadeh, Cruickshank, and Tafazolli]{6687314}
+S.~Mirzadeh, H.~Cruickshank, and R.~Tafazolli.
+\newblock Secure device pairing: A survey.
+\newblock \emph{Communications Surveys Tutorials, IEEE}, 16\penalty0
+  (1):\penalty0 17--40, First 2014.
+\newblock ISSN 1553-877X.
+\newblock \doi{10.1109/SURV.2013.111413.00196}.
+
+\bibitem[Wong and Stajano(2007)]{10.1109/MPRV.2007.76}
+Ford~Long Wong and Frank Stajano.
+\newblock Multichannel security protocols.
+\newblock \emph{IEEE Pervasive Computing}, 6\penalty0 (4):\penalty0 31--39,
+  2007.
+\newblock ISSN 1536-1268.
+\newblock \doi{http://doi.ieeecomputersociety.org/10.1109/MPRV.2007.76}.
+
+\bibitem[Raffo et~al.(2004)Raffo, Adjih, Clausen, and
+  M\"{u}hlethaler]{Raffo:2004:ASS:1029102.1029106}
+Daniele Raffo, C{\'e}dric Adjih, Thomas Clausen, and Paul M\"{u}hlethaler.
+\newblock An advanced signature system for olsr.
+\newblock In \emph{Proceedings of the 2Nd ACM Workshop on Security of Ad Hoc
+  and Sensor Networks}, SASN '04, pages 10--16, New York, NY, USA, 2004. ACM.
+\newblock ISBN 1-58113-972-1.
+\newblock \doi{10.1145/1029102.1029106}.
+\newblock URL \url{http://doi.acm.org/10.1145/1029102.1029106}.
+
+\bibitem[Butler()]{formalmethod}
+R.~W. Butler.
+\newblock What is formal methods?
+
+\bibitem[Edmund M.~Clarke and Peled(1999)]{Clarke}
+Orna~Grumberg Edmund M.~Clarke and Doron~A. Peled.
+\newblock \emph{Model Checking}.
+\newblock MIT Press, 1999.
+
+\bibitem[Kern and Greenstreet(1999)]{Kern:1999:FVH:307988.307989}
+Christoph Kern and Mark~R. Greenstreet.
+\newblock Formal verification in hardware design: A survey.
+\newblock \emph{ACM Trans. Des. Autom. Electron. Syst.}, 4\penalty0
+  (2):\penalty0 123--193, April 1999.
+\newblock ISSN 1084-4309.
+\newblock \doi{10.1145/307988.307989}.
+\newblock URL \url{http://doi.acm.org/10.1145/307988.307989}.
+
+\bibitem[Burrows et~al.(1990{\natexlab{b}})Burrows, Abadi, and
+  Needham]{Burrows:1990:LA:77648.77649}
+Michael Burrows, Martin Abadi, and Roger Needham.
+\newblock A logic of authentication.
+\newblock \emph{ACM Trans. Comput. Syst.}, 8\penalty0 (1):\penalty0 18--36,
+  February 1990{\natexlab{b}}.
+\newblock ISSN 0734-2071.
+\newblock \doi{10.1145/77648.77649}.
+\newblock URL \url{http://doi.acm.org/10.1145/77648.77649}.
+
+\bibitem[Paulson(1998)]{Paulson:1998:IAV:353677.353681}
+Lawrence~C. Paulson.
+\newblock The inductive approach to verifying cryptographic protocols.
+\newblock \emph{J. Comput. Secur.}, 6\penalty0 (1-2):\penalty0 85--128, January
+  1998.
+\newblock ISSN 0926-227X.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=353677.353681}.
+
+\bibitem[Meadows et~al.(2007)Meadows, Poovendran, Pavlovic, Chang, and
+  Syverson]{Meadows:2007aa}
+Catherine Meadows, Radha Poovendran, Dusko Pavlovic, LiWu Chang, and Paul
+  Syverson.
+\newblock Distance bounding protocols: Authentication logic analysis and
+  collusion attacks.
+\newblock In Radha Poovendran, Sumit Roy, and Cliff Wang, editors, \emph{Secure
+  Localization and Time Synchronization for Wireless Sensor and Ad Hoc
+  Networks}, volume~30 of \emph{Advances in Information Security}, pages
+  279--298. Springer US, 2007.
+\newblock ISBN 978-0-387-32721-1.
+\newblock \doi{10.1007/978-0-387-46276-9_12}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-0-387-46276-9_12}.
+
+\bibitem[Buttyan and Thong(2010)]{5678752}
+L.~Buttyan and Ta~Vinh Thong.
+\newblock Formal verification of secure ad-hoc network routing protocols using
+  deductive model-checking.
+\newblock In \emph{Wireless and Mobile Networking Conference (WMNC), 2010 Third
+  Joint IFIP}, pages 1--6, Oct 2010.
+\newblock \doi{10.1109/WMNC.2010.5678752}.
+
+\bibitem[Peterson(1977)]{Peterson:1977:PN:356698.356702}
+James~L. Peterson.
+\newblock Petri nets.
+\newblock \emph{ACM Comput. Surv.}, 9\penalty0 (3):\penalty0 223--252,
+  September 1977.
+\newblock ISSN 0360-0300.
+\newblock \doi{10.1145/356698.356702}.
+\newblock URL \url{http://doi.acm.org/10.1145/356698.356702}.
+
+\bibitem[Acs(2005)]{Acs:2005aa}
+Provable security of on-demand distance vector routing in wireless ad hoc
+  networks.
+\newblock In Refik Molva, Gene Tsudik, and Dirk Westhoff, editors,
+  \emph{Security and Privacy in Ad-hoc and Sensor Networks}, volume 3813 of
+  \emph{Lecture Notes in Computer Science}, pages 113--127. Springer Berlin
+  Heidelberg, 2005.
+\newblock ISBN 978-3-540-30912-3.
+\newblock \doi{10.1007/11601494_10}.
+\newblock URL \url{http://dx.doi.org/10.1007/11601494_10}.
+
+\bibitem[Abadi and Gordon(1997)]{Abadi:1997:CCP:266420.266432}
+Mart\'{\i}n Abadi and Andrew~D. Gordon.
+\newblock A calculus for cryptographic protocols: The spi calculus.
+\newblock In \emph{Proceedings of the 4th ACM Conference on Computer and
+  Communications Security}, CCS '97, pages 36--47, New York, NY, USA, 1997.
+  ACM.
+\newblock ISBN 0-89791-912-2.
+\newblock \doi{10.1145/266420.266432}.
+\newblock URL \url{http://doi.acm.org/10.1145/266420.266432}.
+
+\bibitem[Thayer~Fabrega et~al.(1998)Thayer~Fabrega, Herzog, and
+  Guttman]{674832}
+F.J. Thayer~Fabrega, J.C. Herzog, and J.D. Guttman.
+\newblock Strand spaces: why is a security protocol correct?
+\newblock In \emph{Security and Privacy, 1998. Proceedings. 1998 IEEE Symposium
+  on}, pages 160--171, May 1998.
+\newblock \doi{10.1109/SECPRI.1998.674832}.
+
+\bibitem[Shi(2008)]{4678548}
+Shu-Dong Shi.
+\newblock Formal verification and improvement of a secure protocol for ad hoc
+  networks.
+\newblock In \emph{Wireless Communications, Networking and Mobile Computing,
+  2008. WiCOM '08. 4th International Conference on}, pages 1--3, Oct 2008.
+\newblock \doi{10.1109/WiCom.2008.640}.
+
+\bibitem[Jensen(1995)]{Jensen:1995:CPN:216127}
+Kurt Jensen.
+\newblock \emph{Coloured Petri Nets: Basic Concepts, Analysis Methods and
+  Practical Use, Vol. 2}.
+\newblock Springer-Verlag, London, UK, UK, 1995.
+\newblock ISBN 3-540-58276-2.
+
+\bibitem[Erbas et~al.(2003)Erbas, Kyamakya, and Jobmann]{1286194}
+F.~Erbas, K.~Kyamakya, and K.~Jobmann.
+\newblock Modelling and performance analysis of a novel position-based reliable
+  unicast and multicast routing method using coloured petri nets.
+\newblock In \emph{Vehicular Technology Conference, 2003. VTC 2003-Fall. 2003
+  IEEE 58th}, volume~5, pages 3099--3104 Vol.5, Oct 2003.
+\newblock \doi{10.1109/VETECF.2003.1286194}.
+
+\bibitem[{\'A}cs et~al.(2007){\'A}cs, Buttyan, and Vajda]{4428765}
+G.~{\'A}cs, L.~Buttyan, and I.~Vajda.
+\newblock The security proof of a link-state routing protocol for wireless
+  sensor networks.
+\newblock In \emph{Mobile Adhoc and Sensor Systems, 2007. MASS 2007. IEEE
+  International Conference on}, pages 1--6, Oct 2007.
+\newblock \doi{10.1109/MOBHOC.2007.4428765}.
+
+\bibitem[\'{A}cs et~al.(2006)\'{A}cs, Butty\'{a}n, and
+  Vajda]{Acs:2006:MAS:1180345.1180352}
+Gergely \'{A}cs, Levente Butty\'{a}n, and Istv\'{a}n Vajda.
+\newblock Modelling adversaries and security objectives for routing protocols
+  in wireless sensor networks.
+\newblock In \emph{Proceedings of the Fourth ACM Workshop on Security of Ad Hoc
+  and Sensor Networks}, SASN '06, pages 49--58, New York, NY, USA, 2006. ACM.
+\newblock ISBN 1-59593-554-1.
+\newblock \doi{10.1145/1180345.1180352}.
+\newblock URL \url{http://doi.acm.org/10.1145/1180345.1180352}.
+
+\bibitem[Yang(2003)]{Yang03modelingvulnerabilities}
+Shahan Yang.
+\newblock Modeling vulnerabilities of ad hoc routing protocols.
+\newblock In \emph{In Proceedings of the ACM Workshop on Security of Ad Hoc and
+  Sensor Networks}, pages 12--20, 2003.
+
+\bibitem[Nait-Abdesselam et~al.(2008)Nait-Abdesselam, Bensaou, and
+  Taleb]{4481351}
+F.~Nait-Abdesselam, B.~Bensaou, and T.~Taleb.
+\newblock Detecting and avoiding wormhole attacks in wireless ad hoc networks.
+\newblock \emph{Communications Magazine, IEEE}, 46\penalty0 (4):\penalty0
+  127--133, April 2008.
+\newblock ISSN 0163-6804.
+\newblock \doi{10.1109/MCOM.2008.4481351}.
+
+\bibitem[Li and Pang(2007)]{Li:2007:ESS:1338438.1338469}
+Yongjian Li and Jun Pang.
+\newblock Extending the strand space method to verify kerberos v.
+\newblock In \emph{Proceedings of the Eighth International Conference on
+  Parallel and Distributed Computing, Applications and Technologies}, PDCAT
+  '07, pages 437--444, Washington, DC, USA, 2007. IEEE Computer Society.
+\newblock ISBN 0-7695-3049-4.
+\newblock \doi{10.1109/PDCAT.2007.43}.
+\newblock URL \url{http://dx.doi.org/10.1109/PDCAT.2007.43}.
+
+\bibitem[Rapha{\"e}l~Jamet()]{RaphaelJamet}
+Pascal~Lafourcade Rapha{\"e}l~Jamet.
+\newblock Formal model for (k)-neighborhood discovery protocols.
+
+\bibitem[SrdjanCapkun()]{SrdjanCapkun2006}
+SrdjanCapkun.
+\newblock Secure positioning in wireless networks.
+
+\bibitem[Crazzolara and Winskel(2001)]{Crazzolara:2001:PNC:645609.662336}
+Federico Crazzolara and Glynn Winskel.
+\newblock Petri nets in cryptographic protocols.
+\newblock In \emph{Proceedings of the 15th International Parallel \&Amp;
+  Distributed Processing Symposium}, IPDPS '01, pages 149--, Washington, DC,
+  USA, 2001. IEEE Computer Society.
+\newblock ISBN 0-7695-0990-8.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=645609.662336}.
+
+\bibitem[Basin et~al.(2009)Basin, Capkun, Schaller, and
+  Schmidt]{Basin:2009:LGP:1616077.1616079}
+David Basin, Srdjan Capkun, Patrick Schaller, and Benedikt Schmidt.
+\newblock Let's get physical: Models and methods for real-world security
+  protocols.
+\newblock In \emph{Proceedings of the 22Nd International Conference on Theorem
+  Proving in Higher Order Logics}, TPHOLs '09, pages 1--22, Berlin, Heidelberg,
+  2009. Springer-Verlag.
+\newblock ISBN 978-3-642-03358-2.
+\newblock \doi{10.1007/978-3-642-03359-9_1}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-642-03359-9_1}.
+
+\bibitem[Sharp and Hansen(2007)]{Sharp:2007:TTS:2391910.2391948}
+Robin Sharp and Michael~R. Hansen.
+\newblock Timed traces and strand spaces.
+\newblock In \emph{Proceedings of the Second International Conference on
+  Computer Science: Theory and Applications}, CSR'07, pages 373--386, Berlin,
+  Heidelberg, 2007. Springer-Verlag.
+\newblock ISBN 3-540-74509-2, 978-3-540-74509-9.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2391910.2391948}.
+
+\bibitem[Dolev and Yao(1983)]{dolev-yao}
+D.~Dolev and Andrew~C. Yao.
+\newblock On the security of public key protocols.
+\newblock \emph{Information Theory, IEEE Transactions on}, 29\penalty0
+  (2):\penalty0 198--208, Mar 1983.
+\newblock ISSN 0018-9448.
+\newblock \doi{10.1109/TIT.1983.1056650}.
+
+\bibitem[Armando et~al.(2005)Armando, Basin, Boichut, Chevalier, Compagna,
+  Cuellar, Drielsma, He\'{a}m, Kouchnarenko, Mantovani, M\"{o}dersheim, von
+  Oheimb, Rusinowitch, Santiago, Turuani, Vigan\`{o}, and
+  Vigneron]{Armando:2005:ATA:2153230.2153265}
+A.~Armando, D.~Basin, Y.~Boichut, Y.~Chevalier, L.~Compagna, J.~Cuellar,
+  P.~Hankes Drielsma, P.~C. He\'{a}m, O.~Kouchnarenko, J.~Mantovani,
+  S.~M\"{o}dersheim, D.~von Oheimb, M.~Rusinowitch, J.~Santiago, M.~Turuani,
+  L.~Vigan\`{o}, and L.~Vigneron.
+\newblock The avispa tool for the automated validation of internet security
+  protocols and applications.
+\newblock In \emph{Proceedings of the 17th International Conference on Computer
+  Aided Verification}, CAV'05, pages 281--285, Berlin, Heidelberg, 2005.
+  Springer-Verlag.
+\newblock ISBN 3-540-27231-3, 978-3-540-27231-1.
+\newblock \doi{10.1007/11513988_27}.
+\newblock URL \url{http://dx.doi.org/10.1007/11513988_27}.
+
+\bibitem[Lowe(1997{\natexlab{a}})]{596779}
+Gavin Lowe.
+\newblock Casper: a compiler for the analysis of security protocols.
+\newblock In \emph{Computer Security Foundations Workshop, 1997. Proceedings.,
+  10th}, pages 18--30, Jun 1997{\natexlab{a}}.
+\newblock \doi{10.1109/CSFW.1997.596779}.
+
+\bibitem[Blanchet(2001)]{BlanchetCSFW01}
+Bruno Blanchet.
+\newblock An {E}fficient {C}ryptographic {P}rotocol {V}erifier {B}ased on
+  {P}rolog {R}ules.
+\newblock In \emph{14th IEEE Computer Security Foundations Workshop (CSFW-14)},
+  pages 82--96, Cape Breton, Nova Scotia, Canada, June 2001. IEEE Computer
+  Society.
+
+\bibitem[Cremers(2008)]{Cremers:2008aa}
+CasJ.F. Cremers.
+\newblock The scyther tool: Verification, falsification, and analysis of
+  security protocols.
+\newblock In Aarti Gupta and Sharad Malik, editors, \emph{Computer Aided
+  Verification}, volume 5123 of \emph{Lecture Notes in Computer Science}, pages
+  414--418. Springer Berlin Heidelberg, 2008.
+\newblock ISBN 978-3-540-70543-7.
+\newblock \doi{10.1007/978-3-540-70545-1_38}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-540-70545-1_38}.
+
+\bibitem[Meier et~al.(2013)Meier, Schmidt, Cremers, and
+  Basin]{Meier:2013:TPS:2526861.2526920}
+Simon Meier, Benedikt Schmidt, Cas Cremers, and David Basin.
+\newblock The tamarin prover for the symbolic analysis of security protocols.
+\newblock In \emph{Proceedings of the 25th International Conference on Computer
+  Aided Verification}, CAV'13, pages 696--701, Berlin, Heidelberg, 2013.
+  Springer-Verlag.
+\newblock ISBN 978-3-642-39798-1.
+\newblock \doi{10.1007/978-3-642-39799-8_48}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-642-39799-8_48}.
+
+\bibitem[Thayer et~al.(1998)Thayer, Herzog, and
+  Guttman]{Thayer:1998:HIS:794198.795096}
+J.~Thayer, J.~Herzog, and J.~Guttman.
+\newblock Honest ideals on strand spaces.
+\newblock In \emph{Proceedings of the 11th IEEE Workshop on Computer Security
+  Foundations}, CSFW '98, pages 66--, Washington, DC, USA, 1998. IEEE Computer
+  Society.
+\newblock ISBN 0-8186-8488-7.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=794198.795096}.
+
+\bibitem[Thayer et~al.(1999)Thayer, Herzog, and
+  Guttman]{Thayer:1999:MSS:794199.795113}
+F.~Javier Thayer, Jonathan~C. Herzog, and Joshua~D. Guttman.
+\newblock Mixed strand spaces.
+\newblock In \emph{Proceedings of the 12th IEEE Workshop on Computer Security
+  Foundations}, CSFW '99, pages 72--, Washington, DC, USA, 1999. IEEE Computer
+  Society.
+\newblock ISBN 0-7695-0201-6.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=794199.795113}.
+
+\bibitem[Guttman and Thayer(2002)]{Guttman:2002:ATS:568264.568267}
+Joshua~D. Guttman and F.~Javier Thayer.
+\newblock Authentication tests and the structure of bundles.
+\newblock \emph{Theor. Comput. Sci.}, 283\penalty0 (2):\penalty0 333--380, June
+  2002.
+\newblock ISSN 0304-3975.
+\newblock \doi{10.1016/S0304-3975(01)00139-6}.
+\newblock URL \url{http://dx.doi.org/10.1016/S0304-3975(01)00139-6}.
+
+\bibitem[Doghmi et~al.(2007)Doghmi, Guttman, and
+  Thayer]{Doghmi:2007:SHS:1230146.1230260}
+Shaddin~F. Doghmi, Joshua~D. Guttman, and F.~Javier Thayer.
+\newblock Skeletons, homomorphisms, and shapes: Characterizing protocol
+  executions.
+\newblock \emph{Electron. Notes Theor. Comput. Sci.}, 173:\penalty0 85--102,
+  April 2007.
+\newblock ISSN 1571-0661.
+\newblock \doi{10.1016/j.entcs.2007.02.029}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.entcs.2007.02.029}.
+
+\bibitem[Kamil and Lowe(2011{\natexlab{a}})]{Kamil:2011:ATS:2590701.2590707}
+Allaa Kamil and Gavin Lowe.
+\newblock Analysing tls in the strand spaces model.
+\newblock \emph{J. Comput. Secur.}, 19\penalty0 (5):\penalty0 975--1025,
+  September 2011{\natexlab{a}}.
+\newblock ISSN 0926-227X.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2590701.2590707}.
+
+\bibitem[Thayer et~al.(2010)Thayer, Swarup, and Guttman]{Thayer:2010aa}
+F.Javier Thayer, Vipin Swarup, and JoshuaD. Guttman.
+\newblock Metric strand spaces for locale authentication protocols.
+\newblock In Masakatsu Nishigaki, Audun JAzsang, Yuko Murayama, and Stephen
+  Marsh, editors, \emph{Trust Management IV}, volume 321 of \emph{IFIP Advances
+  in Information and Communication Technology}, pages 79--94. Springer Berlin
+  Heidelberg, 2010.
+\newblock ISBN 978-3-642-13445-6.
+\newblock \doi{10.1007/978-3-642-13446-3_6}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-642-13446-3_6}.
+
+\bibitem[Herzog(2003)]{1212716}
+J.C. Herzog.
+\newblock The diffie-hellman key-agreement scheme in the strand-space model.
+\newblock In \emph{Computer Security Foundations Workshop, 2003. Proceedings.
+  16th IEEE}, pages 234--247, June 2003.
+\newblock \doi{10.1109/CSFW.2003.1212716}.
+
+\bibitem[Needham and Schroeder(1978)]{Needham:1978:UEA:359657.359659}
+Roger~M. Needham and Michael~D. Schroeder.
+\newblock Using encryption for authentication in large networks of computers.
+\newblock \emph{Commun. ACM}, 21\penalty0 (12):\penalty0 993--999, December
+  1978.
+\newblock ISSN 0001-0782.
+\newblock \doi{10.1145/359657.359659}.
+\newblock URL \url{http://doi.acm.org/10.1145/359657.359659}.
+
+\bibitem[Guttman and Thayer(2000)]{authenticationtests}
+Joshua~D. Guttman and F.~Javier Thayer.
+\newblock Authentication tests.
+\newblock In \emph{Proceedings of the 2000 IEEE Symposium on Security and
+  Privacy}, SP '00, pages 96--, Washington, DC, USA, 2000. IEEE Computer
+  Society.
+\newblock ISBN 0-7695-0665-8.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=882494.884403}.
+
+\bibitem[Maurer and Schmid(1994)]{Mausch94}
+UeliM. Maurer and PierreE. Schmid.
+\newblock A calculus for secure channel establishment in open networks.
+\newblock In Dieter Gollmann, editor, \emph{Computer Security --- ESORICS 94},
+  volume 875 of \emph{Lecture Notes in Computer Science}, pages 173--192.
+  Springer Berlin Heidelberg, 1994.
+\newblock ISBN 978-3-540-58618-0.
+\newblock \doi{10.1007/3-540-58618-0_63}.
+\newblock URL \url{http://dx.doi.org/10.1007/3-540-58618-0_63}.
+
+\bibitem[Al-Sakib(October 14, 2010)]{KhanPathanbook}
+Khan~Pathan Al-Sakib.
+\newblock \emph{Security of Self-Organizing Networks: MANET, WSN, WMN, VANET}.
+\newblock ISBN: 978-1-4398-1920-3. Auerbach Publications, October 14, 2010.
+
+\bibitem[Stajano and Anderson(2000)]{Stajano:2000bs}
+Frank Stajano and Ross Anderson.
+\newblock The resurrecting duckling: Security issues for ad-hoc wireless
+  networks.
+\newblock In Bruce Christianson, Bruno Crispo, JamesA. Malcolm, and Michael
+  Roe, editors, \emph{Security Protocols}, volume 1796 of \emph{Lecture Notes
+  in Computer Science}, pages 172--182. Springer Berlin Heidelberg, 2000.
+\newblock ISBN 978-3-540-67381-1.
+\newblock \doi{10.1007/10720107_24}.
+\newblock URL \url{http://dx.doi.org/10.1007/10720107_24}.
+
+\bibitem[Goodrich et~al.(2006)Goodrich, Sirivianos, Solis, Tsudik, and
+  Uzun]{1648797}
+M.T. Goodrich, M.~Sirivianos, J.~Solis, G.~Tsudik, and E.~Uzun.
+\newblock Loud and clear: Human-verifiable authentication based on audio.
+\newblock In \emph{Distributed Computing Systems, 2006. ICDCS 2006. 26th IEEE
+  International Conference on}, pages 10--10, 2006.
+\newblock \doi{10.1109/ICDCS.2006.52}.
+
+\bibitem[Soriente et~al.(2008)Soriente, Tsudik, and Uzun]{Soriente:2008}
+Claudio Soriente, Gene Tsudik, and Ersin Uzun.
+\newblock Hapadep: Human-assisted pure audio device pairing.
+\newblock In \emph{Proceedings of the 11th international conference on
+  Information Security}, ISC '08, pages 385--400, Berlin, Heidelberg, 2008.
+  Springer-Verlag.
+\newblock ISBN 978-3-540-85884-3.
+\newblock \doi{10.1007/978-3-540-85886-7_27}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-540-85886-7_27}.
+
+\bibitem[Lin et~al.(2011)Lin, Ashbrook, and White]{Lin:2011}
+Felix~Xiaozhu Lin, Daniel Ashbrook, and Sean White.
+\newblock Rhythmlink: securely pairing i/o-constrained devices by tapping.
+\newblock In \emph{Proceedings of the 24th annual ACM symposium on User
+  interface software and technology}, UIST '11, pages 263--272, New York, NY,
+  USA, 2011. ACM.
+\newblock ISBN 978-1-4503-0716-1.
+\newblock \doi{10.1145/2047196.2047231}.
+\newblock URL \url{http://doi.acm.org/10.1145/2047196.2047231}.
+
+\bibitem[Saxena et~al.(2008)Saxena, Uddin, and
+  Voris]{Saxena:2008:UDP:1408664.1408672}
+Nitesh Saxena, Md.~Borhan Uddin, and Jonathan Voris.
+\newblock Universal device pairing using an auxiliary device.
+\newblock In \emph{Proceedings of the 4th symposium on Usable privacy and
+  security}, SOUPS '08, pages 56--67, New York, NY, USA, 2008. ACM.
+\newblock ISBN 978-1-60558-276-4.
+\newblock \doi{10.1145/1408664.1408672}.
+\newblock URL \url{http://doi.acm.org/10.1145/1408664.1408672}.
+
+\bibitem[Kim et~al.(2010)Kim, Kim, and Jin]{5678019}
+Young~Sam Kim, Seung-Hyun Kim, and Seung-Hun Jin.
+\newblock Srs-based automatic secure device pairing on audio channels.
+\newblock In \emph{Internet Technology and Secured Transactions (ICITST), 2010
+  International Conference for}, pages 1--6, 2010.
+
+\bibitem[Sigg et~al.(2012)Sigg, Schuermann, and Ji]{Sigg:2012aa}
+Stephan Sigg, Dominik Schuermann, and Yusheng Ji.
+\newblock Pintext: A framework for secure communication based on context.
+\newblock In Alessandro Puiatti and Tao Gu, editors, \emph{Mobile and
+  Ubiquitous Systems: Computing, Networking, and Services}, volume 104 of
+  \emph{Lecture Notes of the Institute for Computer Sciences, Social
+  Informatics and Telecommunications Engineering}, pages 314--325. Springer
+  Berlin Heidelberg, 2012.
+\newblock ISBN 978-3-642-30972-4.
+\newblock \doi{10.1007/978-3-642-30973-1_31}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-642-30973-1_31}.
+
+\bibitem[Goodrich et~al.(2009)Goodrich, Sirivianos, Solis, Soriente, Tsudik,
+  and Uzun]{Goodrich:2009:UAS:1509221.1509226}
+Michael~T. Goodrich, Michael Sirivianos, John Solis, Claudio Soriente, Gene
+  Tsudik, and Ersin Uzun.
+\newblock Using audio in secure device pairing.
+\newblock \emph{Int. J. Secur. Netw.}, 4\penalty0 (1/2):\penalty0 57--68,
+  February 2009.
+\newblock ISSN 1747-8405.
+\newblock \doi{10.1504/IJSN.2009.023426}.
+\newblock URL \url{http://dx.doi.org/10.1504/IJSN.2009.023426}.
+
+\bibitem[Perrig and Song(1999)]{Perrig99hashvisualization}
+Adrian Perrig and Dawn Song.
+\newblock Hash visualization: a new technique to improve real-world security.
+\newblock In \emph{In International Workshop on Cryptographic Techniques and
+  E-Commerce}, pages 131--138, 1999.
+
+\bibitem[Ellison and Dohrmann(2003)]{Ellison:2003:PSG:950191.950195}
+Carl Ellison and Steve Dohrmann.
+\newblock Public-key support for group collaboration.
+\newblock \emph{ACM Trans. Inf. Syst. Secur.}, 6\penalty0 (4):\penalty0
+  547--565, November 2003.
+\newblock ISSN 1094-9224.
+\newblock \doi{10.1145/950191.950195}.
+\newblock URL \url{http://doi.acm.org/10.1145/950191.950195}.
+
+\bibitem[McCune et~al.(2005)McCune, Perrig, and Reiter]{1425062}
+J.M. McCune, A.~Perrig, and M.K. Reiter.
+\newblock Seeing-is-believing: using camera phones for human-verifiable
+  authentication.
+\newblock In \emph{Security and Privacy, 2005 IEEE Symposium on}, pages
+  110--124, 2005.
+\newblock \doi{10.1109/SP.2005.19}.
+
+\bibitem[Saxena et~al.(2006)Saxena, Ekberg, Kostiainen, and Asokan]{1624021}
+N.~Saxena, J.-E. Ekberg, K.~Kostiainen, and N.~Asokan.
+\newblock Secure device pairing based on a visual channel.
+\newblock In \emph{Security and Privacy, 2006 IEEE Symposium on}, pages 6
+  pp.--313, 2006.
+\newblock \doi{10.1109/SP.2006.35}.
+
+\bibitem[Soriente et~al.(2007)Soriente, Tsudik, and
+  Uzun]{Soriente07beda:button-enabled}
+Claudio Soriente, Gene Tsudik, and Ersin Uzun.
+\newblock Beda: Button-enabled device association, 2007.
+
+\bibitem[Saxena et~al.(2011)Saxena, Ekberg, Kostiainen, and Asokan]{5654588}
+N.~Saxena, J.-E. Ekberg, K.~Kostiainen, and N.~Asokan.
+\newblock Secure device pairing based on a visual channel: Design and usability
+  study.
+\newblock \emph{Information Forensics and Security, IEEE Transactions on},
+  6\penalty0 (1):\penalty0 28--38, 2011.
+\newblock ISSN 1556-6013.
+\newblock \doi{10.1109/TIFS.2010.2096217}.
+
+\bibitem[Mayrhofer et~al.(2006)Mayrhofer, Hazas, and
+  Gellersen]{Mayrhofer06anauthentication}
+Rene Mayrhofer, Mike Hazas, and Hans Gellersen.
+\newblock An authentication protocol using ultrasonic ranging.
+\newblock Technical report, 2006.
+
+\bibitem[Mayrhofer and Welch(2007)]{4159919}
+R.~Mayrhofer and M.~Welch.
+\newblock A human-verifiable authentication protocol using visible laser light.
+\newblock In \emph{Availability, Reliability and Security, 2007. ARES 2007. The
+  Second International Conference on}, pages 1143--1148, 2007.
+\newblock \doi{10.1109/ARES.2007.5}.
+
+\bibitem[Vaudenay(2005)]{Vaudenay:2005qa}
+Serge Vaudenay.
+\newblock Secure communications over insecure channels based on short
+  authenticated strings.
+\newblock In Victor Shoup, editor, \emph{Advances in Cryptology -- CRYPTO
+  2005}, volume 3621 of \emph{Lecture Notes in Computer Science}, pages
+  309--326. Springer Berlin Heidelberg, 2005.
+\newblock ISBN 978-3-540-28114-6.
+\newblock \doi{10.1007/11535218_19}.
+\newblock URL \url{http://dx.doi.org/10.1007/11535218_19}.
+
+\bibitem[Amariucai et~al.(2012)Amariucai, Bergman, and Guan]{Amariucai:2012aa}
+GeorgeT. Amariucai, Clifford Bergman, and Yong Guan.
+\newblock An automatic, time-based, secure pairing protocol for passive rfid.
+\newblock In Ari Juels and Christof Paar, editors, \emph{RFID. Security and
+  Privacy}, volume 7055 of \emph{Lecture Notes in Computer Science}, pages
+  108--126. Springer Berlin Heidelberg, 2012.
+\newblock ISBN 978-3-642-25285-3.
+\newblock \doi{10.1007/978-3-642-25286-0_8}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-642-25286-0_8}.
+
+\bibitem[Buhan et~al.()Buhan, Doumen, Hartel, and Veldhuis]{Buhan_feelingis}
+Ileana Buhan, Jeroen Doumen, Pieter Hartel, and Raymond Veldhuis.
+\newblock Feeling is believing: a location limited channel based on grip
+  pattern biometrics and cryptanalysis.
+
+\bibitem[Holmquist et~al.(2001)Holmquist, Mattern, Schiele, Alahuhta, Beigl5,
+  and Gellersen]{Holmquist:2001kl}
+LarsErik Holmquist, Friedemann Mattern, Bernt Schiele, Petteri Alahuhta,
+  Michael Beigl5, and Hans-W. Gellersen.
+\newblock Smart-its friends: A technique for users to easily establish
+  connections between smart artefacts.
+\newblock In GregoryD. Abowd, Barry Brumitt, and Steven Shafer, editors,
+  \emph{Ubicomp 2001: Ubiquitous Computing}, volume 2201 of \emph{Lecture Notes
+  in Computer Science}, pages 116--122. Springer Berlin Heidelberg, 2001.
+\newblock ISBN 978-3-540-42614-1.
+\newblock \doi{10.1007/3-540-45427-6_10}.
+\newblock URL \url{http://dx.doi.org/10.1007/3-540-45427-6_10}.
+
+\bibitem[Lester et~al.(2004)Lester, Hannaford, and Borriello]{Lester04areyou}
+Jonathan Lester, Blake Hannaford, and Gaetano Borriello.
+\newblock Are you with me?'' -- using accelerometers to determine if two
+  devices are carried by the same person.
+\newblock In \emph{In Proceedings of Second International Conference on
+  Pervasive Computing (Pervasive 2004}, pages 33--50, 2004.
+
+\bibitem[Mayrhofer and Gellersen(2007)]{Mayrhofer:2007oq}
+Rene Mayrhofer and Hans Gellersen.
+\newblock Shake well before use: Authentication based on accelerometer data.
+\newblock In Anthony LaMarca, Marc Langheinrich, and KhaiN. Truong, editors,
+  \emph{Pervasive Computing}, volume 4480 of \emph{Lecture Notes in Computer
+  Science}, pages 144--161. Springer Berlin Heidelberg, 2007.
+\newblock ISBN 978-3-540-72036-2.
+\newblock \doi{10.1007/978-3-540-72037-9_9}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-540-72037-9_9}.
+
+\bibitem[Studer et~al.(2011)Studer, Passaro, and
+  Bauer]{Studer:2011:DBS:2076732.2076780}
+Ahren Studer, Timothy Passaro, and Lujo Bauer.
+\newblock Don't bump, shake on it: the exploitation of a popular
+  accelerometer-based smart phone exchange and its secure replacement.
+\newblock In \emph{Proceedings of the 27th Annual Computer Security
+  Applications Conference}, ACSAC '11, pages 333--342, New York, NY, USA, 2011.
+  ACM.
+\newblock ISBN 978-1-4503-0672-0.
+\newblock \doi{10.1145/2076732.2076780}.
+\newblock URL \url{http://doi.acm.org/10.1145/2076732.2076780}.
+
+\bibitem[Groza and Mayrhofer(2012)]{Groza:2012:SSA:}
+Bogdan Groza and Rene Mayrhofer.
+\newblock Saphe: simple accelerometer based wireless pairing with heuristic
+  trees.
+\newblock In \emph{Proceedings of the 10th International Conference on Advances
+  in Mobile Computing \&\#38; Multimedia}, MoMM '12, pages 161--168, New York,
+  NY, USA, 2012. ACM.
+\newblock ISBN 978-1-4503-1307-0.
+\newblock \doi{10.1145/2428955.2428989}.
+\newblock URL \url{http://doi.acm.org/10.1145/2428955.2428989}.
+
+\bibitem[Chong et~al.(2010)Chong, Marsden, and
+  Gellersen]{Chong:2010:GUD:1851600.1851644}
+Ming~Ki Chong, Gary Marsden, and Hans Gellersen.
+\newblock Gesturepin: using discrete gestures for associating mobile devices.
+\newblock In \emph{Proceedings of the 12th international conference on Human
+  computer interaction with mobile devices and services}, MobileHCI '10, pages
+  261--264, New York, NY, USA, 2010. ACM.
+\newblock ISBN 978-1-60558-835-3.
+\newblock \doi{10.1145/1851600.1851644}.
+\newblock URL \url{http://doi.acm.org/10.1145/1851600.1851644}.
+
+\bibitem[Chagnaadorj and Tanaka(2013)]{Chagnaadorj:2013aa}
+Oyuntungalag Chagnaadorj and Jiro Tanaka.
+\newblock Mimicgesture: Secure device pairing with accelerometer-based gesture
+  input.
+\newblock In Youn-Hee Han, Doo-Soon Park, Weijia Jia, and Sang-Soo Yeo,
+  editors, \emph{Ubiquitous Information Technologies and Applications}, volume
+  214 of \emph{Lecture Notes in Electrical Engineering}, pages 59--67. Springer
+  Netherlands, 2013.
+\newblock ISBN 978-94-007-5856-8.
+\newblock \doi{10.1007/978-94-007-5857-5_7}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-94-007-5857-5_7}.
+
+\bibitem[Saxena and Uddin(2008)]{Saxena:2008dz}
+Nitesh Saxena and Md.Borhan Uddin.
+\newblock Automated device pairing for asymmetric pairing scenarios.
+\newblock In Liqun Chen, MarkD. Ryan, and Guilin Wang, editors,
+  \emph{Information and Communications Security}, volume 5308 of \emph{Lecture
+  Notes in Computer Science}, pages 311--327. Springer Berlin Heidelberg, 2008.
+\newblock ISBN 978-3-540-88624-2.
+\newblock \doi{10.1007/978-3-540-88625-9_21}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-540-88625-9_21}.
+
+\bibitem[Castelluccia and Mutaf(2005)]{Castelluccia:2005}
+Claude Castelluccia and Pars Mutaf.
+\newblock Shake them up!: a movement-based pairing protocol for cpu-constrained
+  devices.
+\newblock In \emph{Proceedings of the 3rd international conference on Mobile
+  systems, applications, and services}, MobiSys '05, pages 51--64, New York,
+  NY, USA, 2005. ACM.
+\newblock ISBN 1-931971-31-5.
+\newblock \doi{10.1145/1067170.1067177}.
+\newblock URL \url{http://doi.acm.org/10.1145/1067170.1067177}.
+
+\bibitem[Scannell et~al.(2007)Scannell, Varshavsky, and
+  Lamarca]{Scannell07amigo:proximity-based}
+Adin Scannell, Alexander Varshavsky, and Anthony Lamarca.
+\newblock Amigo: Proximity-based authentication of mobile devices.
+\newblock In \emph{In Ubicomp}, pages 253--270, 2007.
+
+\bibitem[Uzun et~al.(2007)Uzun, Karvonen, and
+  Asokan]{Uzun:2007:UAS:1785594.1785635}
+Ersin Uzun, Kristiina Karvonen, and N.~Asokan.
+\newblock Usability analysis of secure pairing methods.
+\newblock In \emph{Proceedings of the 11th International Conference on
+  Financial cryptography and 1st International conference on Usable Security},
+  FC'07/USEC'07, pages 307--324, Berlin, Heidelberg, 2007. Springer-Verlag.
+\newblock ISBN 3-540-77365-7, 978-3-540-77365-8.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1785594.1785635}.
+
+\bibitem[Kumar et~al.(2009{\natexlab{a}})Kumar, Saxena, Tsudik, and
+  Uzun]{Kumar:2009:CSS:1663648.1663721}
+Arun Kumar, Nitesh Saxena, Gene Tsudik, and Ersin Uzun.
+\newblock A comparative study of secure device pairing methods.
+\newblock \emph{Pervasive Mob. Comput.}, 5\penalty0 (6):\penalty0 734--749,
+  December 2009{\natexlab{a}}.
+\newblock ISSN 1574-1192.
+\newblock \doi{10.1016/j.pmcj.2009.07.008}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.pmcj.2009.07.008}.
+
+\bibitem[Kumar et~al.(2009{\natexlab{b}})Kumar, Saxena, Tsudik, and
+  Uzun]{4912753}
+A.~Kumar, N.~Saxena, G.~Tsudik, and E.~Uzun.
+\newblock Caveat eptor: A comparative study of secure device pairing methods.
+\newblock In \emph{Pervasive Computing and Communications, 2009. PerCom 2009.
+  IEEE International Conference on}, pages 1--10, 2009{\natexlab{b}}.
+\newblock \doi{10.1109/PERCOM.2009.4912753}.
+
+\bibitem[Asonov and Agrawal(2004)]{1301311}
+D.~Asonov and R.~Agrawal.
+\newblock Keyboard acoustic emanations.
+\newblock In \emph{Security and Privacy, 2004. Proceedings. 2004 IEEE Symposium
+  on}, pages 3--11, 2004.
+\newblock \doi{10.1109/SECPRI.2004.1301311}.
+
+\bibitem[Zhuang et~al.(2005)Zhuang, Zhou, and Tygar]{Zhuang05keyboardacoustic}
+Li~Zhuang, Feng Zhou, and J.~D. Tygar.
+\newblock Keyboard acoustic emanations revisited.
+\newblock In \emph{In Proceedings of the 12th ACM CCS}, 2005.
+
+\bibitem[Halevi and Saxena(2013)]{6464577}
+T.~Halevi and N.~Saxena.
+\newblock Acoustic eavesdropping attacks on constrained wireless device
+  pairing.
+\newblock \emph{Information Forensics and Security, IEEE Transactions on},
+  8\penalty0 (3):\penalty0 563--577, 2013.
+\newblock ISSN 1556-6013.
+\newblock \doi{10.1109/TIFS.2013.2247758}.
+
+\bibitem[Wouter~van Dullink(February 12, 2013)]{WoutervanDullink2013}
+Pieter~Westein Wouter~van Dullink.
+\newblock Remote relay attack on rfid access control systems using nfc enabled
+  devices.
+\newblock Technical report, University of Amsterdam, February 12, 2013.
+
+\bibitem[Smetters et~al.(2002)Smetters, Balfanz, Smetters, Stewart, and
+  Wong]{Smetters02talkingto}
+Dirk~Balfanz Smetters, Dirk Balfanz, D.~K. Smetters, Paul Stewart, and H.~Chi
+  Wong.
+\newblock Talking to strangers: Authentication in ad-hoc wireless networks.
+\newblock 2002.
+
+\bibitem[Mitchell et~al.(2004)Mitchell, Gehrmann, and
+  Nyberg]{Mitchell:2004p25948}
+C.~Mitchell, C.~Gehrmann, and K.~Nyberg.
+\newblock {Manual authentication for wireless devices}.
+\newblock \emph{Cryptobytes}, January 2004.
+\newblock URL \url{http://eprints.rhul.ac.uk/562/}.
+
+\bibitem[C.~Gehrmann(2004)]{Mana2}
+K.~Nyberg. C.~Gehrmann.
+\newblock Security in personal area networks.
+\newblock pages 191--230. IEE, In C. J. Mitchell, 2004.
+
+\bibitem[Hoepman(2004)]{Hoepman:2004aa}
+Jaap-Henk Hoepman.
+\newblock The ephemeral pairing problem.
+\newblock In Ari Juels, editor, \emph{Financial Cryptography}, volume 3110 of
+  \emph{Lecture Notes in Computer Science}, pages 212--226. Springer Berlin
+  Heidelberg, 2004.
+\newblock ISBN 978-3-540-22420-4.
+\newblock \doi{10.1007/978-3-540-27809-2_22}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-540-27809-2_22}.
+
+\bibitem[Nguyen and Roscoe(2009)]{Nguyen09authenticationprotocols}
+L.~H. Nguyen and A.~W. Roscoe.
+\newblock Authentication protocols based on low-bandwidth unspoofable channels:
+  a comparative survey, 2009.
+
+\bibitem[Pasini and Vaudenay(2006)]{Pasini:2006fu}
+Sylvain Pasini and Serge Vaudenay.
+\newblock Sas-based authenticated key agreement.
+\newblock In Moti Yung, Yevgeniy Dodis, Aggelos Kiayias, and Tal Malkin,
+  editors, \emph{Public Key Cryptography - PKC 2006}, volume 3958 of
+  \emph{Lecture Notes in Computer Science}, pages 395--409. Springer Berlin
+  Heidelberg, 2006.
+\newblock ISBN 978-3-540-33851-2.
+\newblock \doi{10.1007/11745853_26}.
+\newblock URL \url{http://dx.doi.org/10.1007/11745853_26}.
+
+\bibitem[Laur and Nyberg(2006)]{Laur:2006kl}
+Sven Laur and Kaisa Nyberg.
+\newblock Efficient mutual data authentication using manually authenticated
+  strings.
+\newblock In David Pointcheval, Yi~Mu, and Kefei Chen, editors,
+  \emph{Cryptology and Network Security}, volume 4301 of \emph{Lecture Notes in
+  Computer Science}, pages 90--107. Springer Berlin Heidelberg, 2006.
+\newblock ISBN 978-3-540-49462-1.
+\newblock \doi{10.1007/11935070_6}.
+\newblock URL \url{http://dx.doi.org/10.1007/11935070_6}.
+
+\bibitem[Cagalj et~al.(2006)Cagalj, Capkun, and Hubaux]{1580514}
+M.~Cagalj, S.~Capkun, and J-P Hubaux.
+\newblock Key agreement in peer-to-peer wireless networks.
+\newblock \emph{Proceedings of the IEEE}, 94\penalty0 (2):\penalty0 467--478,
+  2006.
+\newblock ISSN 0018-9219.
+\newblock \doi{10.1109/JPROC.2005.862475}.
+
+\bibitem[Ryan and Schneider(2000)]{Ryan:2000:MAS:1407727}
+P.~Ryan and S.~Schneider.
+\newblock \emph{The Modelling and Analysis of Security Protocols: The Csp
+  Approach}.
+\newblock Addison-Wesley Professional, first edition, 2000.
+\newblock ISBN 0-201-67471-8.
+
+\bibitem[Claycomb and Shin(2011)]{jisis11-1-1-07}
+William Claycomb and Dongwan Shin.
+\newblock Extending formal analysis of mobile device authentication.
+\newblock \emph{Journal of Internet Services and Information Security (JISIS)},
+  1\penalty0 (1):\penalty0 86--102, 5 2011.
+
+\bibitem[Chang and Shmatikov(Wroclaw, Poland, July 2007)]{Chang_formalanalysis}
+Richard Chang and Vitaly Shmatikov.
+\newblock Formal analysis of authentication in bluetooth device pairing.
+\newblock In \emph{Proc. of LICS/ICALP Workshop on Foundations of Computer
+  Security and Automated Reasoning for Security Protocol Analysis (FCS-ARSPA)},
+  Wroclaw, Poland, July 2007.
+
+\bibitem[Duflot et~al.(2006)Duflot, Kwiatkowska, Norman, and
+  Parker]{Duflot:2006rm}
+Marie Duflot, Marta Kwiatkowska, Gethin Norman, and David Parker.
+\newblock A formal analysis of bluetooth device discovery.
+\newblock \emph{International Journal on Software Tools for Technology
+  Transfer}, 8\penalty0 (6):\penalty0 621--632, 2006.
+\newblock ISSN 1433-2779.
+\newblock \doi{10.1007/s10009-006-0014-x}.
+\newblock URL \url{http://dx.doi.org/10.1007/s10009-006-0014-x}.
+
+\bibitem[Lowe(1997{\natexlab{b}})]{596782}
+Gavin Lowe.
+\newblock A hierarchy of authentication specifications.
+\newblock In \emph{Computer Security Foundations Workshop, 1997. Proceedings.,
+  10th}, pages 31--43, Jun 1997{\natexlab{b}}.
+\newblock \doi{10.1109/CSFW.1997.596782}.
+
+\bibitem[Bellare and Rogaway(1994)]{Bellare:1994aa}
+Mihir Bellare and Phillip Rogaway.
+\newblock Entity authentication and key distribution.
+\newblock In DouglasR. Stinson, editor, \emph{Advances in Cryptology ---
+  CRYPTO' 93}, volume 773 of \emph{Lecture Notes in Computer Science}, pages
+  232--249. Springer Berlin Heidelberg, 1994.
+\newblock ISBN 978-3-540-57766-9.
+\newblock \doi{10.1007/3-540-48329-2_21}.
+\newblock URL \url{http://dx.doi.org/10.1007/3-540-48329-2_21}.
+
+\bibitem[Diaz et~al.(2014)Diaz, Arroyo, and Rodriguez]{Diaz2014149}
+Jesus Diaz, David Arroyo, and Francisco~B. Rodriguez.
+\newblock On securing online registration protocols: Formal verification of a
+  new proposal.
+\newblock \emph{Knowledge-Based Systems}, 59\penalty0 (0):\penalty0 149 -- 158,
+  2014.
+\newblock ISSN 0950-7051.
+\newblock \doi{http://dx.doi.org/10.1016/j.knosys.2014.01.011}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0950705114000227}.
+
+\bibitem[Han et~al.(2014)Han, Lin, Perrig, and
+  Bai]{Han:2014:SPM:2627393.2627400}
+Jun Han, Yue-Hsun Lin, Adrian Perrig, and Fan Bai.
+\newblock Mvsec: Secure and easy-to-use pairing of mobile devices with
+  vehicles.
+\newblock In \emph{Proceedings of the 2014 ACM Conference on Security and
+  Privacy in Wireless \&\#38; Mobile Networks}, WiSec '14, pages 51--56, New
+  York, NY, USA, 2014. ACM.
+\newblock ISBN 978-1-4503-2972-9.
+\newblock \doi{10.1145/2627393.2627400}.
+\newblock URL \url{http://doi.acm.org/10.1145/2627393.2627400}.
+
+\bibitem[Bella et~al.(2003)Bella, Longo, and Paulson]{Bella:2003aa}
+Giampaolo Bella, Cristiano Longo, and LawrenceC Paulson.
+\newblock Verifying second-level security protocols.
+\newblock In David Basin and Burkhart Wolff, editors, \emph{Theorem Proving in
+  Higher Order Logics}, volume 2758 of \emph{Lecture Notes in Computer
+  Science}, pages 352--366. Springer Berlin Heidelberg, 2003.
+\newblock ISBN 978-3-540-40664-8.
+\newblock \doi{10.1007/10930755_23}.
+\newblock URL \url{http://dx.doi.org/10.1007/10930755_23}.
+
+\bibitem[Dilloway and Lowe(2007)]{cdilloway2007spec}
+Christopher Dilloway and Gavin Lowe.
+\newblock On the specification of secure channels.
+\newblock In \emph{Proceedings of the Workshop on Issues in the Theory of
+  Security (WITS '07)}, 2007.
+
+\bibitem[Kamil and Lowe(2011{\natexlab{b}})]{Kamil:2011aa}
+Allaa Kamil and Gavin Lowe.
+\newblock Understanding abstractions of secure channels.
+\newblock In Pierpaolo Degano, Sandro Etalle, and Joshua Guttman, editors,
+  \emph{Formal Aspects of Security and Trust}, volume 6561 of \emph{Lecture
+  Notes in Computer Science}, pages 50--64. Springer Berlin Heidelberg,
+  2011{\natexlab{b}}.
+\newblock ISBN 978-3-642-19750-5.
+\newblock \doi{10.1007/978-3-642-19751-2_4}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-3-642-19751-2_4}.
+
+\bibitem[Nguyen and Leneutre(2014)]{ttnguyen}
+Trung Nguyen and Jean Leneutre.
+\newblock Formal analysis of secure device pairing protocols.
+\newblock In \emph{The 13th IEEE International Symposium on Network Computing
+  and Applications (IEEE NCA14)}, Cambridge, MA USA, Aug 2014.
+
+\bibitem[T.~Narten()]{ndp}
+H.~Soliman T.~Narten, W.~Simpson.
+\newblock Neighbor discovery for ip version 6 (ipv6).
+
+\bibitem[POTURALSkI(2011)]{Marcinthesis}
+Marcin POTURALSkI.
+\newblock \emph{Secure Neighbor Discovery and Ranging in Wireless Networks}.
+\newblock PhD thesis, {\'E}COLE POLYTECHNIQUE F{\'E}D{\'E}RALE DE LAUSANNE,
+  2011.
+
+\bibitem[Waraksa et~al.(1990)Waraksa, Fraley, Kiefer, Douglas, and
+  Gilbert]{waraksa1990passive}
+T.J. Waraksa, K.D. Fraley, R.E. Kiefer, D.G. Douglas, and L.H. Gilbert.
+\newblock Passive keyless entry system, July~17 1990.
+\newblock URL \url{http://www.google.com/patents/US4942393}.
+\newblock US Patent 4,942,393.
+
+\bibitem[Brands and Chaum(1994)]{Brands:1994aa}
+Stefan Brands and David Chaum.
+\newblock Distance-bounding protocols.
+\newblock In Tor Helleseth, editor, \emph{Advances in Cryptology EUROCRYPT 93},
+  volume 765 of \emph{Lecture Notes in Computer Science}, pages 344--359.
+  Springer Berlin Heidelberg, 1994.
+\newblock ISBN 978-3-540-57600-6.
+\newblock \doi{10.1007/3-540-48285-7_30}.
+\newblock URL \url{http://dx.doi.org/10.1007/3-540-48285-7_30}.
+
+\bibitem[Hancke and Kuhn(2005)]{Hancke:2005:RDB:1128018.1128472}
+Gerhard~P. Hancke and Markus~G. Kuhn.
+\newblock An rfid distance bounding protocol.
+\newblock In \emph{Proceedings of the First International Conference on
+  Security and Privacy for Emerging Areas in Communications Networks},
+  SECURECOMM '05, pages 67--73, Washington, DC, USA, 2005. IEEE Computer
+  Society.
+\newblock ISBN 0-7695-2369-2.
+\newblock \doi{10.1109/SECURECOMM.2005.56}.
+\newblock URL \url{http://dx.doi.org/10.1109/SECURECOMM.2005.56}.
+
+\bibitem[\v{C}apkun et~al.(2003)\v{C}apkun, Butty\'{a}n, and
+  Hubaux]{Capkun:2003:SST:986858.986862}
+Srdjan \v{C}apkun, Levente Butty\'{a}n, and Jean-Pierre Hubaux.
+\newblock Sector: Secure tracking of node encounters in multi-hop wireless
+  networks.
+\newblock In \emph{Proceedings of the 1st ACM Workshop on Security of Ad Hoc
+  and Sensor Networks}, SASN '03, pages 21--32, New York, NY, USA, 2003. ACM.
+\newblock ISBN 1-58113-783-4.
+\newblock \doi{10.1145/986858.986862}.
+\newblock URL \url{http://doi.acm.org/10.1145/986858.986862}.
+
+\bibitem[Yih-Chun~Hu()]{Yih-ChunHu2002}
+David B.~Johnson Yih-Chun~Hu, Adrian~Perrig.
+\newblock Packet leashes: A defense against wormhole attacks in wireless ad hoc
+  networks.
+
+\bibitem[Eriksson et~al.(2006)Eriksson, Krishnamurthy, and Faloutsos]{4110280}
+J.~Eriksson, S.V. Krishnamurthy, and Michalis Faloutsos.
+\newblock Truelink: A practical countermeasure to the wormhole attack in
+  wireless networks.
+\newblock In \emph{Network Protocols, 2006. ICNP '06. Proceedings of the 2006
+  14th IEEE International Conference on}, pages 75--84, Nov 2006.
+\newblock \doi{10.1109/ICNP.2006.320200}.
+
+\bibitem[Farid Na{\"\i}t-Abdesselam()]{FaridNait-Abdesselam2008}
+Tarik~Taleb Farid Na{\"\i}t-Abdesselam, Brahim~Bensaou.
+\newblock Detecting and avoiding wormhole attacks in wireless ad hoc networks.
+
+\bibitem[LOUKAS~LAZOS()]{LOUKASLAZOS}
+RADHA~POOVENDRAN LOUKAS~LAZOS.
+\newblock Serloc: Robust localization for wireless sensor networks.
+
+\bibitem[Loukas~Lazos()]{LoukasLazos2005}
+Radha~Poovendran Loukas~Lazos.
+\newblock Rope: Robust position estimation in wireless sensor networks.
+
+\bibitem[Capkun et~al.(2006)Capkun, Cagalj, and Srivastava]{4146955}
+S.~Capkun, M.~Cagalj, and M.~Srivastava.
+\newblock Secure localization with hidden and mobile base stations.
+\newblock In \emph{INFOCOM 2006. 25th IEEE International Conference on Computer
+  Communications. Proceedings}, pages 1--10, April 2006.
+\newblock \doi{10.1109/INFOCOM.2006.302}.
+
+\bibitem[Zhang et~al.(2006)Zhang, Liu, Lou, and Fang]{1589106}
+Yanchao Zhang, Wei Liu, Wenjing Lou, and Yuguang Fang.
+\newblock Location-based compromise-tolerant security mechanisms for wireless
+  sensor networks.
+\newblock \emph{Selected Areas in Communications, IEEE Journal on}, 24\penalty0
+  (2):\penalty0 247--260, Feb 2006.
+\newblock ISSN 0733-8716.
+\newblock \doi{10.1109/JSAC.2005.861382}.
+
+\bibitem[Shokri et~al.(2009)Shokri, Poturalski, Ravot, Papadimitratos, and
+  Hubaux]{Shokri:2009:PSN:1514274.1514302}
+Reza Shokri, Marcin Poturalski, Gael Ravot, Panos Papadimitratos, and
+  Jean-Pierre Hubaux.
+\newblock A practical secure neighbor verification protocol for wireless sensor
+  networks.
+\newblock In \emph{Proceedings of the Second ACM Conference on Wireless Network
+  Security}, WiSec '09, pages 193--200, New York, NY, USA, 2009. ACM.
+\newblock ISBN 978-1-60558-460-7.
+\newblock \doi{10.1145/1514274.1514302}.
+\newblock URL \url{http://doi.acm.org/10.1145/1514274.1514302}.
+
+\bibitem[Kasper Bonne~Rasmussen()]{Kasper}
+Srdjan~Capkun Kasper Bonne~Rasmussen.
+\newblock Implications of radio fingerprinting on the security of sensor
+  networks.
+
+\bibitem[Oktay~Ureten()]{OktayUreten2007}
+Nur~Serinken Oktay~Ureten.
+\newblock Wireless security through rf fingerprinting.
+
+\bibitem[Brik()]{VladimirBrik}
+Vladimir Brik.
+\newblock Wireless device identification with radiometric signatures.
+
+\bibitem[Suman~Jana()]{SumanJana}
+Sneha K.~Kasera Suman~Jana.
+\newblock On fast and accurate detection of unauthorized wireless access points
+  using clock skews.
+
+\bibitem[Danev and Capkun(2009)]{5211943}
+B.~Danev and S.~Capkun.
+\newblock Transient-based identification of wireless sensor nodes.
+\newblock In \emph{Information Processing in Sensor Networks, 2009. IPSN 2009.
+  International Conference on}, pages 25--36, April 2009.
+
+\bibitem[Ureten and Serinken(1999)]{819017}
+O.~Ureten and N.~Serinken.
+\newblock Detection of radio transmitter turn-on transients.
+\newblock \emph{Electronics Letters}, 35\penalty0 (23):\penalty0 1996--1997,
+  Nov 1999.
+\newblock ISSN 0013-5194.
+\newblock \doi{10.1049/el:19991369}.
+
+\bibitem[Xiao et~al.(2007)Xiao, Greenstein, Mandayam, and Trappe]{4289438}
+Liang Xiao, L.~Greenstein, N.~Mandayam, and W.~Trappe.
+\newblock Fingerprints in the ether: Using the physical layer for wireless
+  authentication.
+\newblock In \emph{Communications, 2007. ICC '07. IEEE International Conference
+  on}, pages 4646--4651, June 2007.
+\newblock \doi{10.1109/ICC.2007.767}.
+
+\bibitem[Liang~Xiao(2008)]{LiangXiao2008}
+Narayan Mandayam Wade~Trappe Liang~Xiao, Larry~Greenstein.
+\newblock A physical-layer technique to enhance authentication for mobile
+  terminals.
+\newblock 2008.
+
+\bibitem[Liang~Xiao()]{LiangXiao2009}
+Narayan B.~Mandayam Liang~Xiao.
+\newblock Using the physical layer for wireless authentication in time-variant
+  channels.
+
+\bibitem[Liu and Trappe(2009)]{Liu:2009:SWC:1823633}
+Ruoheng Liu and Wade Trappe.
+\newblock \emph{Securing Wireless Communications at the Physical Layer}.
+\newblock Springer Publishing Company, Incorporated, 1st edition, 2009.
+\newblock ISBN 144191384X, 9781441913845.
+
+\bibitem[Hu and Evans(2004)]{Hu04usingdirectional}
+Lingxuan Hu and David Evans.
+\newblock Using directional antennas to prevent wormhole attacks, 2004.
+
+\bibitem[Rui~Zhang()]{RuiZhang2010}
+Yanchao~Zhang Rui~Zhang.
+\newblock Wormhole-resilient secure neighbor discovery in underwater acoustic
+  networks.
+
+\bibitem[Weichao~Wang()]{WeichaoWang2007}
+Aidong~Lu Weichao~Wang.
+\newblock Interactive wormhole detection and evaluation.
+
+\bibitem[Ritesh~Maheshwari and Das()]{RiteshMaheshwari}
+Jie~Gao Ritesh~Maheshwari and Samir~R Das.
+\newblock Detecting wormhole attacks in wireless networks using connectivity
+  information.
+
+\bibitem[Znaidi et~al.(2008)Znaidi, Minier, and Babau]{4699583}
+W.~Znaidi, M.~Minier, and J.-P. Babau.
+\newblock Detecting wormhole attacks in wireless networks using local
+  neighborhood information.
+\newblock In \emph{Personal, Indoor and Mobile Radio Communications, 2008.
+  PIMRC 2008. IEEE 19th International Symposium on}, pages 1--5, Sept 2008.
+\newblock \doi{10.1109/PIMRC.2008.4699583}.
+
+\bibitem[Dong et~al.(2011)Dong, Li, Liu, Li, and Liao]{5993472}
+Dezun Dong, Mo~Li, Yunhao Liu, Xiang-Yang Li, and Xiangke Liao.
+\newblock Topological detection on wormholes in wireless ad hoc and sensor
+  networks.
+\newblock \emph{Networking, IEEE/ACM Transactions on}, 19\penalty0
+  (6):\penalty0 1787--1796, Dec 2011.
+\newblock ISSN 1063-6692.
+\newblock \doi{10.1109/TNET.2011.2163730}.
+
+\bibitem[Poturalski et~al.(2008)Poturalski, Papadimitratos, and
+  Hubaux]{Poturalski:2008:TPS:1456396.1456400}
+Marcin Poturalski, Panos Papadimitratos, and Jean-Pierre Hubaux.
+\newblock Towards provable secure neighbor discovery in wireless networks.
+\newblock In \emph{Proceedings of the 6th ACM Workshop on Formal Methods in
+  Security Engineering}, FMSE '08, pages 31--42, New York, NY, USA, 2008. ACM.
+\newblock ISBN 978-1-60558-288-7.
+\newblock \doi{10.1145/1456396.1456400}.
+\newblock URL \url{http://doi.acm.org/10.1145/1456396.1456400}.
+
+\bibitem[Schaller et~al.(2009)Schaller, Schmidt, Basin, and Capkun]{5230621}
+P.~Schaller, B.~Schmidt, D.~Basin, and S.~Capkun.
+\newblock Modeling and verifying physical properties of security protocols for
+  wireless networks.
+\newblock In \emph{Computer Security Foundations Symposium, 2009. CSF '09. 22nd
+  IEEE}, pages 109--123, July 2009.
+\newblock \doi{10.1109/CSF.2009.6}.
+
+\bibitem[Jing-jing et~al.(2010)Jing-jing, Zhang, and Yu-sen]{5630187}
+Gui Jing-jing, Tao Zhang, and Zhang Yu-sen.
+\newblock Modeling and analyzing the sybil attack to ad-hoc routing protocols.
+\newblock In \emph{Multimedia Technology (ICMT), 2010 International Conference
+  on}, pages 1--5, Oct 2010.
+\newblock \doi{10.1109/ICMULT.2010.5630187}.
+
+\bibitem[Malladi et~al.(2009)Malladi, Bruhadeshwar, and
+  Kothapalli]{Malladi09automaticanalysis}
+Sreekanth Malladi, Bezawada Bruhadeshwar, and Kishore Kothapalli.
+\newblock Automatic analysis of distance bounding protocols.
+\newblock In \emph{State University}, 2009.
+
+\bibitem[Cremers et~al.(2012)Cremers, Rasmussen, Schmidt, and Capkun]{6234408}
+C.~Cremers, K.B. Rasmussen, B.~Schmidt, and S.~Capkun.
+\newblock Distance hijacking attacks on distance bounding protocols.
+\newblock In \emph{Security and Privacy (SP), 2012 IEEE Symposium on}, pages
+  113--127, May 2012.
+\newblock \doi{10.1109/SP.2012.17}.
+
+\bibitem[Cla(2003)]{Clausen:2003:OLS:RFC3626}
+Optimized link state routing protocol (olsr), 2003.
+
+\bibitem[B.~Sarikaya(2012)]{secureboot}
+R.~Moskowitz Z. Cao R.~Cragie B.~Sarikaya, Y.~Ohba.
+\newblock Security bootstrapping solution for resource-constrained devices.
+\newblock Internet-Draft, July 10 2012.
+
+\bibitem[Jennings(2013)]{Jeanning2013}
+C.~Jennings.
+\newblock Transitive trust enrollment for constrained devices.
+\newblock Network Working Group Internet-Draft, 4 2013.
+
+\bibitem[Jung and Jung(2015)]{Seung2015}
+Seung~Wook Jung and Souhwan Jung.
+\newblock Secure bootstrapping and rebootstrapping for resource-constrained
+  thing in internet of things.
+\newblock \emph{International Journal of Distributed Sensor Networks}, 2015.
+
+\bibitem[Yu and He(2012)]{JCMjcm0708634642}
+Hong Yu and Jingsha He.
+\newblock Trust-based mutual authentication for bootstrapping in 6lowpan.
+\newblock \emph{Journal of Communications}, 7\penalty0 (8), 2012.
+\newblock URL
+  \url{http://ojs.academypublisher.com/index.php/jcm/article/view/jcm0708634642}.
+
+\bibitem[Cha et~al.(2011)Cha, Kim, and Yoo]{Cha:2011:LSE:1968613.1968679}
+HyunSoo Cha, Ki-Hyung Kim, and SeungHwa Yoo.
+\newblock Lbp: A secure and efficient network bootstrapping protocol for
+  6lowpan.
+\newblock In \emph{Proceedings of the 5th International Conference on
+  Ubiquitous Information Management and Communication}, ICUIMC '11, pages
+  54:1--54:8, New York, NY, USA, 2011. ACM.
+\newblock ISBN 978-1-4503-0571-6.
+\newblock \doi{10.1145/1968613.1968679}.
+\newblock URL \url{http://doi.acm.org/10.1145/1968613.1968679}.
+
+\bibitem[Ikram et~al.(2009)Ikram, Chowdhury, Zafar, Cha, Kim, Yoo, and
+  Kim]{Ikram:2009:SLA:1582379.1582583}
+Muhammad Ikram, Aminul~Haque Chowdhury, Bilal Zafar, Hyon-Soo Cha, Ki-Hyung
+  Kim, Seung-Wha Yoo, and Dong-Kyoo Kim.
+\newblock A simple lightweight authentic bootstrapping protocol for ipv6-based
+  low rate wireless personal area networks (6lowpans).
+\newblock In \emph{Proceedings of the 2009 International Conference on Wireless
+  Communications and Mobile Computing: Connecting the World Wirelessly}, IWCMC
+  '09, pages 937--941, New York, NY, USA, 2009. ACM.
+\newblock ISBN 978-1-60558-569-7.
+\newblock \doi{10.1145/1582379.1582583}.
+\newblock URL \url{http://doi.acm.org/10.1145/1582379.1582583}.
+
+\bibitem[Bonetto et~al.(2012)Bonetto, Bui, Lakkundi, Olivereau, Serbanati, and
+  Rossi]{6263790}
+R.~Bonetto, N.~Bui, V.~Lakkundi, A.~Olivereau, A.~Serbanati, and M.~Rossi.
+\newblock Secure communication for smart iot objects: Protocol stacks, use
+  cases and practical examples.
+\newblock In \emph{World of Wireless, Mobile and Multimedia Networks (WoWMoM),
+  2012 IEEE International Symposium on a}, pages 1--7, June 2012.
+\newblock \doi{10.1109/WoWMoM.2012.6263790}.
+
+\bibitem[G.~Montenegro(2007)]{6lowpan}
+J.~Hui D.~Culler G.~Montenegro, N.~Kushalnagar.
+\newblock Transmission of ipv6 packets over ieee 802.15.4 networks.
+\newblock RFC 4944, 2007.
+
+\bibitem[Suomalainen(2014)]{6934398}
+J.~Suomalainen.
+\newblock Smartphone assisted security pairings for the internet of things.
+\newblock In \emph{Wireless Communications, Vehicular Technology, Information
+  Theory and Aerospace Electronic Systems (VITAE), 2014 4th International
+  Conference on}, pages 1--5, May 2014.
+\newblock \doi{10.1109/VITAE.2014.6934398}.
+
+\bibitem[Ha(2009)]{5174409}
+Young-Guk Ha.
+\newblock Dynamic integration of zigbee home networks into home gateways using
+  osgi service registry.
+\newblock \emph{Consumer Electronics, IEEE Transactions on}, 55\penalty0
+  (2):\penalty0 470--476, May 2009.
+\newblock ISSN 0098-3063.
+\newblock \doi{10.1109/TCE.2009.5174409}.
+
+\bibitem[C.~Rigney(2000)]{RADIUS}
+A.~Rubens Merit W.~Simpson C.~Rigney, S.~Willen.
+\newblock Remote authentication dial in user service.
+\newblock RFC 2865, 2000.
+
+\bibitem[D.~Forsberg and Yegin(2008)]{rfc5191}
+B.~Patil H.~Tschofenig D.~Forsberg, Y.~Ohba and A.~Yegin.
+\newblock Rfc5191: Protocol for carrying authentication for network access
+  (pana).
+\newblock IETF Request For Comments,, 2008.
+
+\bibitem[Sarikaya(2015)]{Sarikaya2015}
+B.~Sarikaya.
+\newblock Security bootstrapping of ieee 802.15.4 based internet of things.
+\newblock Network Working Group, 5 2015.
+
+\bibitem[D.~Simon(2008)]{eaptls}
+R.~Hurst D.~Simon, D.~Simon.
+\newblock The eap-tls authentication protocol.
+\newblock RFC 5216, March 2008.
+
+\bibitem[R.~Moskowitz(2015)]{hipdex}
+R.~Hummen R.~Moskowitz, Ed.
+\newblock Hip diet exchange (dex).
+\newblock Internet-Draft, July 2015.
+
+\bibitem[H.~Harney(2006)]{gsakmp}
+A.~Colegrove G.~Gross H.~Harney, U.~Meth.
+\newblock Group secure association key management protocol.
+\newblock RFC 4535, 2006.
+
+\bibitem[B.~Weis(2011)]{gdoi}
+T.~Hardjono B.~Weis, S.~Rowles.
+\newblock The group domain of interpretation.
+\newblock RFC 6407, Oct 2011.
+
+\bibitem[P.~Funk(2008)]{EAP-TTLSv0}
+S.~Blake-Wilson P.~Funk.
+\newblock Extensible authentication protocol tunneled transport layer securuty
+  authenticated protocol version.
+\newblock RFC 5281, 2008.
+
+\bibitem[J.~Arkko(2004)]{MIKEY}
+F.~Lindholm M. Naslund K.~Norrman J.~Arkko, E.~Carrara.
+\newblock Mikey: Multimedia internet keying.
+\newblock RFC 3830, 2004.
+
+\bibitem[Song(1999)]{Song:1999:ANE:794199.795118}
+Dawn~Xiaodong Song.
+\newblock Athena: A new efficient automatic checker for security protocol
+  analysis.
+\newblock In \emph{Proceedings of the 12th IEEE Workshop on Computer Security
+  Foundations}, CSFW '99, pages 192--, Washington, DC, USA, 1999. IEEE Computer
+  Society.
+\newblock ISBN 0-7695-0201-6.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=794199.795118}.
+
+\end{thebibliography}
