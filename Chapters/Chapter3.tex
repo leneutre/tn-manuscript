@@ -588,7 +588,7 @@ Another security protocol verification tool, Proverif \cite{BlanchetCSFW01}, int
 There are two kinds of channels formalised in Proverif: \emph{public} and \emph{private}. Attacker can overhear on a public channel, whereas they cannot do anything on a private channel. Penetrator's capabilities are thus more limited than in our model.
 
 \subsection{Channel Property Transformation}\label{OOB-transform}
-The idea of the translation is simulating all security properties offered by each out-of-band channel by equivalent ones supported by a cryptographic scheme. Implementing this, we introduce four specific cryptographic shapes, or sub-bundle $\mathcal{B}^{SP}_{o}(m)$ containing a sending skeleton $sk^e_o(m)$ and a receiving skeleton $sk^r_o(m)$, offering the same security quality as $*_o()$ does. Firstly we state underlying assumptions:
+The idea of the translation is simulating all security properties offered by each out-of-band channel by equivalent ones fully constructed by cryptographic primitives. Firstly we state underlying assumptions:
 
 \begin{description}
 \item [(A1)] All regular participants are honest. 
@@ -596,14 +596,6 @@ The idea of the translation is simulating all security properties offered by eac
 \item [(A3)] All regular keys are not known by any penetrator. 
 \item [(A4)] Each honest participant runs one instance of the protocol at a time. 
 \end{description}
-
-In these shapes, Alice ($A$) and Bob ($B$) wish to agree on a message $m$. Attackers win if one of two participants gets different $m$. 
-
-Following definition allows characterising a fact that a principal receiving a message is able to access to a given subterm of this message. In particular, if this subterm is encrypted the principal own requires keys to decrypt, and this subterm is not masked by a non-inversible function (hash or keyed-hask function). 
-
-\begin{Definition}[Extractable]
-$m$ is called \emph{extractable} from $m'$, presented as $m \sqsubseteq^K_{ex} m'$, if $m \sqsubseteq m'$, and $m$ is obtained by applying a limited number of operations of splitting and decryption with a set of keys $K$ into $m'$.
-\end{Definition}
 
 We adopt following notations: 
 \begin{itemize}
@@ -613,17 +605,26 @@ We adopt following notations:
 \item $i$ is an integer number corresponding to an index of an out-of-band message in an original protocol. 
 \item $h$ is a hash function. 
 \item $A,B$ are names of participants. 
-\item $\mathcal{B}(m)$ is a shape providing an agreement property for data $m$. 
-\item $sk(m)$ is a skeleton in $\mathcal{B}(m)$. 
+\item $\mathcal{B}^{SP}_o(m,i)$ is a shape modelled in original Strand Spaces providing an agreement property for data $m$. 
+\item $sk^r_o(m,i)$ is a Initiator skeleton, and $sk^r_o(m)$ is a Responder skeleton in $\mathcal{B}(m,i)$. 
 \end{itemize}
+
+To implement this idea, we introduce four specific cryptographic shapes~\footnote{Definitions of shape and skeleton are defined at~\cite{Doghmi:2007:SHS:1230146.1230260}}, or sub-bundle $\mathcal{B}^{SP}_{o}(m,i)$ containing a sending skeleton $sk^e_o(m)$, and a receiving skeleton $sk^r_o(m)$, offering the same security quality as $*_o()$ does.
+
+In these shapes, Alice ($A$) and Bob ($B$) wish to agree on a message $m$. Attackers win if one of two participants gets different $m$. 
 
 To provide data origin authentication, a hash of $m$ is encrypted by a public or private key. Data confidentiality is offered by a pair of public and private keys. Keys are apparently assumed to not belong to any attacker. 
 
+Following definition allows characterising a fact that a principal receiving a message is able to access to a given subterm of this message. In particular, if this subterm is encrypted the principal own requires keys to decrypt, and this subterm is not masked by a non-inversible function (hash or keyed-hask function). 
+
+\begin{Definition}[Extractable]
+$m$ is called \emph{extractable} from $m'$, presented as $m \sqsubseteq^K_{ex} m'$, if $m \sqsubseteq m'$, and $m$ is obtained by applying a limited number of operations of splitting and decryption with a set of keys $K$ into $m'$.
+\end{Definition}
 
 %Model of a long-range public channel
-\subsubsection*{Model of a long-range public channel in original Strand Spaces}
+\subsubsection*{Model of a long-range public channel in original Strand Spaces}\label{longrange}
 
-Let $\mathcal{B}^{ESP}_{lrp}(m)$ be a shape in the classical Strand Spaces pictured in figure~\ref{protocol1} . $\mathcal{B}^{ESP}_{lrp}(m)$ provides data origin authentication for Responder as a long-range public channel does. To do it, $\{h(m)\}_{Pr_a}$ protected under $Pb_B$ will ensure integrity of the message. Apparently, Responder can ensure the the origin of message by using the corresponding public key. 
+Let $\mathcal{B}^{SP}_{lrp}(m,i)$ be a shape in the classical Strand Spaces pictured in figure~\ref{protocol1} . $\mathcal{B}^{SP}_{lrp}(m,i)$ provides data origin authentication on $m$ for Responder as a long-range public channel does. In this scheme, $\{h(m)\}_{Pr_a}$ protected under $Pb_B$ will ensure integrity of the message. Hence, Responder can ensure the the origin of message by using the corresponding Initiator public key. 
 
 \begin{figure}
 \begin{center}
@@ -643,14 +644,14 @@ A & & B \\[-4mm]
 \end{figure}
 
 \begin{Proposition}
-Considering assumptions (A1) to (A4), the shape $\mathcal{B}^{ESP}_{lrp}(m)$ containing two skeletons $sk^e_{lrp}(m)$ and $sk^r_{lrp}(m)$ holds data origin authentication for $m$. 
+Considering assumptions (A1) to (A4), the shape $\mathcal{B}^{SP}_{lrp}(m,i)$ containing two skeletons $sk^e_{lrp}(m,i)$ and $sk^r_{lrp}(m,i)$ holds data origin authentication for $m$. 
 \end{Proposition}
 
 \begin{proof}
 
-\emph{Initator's guarantee}: Since the initiator’s keys are not owned by any attacker, Initiator's messages cannot be forged. Additionally, $m$ signed by the initiator's private key, and extractable by a responder's private key. Therefore, initiator skeleton $sk^e_{lrp}(m)$ hold data origin authentication for Initiator. Note that, attackers can drop messages, but Initiator goals are still satisfied. 
+\emph{Initator's guarantee}: Since the initiator’s keys are not owned by any attacker, Initiator's messages cannot be forged. Additionally, $m$ signed by the initiator's private key, and extractable by a responder's private key. Therefore, initiator skeleton $sk^e_{lrp}(m,i)$ hold data origin authentication for Initiator. Note that, attackers can drop messages, but Initiator goals are still satisfied. 
 
-\emph{Receiver's guaranty}: Using the unsolicited test~\cite{Guttman:2002:ATS:568264.568267} for uncompromised keys, the receiver skeleton is able to verify existence of the regular node on the initiator skeleton. Data origin authentication of $m$ is obtained in the hash value covered by the initiator's private key. $m$ is apparently extractable. Finally, the responder skeleton $sk^r_{lrp}(m)$ holds its goals. 
+\emph{Receiver's guaranty}: Using the unsolicited test~\cite{Guttman:2002:ATS:568264.568267} for uncompromised keys, the receiver skeleton is able to verify existence of the regular node on the initiator skeleton. Data origin authentication of $m$ is obtained in the hash value covered by the initiator's private key. $m$ is apparently extractable. Finally, the responder skeleton $sk^r_{lrp}(m,i)$ holds its goals. 
  \end{proof}
 
 %Model of a short-range public channel
@@ -658,9 +659,9 @@ Considering assumptions (A1) to (A4), the shape $\mathcal{B}^{ESP}_{lrp}(m)$ con
 
 We simulate a non-suspend channel by a unique instance of a initiator and a corresponding receiver for each specific out-of-band message. Precisely, in our proposed scheme, each side can ensure the unique execution of the other side. As the result of that, when a message is revealed, an attacker cannot reuse it in other sessions. 
 
-Let $\mathcal{B}^{SP}_{srp}(m)$ the shape displayed at figure~\ref{protocol2} modelling in the original Strand Spaces. $\mathcal{B}^{SP}_{srp}(m)$ offers data origin authentication, non-replaying attack against Responder, and unique execution of each participant in each protocol session. As a consequence, $\mathcal{B}^{SP}_{srp}(m)$ provides all security properties as a short-range public out-of-band channel does. Additionally, we let $r_a$ visible to attackers purposely, because we allow dropping attack. By this way, attackers can produce the second message to obtain $m$, but definitely cannot reuse it. 
+Let $\mathcal{B}^{SP}_{srp}(m,i)$ the shape displayed at figure~\ref{protocol2} modelling in the original Strand Spaces. $\mathcal{B}^{SP}_{srp}(m,i)$ offers data origin authentication, non-replaying attack against Responder, and unique execution of each participant in each protocol session. As a consequence, $\mathcal{B}^{SP}_{srp}(m,i)$ provides all security properties as a short-range public out-of-band channel does. Additionally, we let $r_a$ visible to attackers purposely, because we allow dropping attack. By this way, attackers can produce the second message to obtain $m$, but definitely cannot reuse it. 
 
-We use a commitment scheme to keep away replaying attack. $A$ firstly commits a value $h(m,r_a)$, then releases $m$ after receiving a random challenge $r_b$ from $B$. Although an attacker may produce a fake second message to obtain $m$, $B$ is still able to verify the fresh of $m$ by checking the value of $r_b$ and $r_a$ used in current session with $A$. $r_b$ apparently is known only by $A$ as encrypted by the $A$'s public key. Meanwhile, the last message like one in $\mathcal{B}^{ESP}_{lrp}(m)$ offers data origin authentication. 
+We use a commitment scheme to keep away replaying attack. $A$ firstly commits a value $h(m,r_a)$, then releases $m$ after receiving a random challenge $r_b$ from $B$. Although an attacker may produce a fake second message to obtain $m$, $B$ is still able to verify the fresh of $m$ by checking the value of $r_b$ and $r_a$ used in current session with $A$. $r_b$ apparently is known only by $A$ as encrypted by the $A$'s public key. Meanwhile, the last message like one in $\mathcal{B}^{SP}_{lrp}(m,i)$ offers data origin authentication. 
 
 
 \begin{figure}
@@ -670,7 +671,7 @@ We use a commitment scheme to keep away replaying attack. $A$ firstly commits a 
 A & & B\\[-4mm]
  & $r_a,\{i,h(m,r_a),A\}_{Pb_B}$ & \\[-4mm]
  & $\{i,r_b,r_a,B\}_{Pb_A}$ & \\[-4mm]
- & $m,\{i, \{h(m,r_b)\}Pr_a\}_{Pb_B}$ & \\[-4mm]
+ & $m,\{i, r_b\}_{Pb_B}$ & \\[-4mm]
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -685,13 +686,13 @@ A & & B\\[-4mm]
 \end{figure}
 
 \begin{Proposition}
-Considering assumptions (A1) to (A4), $\mathcal{B}^{SP}_{srp}(m)$ containing two skeletons $sk^e_{srp}(m)$ and $sk^r_{srp}(m)$ holds data origin authentication, and unique execution of each sides. 
+Considering assumptions (A1) to (A4), $\mathcal{B}^{SP}_{srp}(m,i)$ containing two skeletons $sk^e_{srp}(m,i)$ and $sk^r_{srp}(m,i)$ holds data origin authentication, and unique execution of each sides. 
 \end{Proposition}
 
 \begin{proof}
 
 \emph{Initator's guarantee}: Since the initiator’s keys are not owned by any attacker, the third message cannot be forged. Hence, data origin authentication of $m$ is ensured in the message received by the responder. Moreover, $m$ is clearly extractable by the responder's private key. 
-We also obviously have a outgoing test edge $\langle sk^e_{srp}(m),1 \rangle \Rightarrow \langle sk^e_{srp}(m),2 \rangle$ for a nonce $r_a$. Initiator ensures the existence of the responder, but it could be an attacker. Nevertheless, according to our assumption on uncompromised keys, and unique origination of $r_b$, Initiator knows attackers cannot forge or reuse the third message. Finally, the initiator skeleton holds the unique execution of Responder and data origin authentication.
+We also obviously have a outgoing test edge $\langle sk^e_{srp}(m,i),1 \rangle \Rightarrow \langle sk^e_{srp}(m,i),2 \rangle$ for a nonce $r_a$. Initiator ensures the existence of the responder, but it could be an attacker. Nevertheless, according to our assumption on uncompromised keys, and unique origination of $r_b$, Initiator knows attackers cannot forge or reuse the third message. Finally, the initiator skeleton holds the unique execution of Responder and data origin authentication.
 
 \emph{Responder's guarantee}: Firstly, $m$ is extractable in third message by the responder's private key. Since the private key $Pr_a$ does not belong to attacker’s keys, attacker cannot generate the third message. 
 
@@ -702,13 +703,13 @@ According to following reasons:
 \item [(iii)] Data origin authentication of $m$ is secured by the hash value signed by the initiator's private key. 
 \end{enumerate}
 
-Responder skeleton $sk^r_{srp}(m)$ holds unique execution of Initiator and data origin authentication.
+Responder skeleton $sk^r_{srp}(m,i)$ holds unique execution of Initiator and data origin authentication.
  \end{proof}
 
 %Model of a protected public channel
-\subsubsection*{Model of a protected channel in original Strand Spaces}
+\subsubsection*{Model of a protected channel in original Strand Spaces}\label{protect}
 
-Let be $\mathcal{B}^{ESP}_{pro}(m)$ a shape described at figure~\ref{protocol3} which offers data confidentiality of $m$ and prevents Responder from replaying attack. 
+Let be $\mathcal{B}^{SP}_{pro}(m,i)$ a shape described at figure~\ref{protocol3} which offers data confidentiality of $m$ and prevents Responder from replaying attack. 
 
 Clearly, due to uncompromised keys assumption, $B$ ensures that $m$ is confidential as encrypted by $B$'s public key. Meanwhile, $r_b$ plays as a challenge to offer non-replaying attack on $m$. Additionally, only $A$ can open the first message, $B$ ensures the origin of $m$.  
 
@@ -732,21 +733,21 @@ A & & B\\[-4mm]
 \end{figure}
 
 \begin{Proposition}
-Considering assumptions (A1) to (A4), the bundle $\mathcal{B}^{ESP}_{pro}(m)$ containing two skeleton $st^e_{pro}(m)$ and $st^r_{pro}(m)$ offers data confidentiality for $m$ and prevents Responder from replaying attack. 
+Considering assumptions (A1) to (A4), the bundle $\mathcal{B}^{SP}_{pro}(m,i)$ containing two skeleton $st^e_{pro}(m,i)$ and $st^r_{pro}(m,i)$ offers data confidentiality for $m$ and prevents Responder from replaying attack. 
 \end{Proposition}
 
 \begin{proof}
-\emph{Initator's guarantee}: Firstly, $m$ is extractable in second message by the responder's private key. Moreover, $m$ is secured and integrity by the responder's public key. Assume that $r_b$ uniquely originates in $\mathcal{B}^{ESP}_{pro}(m)$, initiator can ensure for the unique responder skeleton in $\mathcal{B}^{ESP}_{pro}(m)$. Finally, the initiator skeleton $st^e_{pro}(m)$ holds properties as data confidentiality, data origin authentication and non-replaying attack.
+\emph{Initator's guarantee}: Firstly, $m$ is extractable in second message by the responder's private key. Moreover, $m$ is secured and integrity by the responder's public key. Assume that $r_b$ uniquely originates in $\mathcal{B}^{SP}_{pro}(m,i)$, initiator can ensure for the unique responder skeleton in $\mathcal{B}^{SP}_{pro}(m,i)$. Finally, the initiator skeleton $st^e_{pro}(m,i)$ holds properties as data confidentiality, data origin authentication and non-replaying attack.
 
-\emph{Responder's guarantee}: Firstly, $m$ is extractable in second message by the responder's private key. Moreover, $m$ is secured and integrity by the responder's public key. When $r_b$ uniquely originates in $\mathcal{B}^{ESP}_{pro}(m)$, the responder ensures the existence of regular initiator skeleton in $\mathcal{B}^{ESP}_{pro}(m)$. Finally, the responder skeleton $st^r_{pro}(m)$ holds properties as channel confidentialityand non-replaying attack.
+\emph{Responder's guarantee}: Firstly, $m$ is extractable in second message by the responder's private key. Moreover, $m$ is secured and integrity by the responder's public key. When $r_b$ uniquely originates in $\mathcal{B}^{SP}_{pro}(m,i)$, the responder ensures the existence of regular initiator skeleton in $\mathcal{B}^{SP}_{pro}(m,i)$. Finally, the responder skeleton $st^r_{pro}(m,i)$ holds properties as data confidentiality and non-replaying attack.
  \end{proof}
 
 %Model of a private public channel
-\subsubsection*{Model of a private channel in original Strand Spaces}
+\subsubsection*{Model of a private channel in original Strand Spaces}\label{private}
 
-Let $\mathcal{B}^{ESP}_{pri}(m)$ be the shape described at figure~\ref{protocol4} which offers data confidentiality, data origin authentication, and prevents replaying attack, suspending attack and dropping attack.
+Let $\mathcal{B}^{SP}_{pri}(m,i)$ be the shape described at figure~\ref{protocol4} which offers data confidentiality, data origin authentication, and prevents replaying attack, suspending attack and dropping attack.
 
-We simulate non-dropping channel by that whenever attackers drop an out-of-band message, the protocol will be stop at that point. Actually, $\mathcal{B}^{ESP}_{pri}(m)$ is a variant of $NS$ protocol~\cite{674832} which offers injective agreement and secrecy on $(r_a,r_b)$ between two participants. Injective agreement means that there are unique run of both participants in this protocol. As a result, replaying attacks are clearly avoided. Suspending attack apparently is useless as well. Meanwhile, $m$ in encrypted by $B$'s public key, so $m$ is ensure data confidentiality. 
+We simulate non-dropping channel by that whenever attackers drop an out-of-band message, the protocol will be stop at that point. Actually, $\mathcal{B}^{SP}_{pri}(m,i)$ is a variant of $NS$ protocol~\cite{674832} which holds injective agreement and secrecy on $(r_a,r_b)$ between two participants. Injective agreement means that there are unique run of both participants in this protocol. As a result, replaying attacks are clearly avoided. Suspending attack apparently is useless as well. Meanwhile, $m$ in encrypted by $B$'s public key, so $m$ is ensured data confidentiality. 
 
 \begin{figure}
 \begin{center}
@@ -770,7 +771,7 @@ A & & B\\[-4mm]
 \end{figure}
 
 \begin{Proposition}
-Considering assumptions (A1) to (A4), the shape $\mathcal{B}^{ESP}_{pri}(m)$ containing two unique skeletons $sk^e_{pri}(m)$ and $sk^r_{pri}(m)$ offer data origin authentication, data confidentiality for $m$.   
+Considering assumptions (A1) to (A4), the shape $\mathcal{B}^{SP}_{pri}(m,i)$ containing two unique skeletons $sk^e_{pri}(m,i)$ and $sk^r_{pri}(m,i)$ offer data origin authentication, data confidentiality for $m$.   
 \end{Proposition}
 
 \begin{proof}
@@ -779,17 +780,18 @@ The protocol was proved in~\cite{674832} to hold the injective agreement between
 
 \subsubsection*{Out-of-band Channel Translation}
 
-Let $st = \langle *n_1,...,*n_{k-1},*n_k,*n_{k+1},... \rangle$. We say that if a skeleton $sk$ hooks into a strand $st$ at the node $n_k$ , then $st = \langle *n_1,...,*n_{k-1},sk,*n_{k+1},... \rangle$
+As can be seen above, four schemes could offers the same security properties as out-of-band channels do. Therefore, they can be used to model a out-of-band channels based protocol in the original Strand Spaces. Let's present how it works. 
+
+Let $st = \langle n_1,...,n_{k-1},n_k,n_{k+1},... \rangle$. We say that if a skeleton $sk$ hooks into a strand $st$ at the node $n_k$ , then $st = \langle n_1,...,n_{k-1},sk,n_{k+1},... \rangle$
 
 \begin{Definition}[OOB Replacement]\label{eos}
-The \emph{oob replacement} replaces a message $_o\{m\}$ at node $n=\langle st,j \rangle$ in a strand $st$ by corresponding sending or receiving skeleton that hooks into $st$ at $n$ by following way:
+The \emph{oob replacement} replaces a message $_o\{m\}$ at node $n=\langle st,j \rangle$ in a strand $st$ by corresponding sending or receiving skeleton that hooks into $st$ at $n$. Precisely, 
 
 \begin{enumerate}
-\item [(i)] when $o$ is a long-range public channel, then $+_{lrp}\{m\}$ and $-_{lrp}(m)$ are replaced by $st^e_{lrp}(m)$ and $st^r_{lrp}(m)$ respectively, and index $i = j$. 
-\item [(ii)] when $o$ is a short-range public channel, then $+_{srp}\{m\}$ and $-o_{srp}(m)$ are replaced by $st^e_{srp}(m)$ and $st^r_{srp}(m)$ respectively, and index $i = j$. 
-\item [(iii)] when $o$ is a protected channel, then $+_{pro}\{m\}$ and $-_{pro}(m)$ are replaced by $st^e_{pro}(m)$ and $st^r_{pro}(m)$ respectively, and index $i = j$. 
-\item [(vi)] when $o$ is a private channel, then $+_{pri}\{m\}$ and $-_{pri}(m)$ are replaced by $st^e_{pri}(m)$ and $st^r_{pri}(m)$ respectively, and index $i = j$. 
-\end{enumerate}
+\item [(i)] $+_{lrp}(m)$ and $-_{lrp}(m)$ are replaced by $st^e_{lrp}(m,i)$ and $st^r_{lrp}(m,i)$ respectively;
+\item [(ii)] $+_{srp}(m)$ and $-o_{srp}(m)$ are replaced by $st^e_{srp}(m,i)$ and $st^r_{srp}(m,i)$ respectively;
+\item [(iii)] $+_{pro}(m)$ and $-_{pro}(m)$ are replaced by $st^e_{pro}(m,i)$ and $st^r_{pro}(m,i)$ respectively;
+\item [(vi)] $+_{pri}(m)$ and $-_{pri}(m,i)$ are replaced by $st^e_{pri}(m,i)$ and $st^r_{pri}(m,i)$ respectively;\end{enumerate}
 \end{Definition}
 
 \begin{Definition}[OOB Equivalent Strand] Let $st^{ESP}$ be a strand of a protocol modelled in extended Strand Spaces. The strand $st^{SP}$ is called be an \emph{OOB equivalent strand} modelled in original Strand Spaces model for $st^{ESP}$ if $st^{SP}$ is the strand after applying the OOB replacement to all out-of-band messages in $st^{ESP}$.
@@ -800,10 +802,9 @@ By extension to the bundle, we have an OOB equivalent bundle as follows.
 \begin{Definition}[OOB Equivalent Bundle]\label{iopmf} A bundle $\mathcal{B}^{SP}$ is called an \emph{OOB equivalent bundle} for a bundle $\mathcal{B}^{ESP}$ modelled in extend Strand Spaces if $\mathcal{B}^{SP}$ consists of corresponding OOB equivalent strands of all strands in $\mathcal{B}^{ESP}$. 
 \end{Definition}
 
-
 \subsection{Attack Transformation}\label{attacktransform}
 
-In this subsection, we present the penetrator model for the four shapes defined in subsection~\ref{OOB-transform}. We simulate a suspending event $\#$ by a storing penetrator strand. We define a storing penetrator strand that receives any message, and reuses it later. 
+We simulate the suspending event by a storing penetrator strand which receives any message, and reuses it later. 
 
 \begin{Definition}[Storing Penetrator Strand]
 $st^s_p$ is a \emph{storing penetrator strand} if 
@@ -813,7 +814,7 @@ $st^s_p$ is a \emph{storing penetrator strand} if
 \end{itemize}
 \end{Definition}
 
-Let $t_1$, $t_2$, $t_3$ respectively denote terms of first message, second message (if existing) and third message (if existing) in the four shapes defined in previous section. Let $r_b'$ denote a nonce generated by penetrator. Let $st^s_p$ be a storing penetrator strand. $h, h1\in st^s_p$ such that $term(h) = term(t1)$, $term(h1) = term(h)$, and $term(h_2) = term(t_2)$ 
+Let $t_1$, $t_2$, $t_3$ respectively denote terms of first message, second message (if existing) and third message (if existing) in the four shapes defined in previous section. Let $r_b'$ denote a nonce generated by penetrator. Let $st^s_p$ be a storing penetrator strand. $h, h1\in st^s_p$ such that $term(h) = term(t1)$, $term(h1) = term(h)$, and $term(h_2) = term(t_2)$. The table~\ref{attacktrans} depicts attacker's capabilities on each $\mathcal{B}^{SP}_o(m,i)$. The set of these strands is noted as $\mathcal{X}^{SP}$.  
 
 \begin{table}[b]
 \centering
@@ -827,15 +828,15 @@ Let $t_1$, $t_2$, $t_3$ respectively denote terms of first message, second messa
 \hline
  & Long-range Public & Short-range Public & Protected & Private \\
 \hline\hline
-OVH & $\langle -t1,+t1,+m \rangle$ & $ \langle -t3,+t3,+m \rangle$ & \O & \O \\ \hline
-SUS & $ \langle -t1, +h \rangle$ & \O & $ \langle -t2,+h \rangle$ & \O \\ \hline
-REL & $\langle -h, +h1 \rangle$ & \O & $ \langle -h,+h2 \rangle$ & \O \\ \hline
-DRP & $ \langle -t1 \rangle$ & $ \langle -t1,$ & $\langle -t2 \rangle$ & \O \\
+$OVH^{SP}$ & $\langle -t1,+t1,+m \rangle$ & $ \langle -t3,+t3,+m \rangle$ & \O & \O \\ \hline
+$SUS^{SP}$ & $ \langle -t1, +h \rangle$ & \O & $ \langle -t2,+h \rangle$ & \O \\ \hline
+$REL^{SP}$ & $\langle -h, +h1 \rangle$ & \O & $ \langle -h,+h2 \rangle$ & \O \\ \hline
+$DRP^{SP}$ & $ \langle -t1 \rangle$ & $ \langle -t1,$ & $\langle -t2 \rangle$ & \O \\
   &  & $+(\{i,r_b',r_a,$ & \\
   &  & $"BtoA"\}_{Pb_A}),$ & \\
   &  & $-t3 \rangle$ & \\ \hline
-REP & $ \langle -t1, +h,$ & \O & \O & \O \\
- 	& $+h1,+h1 \rangle$& & &\\ \hline
+$REP^{SP}$ & $ \langle -t1, $ & \O & \O & \O \\
+ 	& $+t1,+t1 \rangle$& & &\\ \hline
 \end{tabular}
 }
 \end{table}
@@ -846,24 +847,73 @@ A natural question arising is: if there an attack against a transformed protocol
 
 \subsection{Proofs}\label{proof}
 
-The proof we will obtain in this paper follows a simple concept to establish the desired results:\emph{A protocol bundle is secure in extended Strand Spaces model if its equivalent OOB bundle is secured}. Or, \emph{whenever there is an attack on extended Strand Spaces model, there is an attack on the equivalent OOB bundle}. Formally presenting, we state this concept into a theorem as follows. 
+The proof we will obtain in this paper follows a simple concept to establish the desired results: \emph{A protocol bundle is secure in extended Strand Spaces model if its equivalent OOB bundle is secured}. Or, \emph{whenever there is an attack on extended Strand Spaces model, there is an attack on the equivalent OOB bundle}. Formally presenting, we state this concept into a theorem as follows. 
 
-\begin{Theorem}
-Let $\mathcal{B}^{ESP}$ be an extended Strand Spaces bundle, and $\mathcal{B}^{SP}$ be an OOB equivalent bundle for $\mathcal{B}^{ESP}$. We are able to construct an attack in $\mathcal{B}^{SP}$ whenever there is an attack in $\mathcal{B}^{ESP}$.
-\end{Theorem}
+\begin{Proposition}
+Let $\mathcal{B}^{ESP}$ be a normal execution of a protocol $\mathcal{P}$ modeled in the extended Strand Spaces, and $\mathcal{B}^{SP}$ be an OOB equivalent bundle of $\mathcal{B}^{ESP}$. Whenever there is an attack against $\mathcal{B}^{ESP}$, then there is an attack against $\mathcal{B}^{SP}$. 
+\end{Proposition}
+
+This proposition is proved by lemmas from~\ref{lemma511} to \ref{lemma514}. 
+
+\begin{Lemma}\label{lemma511}
+Let $\mathcal{A}^{ESP}$ be a set of all terms in $\mathcal{B}^{ESP}$, and $\mathcal{A}^{SP}$ be a set of all terms in $\mathcal{B}^{SP}$ . For all $t \in \mathcal{A}^{ESP}$, then $t \in \mathcal{A}^{SP}$. 
+\end{Lemma}
+\begin{proof}
+According to the sub-sections~\ref{OOB-transform}, term $m$ in all of four shapes $\mathcal{B}^{SP}_o(m,i)$ has the same structure and direction as one in $_o(m)$. For instance, message $_{lrp}(m,i)$ from $A$ to $B$ is presented as $(m, \{i,\{h(m)\}_{Pr_a},A\}_{Pb_B})$ in $\mathcal{B}^{SP}_{lrp}(m,i)$. Moreover, defined in the definition~\ref{eos}, the replacement only happens on out-of-band terms. As a consequence, $\forall t \in \mathcal{A}^{ESP}, t \in \mathcal{A}^{SP}$.
+\end{proof}
+
+\begin{Lemma}\label{lemma512}
+$\mathcal{B}^{SP}$ preserves partial ordering $\lesssim$ in $\mathcal{B}^{ESP}$.    
+\end{Lemma}
 
 \begin{proof}
+Assume that $n \lesssim n' \in \mathcal{B}^{ESP}$, and $t \sqsubseteq term(n) = +_o(m), t' \sqsubseteq term(n')$,  there exists nodes $n_{sp},n'_{sp} \in \mathcal{B}^{SP}$ so that $t \sqsubset term(n_{sp}), t' \sqsubseteq term(n'_{sp})$, and $n_{sp} \lesssim n'_{sp} $. This is obtained by following facts. 
+\begin{itemize}
+\item According to lemma~\ref{lemma511}, $\forall t,t' \in \mathcal{A}^{ESP}$, then $t,t' \in \mathcal{A}^{SP}$; and directions of $t$ and $t'$ in $\mathcal{B}^{ESP}$ are preserved $\mathcal{B}^{SP}$.
+\item After the replacement, $sk^e_o(m,i)$ is positioned before $n'_{sp}$ in $\mathcal{B}^{SP}$ where term $term(n'_{sp})$ = $term(n')$;
+\item $\exists n_{sp} \in sk^e_o(m,i)$ so that $t \sqsubseteq term(n_{sp})$. 
+\end{itemize}
 
-We assume that $st^{ESP}_p$ is a penetrator strand successfully hooking into $\mathcal{B}^{ESP}$ to against its goals. Mechanically, $st^{ESP}_p$ is constructed by some strands $M, F, T, C, S, K, E, D, H$ for messages on normal channels, and \emph{OVH, SUS, REL, DRP, REP} for messages on out-of-band channels.
+As the result of these, $n_{sp} \lesssim n'_{sp}$. Likewise, we have the same proof if $term(n)=-_o(m)$, or $term(n')= _o(m)$.
+\end{proof}
 
-Now we show that we can construct the attack against $\mathcal{B}^{SP}$. Using the subsection~\ref{attacktransform}, each strand in $\mathcal{X^{ESP}}$ will be replaced by a similar-name strand in table~\ref{attacktrans}. Other Dolev-Yao strands are remained. As a result of these steps, we completely construct $st^{SP}_p$ against $\mathcal{B}^{SP}$'s goals. 
+\begin{Lemma}\label{sameattack}
+Attacker's knowledge and capabilities in $\mathcal{X}^{ESP}$ on $_o(m)$ are similar to ones in $\mathcal{X}^{SP}$ on $\mathcal{B}^{SP}_o(m,i)$. 
+\end{Lemma}
+\begin{proof}
+We are going to give a proof of a long-range public out-of-band channel. The proofs of other channels can be obtained in the same way. Assume that, the message $_{lrp}(m)$ is transmitted over a long-range public channels. Intuitively, attackers can overhear, suspend, release, drop, and replay the message. 
+
+According to the table~\ref{attacktrans}, for the message $(m, \{i,\{h(m)\}_{Pr_a},A\}_{Pb_B})$:
+\begin{itemize}
+\item $m$ is extracted by $OVH^{SP}$ and $S$;
+\item the message is received and held in a storing penetrator strand $st^s_p$ by $SUS^{SP}$;
+\item the message is sent from $st^s_p$ by $REL^{SP}$;
+\item the message is copied and replayed by $REP^{SP}$;
+\item the message is dropped by $DRP^{SP}$
+\end{itemize}
+
+The attacker obviously cannot modify the message $(m, \{i,\{h(m)\}_{Pr_a},A\}_{Pb_B})$ since the keys are pre-authenticated. Finally, what the attacker can do with $_{lrp}(m)$ is similar to what he does with $(m, \{i,\{h(m)\}_{Pr_a},A\}_{Pb_B})$.
+\end{proof}
+
+\begin{Lemma}\label{lemma514}
+If $\mathcal{B'}^{ESP}$ is an execution of $\mathcal{P}$ in which a attacker strand violates goals of $\mathcal{B}^{ESP}$, then $\mathcal{B'}^{SP}$, another shape of $\mathcal{B}^{SP}$, has an attacker strand violates $\mathcal{B}^{SP}$'s goals (similar to $\mathcal{B}^{ESP}$'s).
+\end{Lemma}
+
+\begin{proof}
+In general, we can assume that the goals of $\mathcal{B}^{ESP}$ are agreement and secrecy on a data set $ds$ between participants $A$ and $B$.  Attackers win the game if $A$ and $B$ receive different $ds$. We assume that $\mathcal{B'}^{ESP}$ contains a attacker strand so that the attacker wins this game. Apparently, $A$ has $ds_A$ while $B$ has $ds_B$, and $ds_A \not= ds_B$. 
+
+Mechanically, $ds_A$ or $ds_B$ are constructed by a sequence of events based on attacker's knowledge about terms, the protocol structure and his capabilities (precisely on Dolev-Yao strands, and $\mathcal{X}^{ESP})$. For example, to produce $\{m,A\}_k$, the attacker uses $OVH$ on $+_o(m)$ from $A$ to $B$ somewhere in the protocol, $SUS$ to suspend the message $+_o(m)$ , $REL$ to release the message, $K$ to generate $k$, and $E$ to produce $\{m,A\}_k$. 
+
+Provided in the lemma~\ref{sameattack}, attacker's capabilities in $\mathcal{X}^{ESP}$ on any term $t \in \mathcal{A}^{ESP}$ are similar ones in $\mathcal{X}^{SP}$ on $t \in \mathcal{A}^{SP}$. For instance, an attacker's sequence in $\mathcal{B'}^{ESP}$ such as ($OVH$, $SUS$, $REL$, $K$, $E$) can be interpreted as ($OVH^{SP}$,$SUS^{SP}$, $REL^{SP}$, $K$, $E$) to produce $\{m,A\}_k$ when $+_o(m)$ is translated into $sk^e_o(m,i)$. 
+
+Therefore, regarding to lemma~\ref{lemma512}, and in the same way the attack constructs $ds_A$ or $ds_B$ in $\mathcal{B'}^{ESP}$, the attacker can produce a sequence of events to construct $ds_A$ or $ds_B$ against goals of $\mathcal{B}^{SP}$. Finally, $\mathcal{B'}^{SP}$ is another execution of $\mathcal{B}^{SP}$ which contains this sequence.
 \end{proof}
 
 \subsection{Reversed Attack}\label{reverse}
 
 The problem is when an attack against the transformed protocol is found in $\mathcal{B}^{SP}$, does a corresponding attack exist $\mathcal{B}^{ESP}$? If it is the case, is it possible to figure it out? 
 
-For the long-range public, we easily replace the $\langle -t1, +h \rangle $ by $SUS$ strand, $\langle -t1,+t1,+m \rangle$ by $OVH$ strand, and $ \langle -h,+h1\rangle$ by $REL$ strand, and $ \langle -t, +h,+h1,+h1 \rangle$ by $REP$ strand. Then we remove other related messages using the index number $i$, and remove $sk^r_p$. The protected channels can proceed by the same way. 
+For the long-range public, we easily replace the $\langle -t1, +h \rangle $ by $SUS$ strand, $\langle -t1,+t1,+m \rangle$ by $OVH$ strand, and $ \langle -h,+h1\rangle$ by $REL$ strand, and $ \langle -h_1, +t1,+t1 \rangle$ by $REP$ strand. Then we remove other related messages using the index number $i$, and remove related messages. The protected channels can proceed by the same way. 
 
 However, the case of a short-range public channel is more complicated. We have to search for patterns corresponding to short-range public channel in attack bundle. Whenever we find a negative node having a third message form, we must look for previous nodes using the index $i$. If they exist, then we remove them and replace the third one with $DRP$ strand. Otherwise, if they do not exist, we replace the third message with $OVH$ message, then remove related nodes in attack bundle using the $i$ index, and remove $sk^r_p$.
 
@@ -871,7 +921,7 @@ Eventually, by this manual way, we can reverse an attack on original Strand Spac
 
 \subsection{Example}
 
-In this part, we consider a protocol proposed by Wong and Stajano in~\cite{10.1109/MPRV.2007.76}. Wong-Stajano Protocol, illustrated at figure~\ref{twong-stajano-protocol}, is a key agreement protocol over unidirectional out-of-band channels. Their protocol exploits two kinds of out-of-band channels: the first one is a short-range public channel used to send an acknowledgement, the other one is a long-range public channel used to transmit an authenticated string. This protocol was showed to be insecure in our previous section~\ref{analysisWSP}. 
+In this part, we analyse Wong and Stajano protocol~\cite{10.1109/MPRV.2007.76} using the out-of-band translation. The transformation of the protocol in original Strand Spaces, displayed in~\ref{twong-stajano-protocol}, is formally defined below. 
 
 \begin{figure}[b]
 \begin{center}
@@ -884,7 +934,7 @@ $g^a,r^o_A$ & & $r_b,k_B,g^b,r^o_B$ \\[-4mm]
 
  & $r^o_A,\{3, h("ACK",r^o_A),A\}_{Pb_B}$ & \\[-4mm]
  & $\{3,r^o_A,r^o_B,B\}_{Pb_A}$ & \\[-4mm]
- & $"ACK",\{3, \{h("ACK",r^o_B)\}_{Pr_a}\}_{Pb_B}$ & \\[-4mm]
+ & $"ACK",\{3,r^o_B\}_{Pb_B}$ & \\[-4mm]
 
  & $r_b, \{4,\{h(r_b)\}_{Pr_b}\}_{Pb_A}$ & \\[-4mm]
 
@@ -910,7 +960,7 @@ $g^a,r^o_A$ & & $r_b,k_B,g^b,r^o_B$ \\[-4mm]
 \label{twong-stajano-protocol}
 \end{figure}
 
-The transformation of the protocol in original Strand Spaces, picturised in~\ref{twong-stajano-protocol}, is formally defined below. 
+
 
 \begin{Definition}
 An infiltrated Strand Spaces $(\Sigma,\mathcal{B})$ is a model of Wong-Stajano protocol if $\Sigma$ is the union of the three following kind of strands:
@@ -923,7 +973,7 @@ An infiltrated Strand Spaces $(\Sigma,\mathcal{B})$ is a model of Wong-Stajano p
 
 Initiator's guarantee for transformed Wong-Stajano protocol is stated as follows:
 
-\textit{Let $\mathcal{B}$ be a bundle containing a strand $st'$ in \\ {\footnotesize $Init[r_b,k_B,g^a,g^b,r^o_A,r^o_B,Pk_A,Pr_a,Pk_B,Pr_b]$} of height 7. If $r^o_A$ is uniquely originating on $st$, then $\mathcal{B}$ contains a unique strand $st'$ in\\ {\footnotesize $Resp[r_b,k_B,g^a,g^b,r^o_A,r^o_A,Pk_A,Pr_a,Pk_B,Pr_b]$} of height 7. Moreover, both strands agree on $g^a,g^b$.}
+\textit{Let $\mathcal{B}$ be a bundle containing a strand $st'$ in \\ {\footnotesize $Init[r_b,k_B,g^a,g^b,r^o_A,r^o_B,Pk_A,Pr_a,Pk_B,Pr_b]$} of height 7. \\ If $r^o_A$ is uniquely originating on $st$, then $\mathcal{B}$ contains a unique strand $st'$ in\\ {\footnotesize $Resp[r_b,k_B,g^a,g^b,r^o_A,r^o_A,Pk_A,Pr_a,Pk_B,Pr_b]$} of height 7. \\ Moreover, both strands agree on $g^a,g^b$.}
 
 \begin{Proposition}
 Initiator's guarantee does not hold for transformed Wong Stajano Protocol. 
@@ -931,23 +981,22 @@ Initiator's guarantee does not hold for transformed Wong Stajano Protocol.
 
 \begin{proof}
 To prove the initiator's guarantee, we must ensure that all of nodes of the responder strand are regular. Let analyse them below.
-Since $st$ receives a term \begin{center}$(r_b, \{4,\{h(r_b)\}_{Pr_b},"BtoA"\}_{Pb_A})$\end{center}, we are sure that that a regular node, called $\langle n',6\rangle $, owes this term. This node $\langle n',6\rangle $ belongs to a regular strand $st'$ in $Resp[r_b,k_B,*,g^b,*,r^o_B,Pk_A,Pr_a,Pk_B,Pr_b]$.
+Since $st$ receives a term \begin{center}$(r_b, \{4,\{h(r_b)\}_{Pr_b}\}_{Pb_A})$\end{center}, we are sure that that a regular node, called $\langle n',6\rangle $, owes this term. This node $\langle n',6\rangle $ belongs to a regular strand $st'$ in $Resp[r_b,k_B,*,g^b,*,r^o_B,Pk_A,Pr_a,Pk_B,Pr_b]$.
 
 Now, let analyse other positive nodes in $st'$ including $\langle st',2\rangle ,\langle st',4\rangle ,\langle st',7\rangle $. Observing that these nodes do not correspond to any authentication tests, they could be on some penetrator strands. 
 
 Looking at node $\langle st',2\rangle $, despite of the origination of $r_b$ in this node, $r_b$ cannot be seen by current initiator strand. Then, when $r_b$ is received in $\langle st,6\rangle$, it could be sent from other previous sections other than the current section. 
 
 As a matter of fact, if an attacker $X$ obtains $r_b$ in a previous Initiator session with a regular responder strand, attackers can reopen a session as a fake responder, and later use $r_b$ to reproduce $term(\langle st',2\rangle )$. Formally saying, the penetrator strand is the following:\begin{center} $\langle-r_b,-k_X,-g^a,-g^{x}, +\{B, g^{x}, h_{k_X}(B,g^{x},g^a,r_b)\}\rangle$\end{center} 
-Intuitively, reusing $\{r_b, \{4,\{h(r_b)\}_{Pr_b},"BtoA"\}_{Pb_A}\}$ of previous section, and generating term$(\langle st',4 \rangle)$and term$(\langle st',7 \rangle)$, attackers easily reproduce a fake responder strand $st'$ in order to finish a proper protocol run with current Initiator. 
+Intuitively, reusing $\{r_b, \{4,\{h(r_b)\}_{Pr_b}\}_{Pb_A}\}$ of previous section, and generating term$(\langle st',4 \rangle)$and term$(\langle st',7 \rangle)$, attackers easily reproduce a fake responder strand $st'$ in order to finish a proper protocol run with current Initiator. 
 
-Finally, initiator's guarantee does not hold. The attack against Initiator's guarantee is presented in the table~\ref{attack-initiator}. 
+Finally, initiator's guarantee does not hold.  
 
 \end{proof}
 
-From the counter-example found above for the transformed Wong Stajano protocol, it is possible to rebuild the attack found in~\cite{ttnguyen} against original Wong Stajano protocol by proceeding a reverse analysis as presented in subsection~\ref{reverse}. We recall this attack in table~\ref{attack-responder} in previous section~\ref{analysisWSP}.
+From the counter-example found above for the transformed Wong Stajano protocol, it is possible to rebuild the attack found in~\cite{ttnguyen} against original Wong Stajano protocol by proceeding a reverse analysis as presented in subsection~\ref{reverse}. 
 
 Additionally, when we analyse the transformed Wong Stajano protocol in AVISPA~\cite{Armando:2005:ATA:2153230.2153265}, we get the same result as we did in Strand Spaces model. Through this result, we strongly believe that our implementation can work on other automatic security verification tools. 
-
 
 \section{Conclusion}
 
