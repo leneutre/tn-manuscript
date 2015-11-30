@@ -54,7 +54,7 @@ Authors~\cite{Stajano:2000bs} proposed a resurrecting duckling model that maps r
 
 Audio channels could be used as secure channels. The work~\cite{1648797, Soriente:2008, Lin:2011, Saxena:2008:UDP:1408664.1408672, 5678019, Sigg:2012aa} proposes ideas to encode cryptographic materials into nonsensical audio sentences. Then after transmitted from a speaker to a microphone, the sentences are reconstructed into the cryptographic materials at the target device. User takes responsibility for comparing results and deciding the pairing. 
 
-Audio-based schemes normally require some kinds of physical interfaces such as speaker, microphones. But, these interfaces are often suffered from denial of services or noise enviroments. For instance, ambient noise in crowded environments (e.g. in subway, in airport, or in bars) makes the authentication either weaker or difficult in L\&C (speaker-to-speaker), HAPADEP, as well as in others. Moreover, handicap users are not suitable for these schemes. 
+Audio-based schemes normally require some kinds of physical interfaces such as speaker, microphones. But, these interfaces are often suffered from denial of services or noise environments. For instance, ambient noise in crowded environments (e.g. in subway, in airport, or in bars) makes the authentication either weaker or difficult in speaker-to-speaker, as well as in others. Moreover, handicap users are not suitable for these schemes. 
 
 Recently, researchers have made improvement on both security levels and usability, thank to advanced speech engines and audio codec technologies. 
 
@@ -74,7 +74,7 @@ To transmit the secret code, two approaches are suggested. In the first approach
 
 In order to establish a secure channel, some types of wireless channels such as infra-red~\cite{5654588}, ultrasound~\cite{Mayrhofer06anauthentication}, RFID~\cite{Amariucai:2012aa}, Bluetooth, and NFC could be used. Talking to Stranger and other its variants \cite{5654588,Mayrhofer06anauthentication,4159919,Amariucai:2012aa} are examples. However, a drawback of those schemes is that they are strongly suffered by denial of service attacks or passive eavesdropping attacks. 
 
-Pairing scheme using Bluetooth demands 4-digits pre-shared PIN code between two devices. Unfortunately, adversaries can guest and break the PIN code from long distance. As an alternative method, NFC, an extremely short communication, is concerned on solving limitations of Bluetooth and infra-red. In many scenarios, NFC combines with Bluetooth to offer quicker setup, and better security. Nevertheless, NFC does not provide any protection against eavesdropping attacks, as well as data corruption and data modification. In spite of that, it is impractical to launch MITM attack in NFC authentication session. As this reason, NFC is still considered safety for current applications. 
+Pairing scheme using Bluetooth demands 4-digits pre-shared PIN code between two devices. Unfortunately, adversaries can guest and break the PIN code from long distance. As an alternative method, NFC, an extremely short communication, is concerned on solving limitations of Bluetooth and infra-red. In many scenarios, NFC combines with Bluetooth to offer quicker setup, and better security. Nevertheless, NFC does not provide any protection against eavesdropping attacks, as well as data corruption and data modification. In spite of that, it is hard to launch MITM attack in NFC authentication session. As this reason, NFC is still considered safety for current applications. 
 
 \emph{Biometric-based}
 
@@ -141,7 +141,7 @@ As described in previous subsections, the penetrator is prevented from performin
 {\scriptsize
 \begin{tabular}{ l l l l l l l l | }
 \hline
-\multicolumn{1}{c}{Out of Band Channel} & \multicolumn{4}{c}{Adversary Power} \\
+\multicolumn{1}{c}{Out of Band Channel} & \multicolumn{4}{c}{Attacker's Power} \\
 \hline
 \hline
 Type & Overhear & Block & Suspend & Replay \\
@@ -164,7 +164,7 @@ The difference between types of OOB channels and penetrator power for each kind 
 {\scriptsize
 \begin{tabular}{ p{3.5cm} p{3cm} l | l l l l l }
 \hline
-\multicolumn{3}{c}{Out of Band Chanel} & \multicolumn{5}{c}{Adversary Power} \\
+\multicolumn{3}{c}{Out of Band Chanel} & \multicolumn{5}{c}{Attacker's Power} \\
 \hline
 \hline
 Pairing Method & Interface & OOB Type & Overhear &Block & Suspend & Relay & Forge \\
@@ -178,11 +178,11 @@ $\qed$ Vibration-Button & Accelerometer, Button & SR Public & $\surd$ & $\surd$ 
 \hline 
 Audio-based Methods & & & & & & & \\
 $\qed$ Audio Context Recognition & Speaker, Microphone & LR Public & $\surd$ & $\surd$ & $\surd$& $\surd$ & \O \\ 
-$\qed$ L\&C & Speaker & LR Public & $\surd$ & $\surd$ & $\surd$& $\surd$ & \O \\ 
-$\qed$ HAPADEP & Speaker, Microphone & LR Public & $\surd$ & $\surd$ & $\surd$ & $\surd$ & \O \\ \hline
+$\qed$ Speaker-Speacker & Speaker & LR Public & $\surd$ & $\surd$ & $\surd$& $\surd$ & \O \\ 
+$\qed$ Speaker-Microphone & Speaker, Microphone & LR Public & $\surd$ & $\surd$ & $\surd$ & $\surd$ & \O \\ \hline
 
 Visual-based Methods & & & & & & & \\
-$\qed$ Seeing-is-Believing& Barcode, Camera & LR Public & $\surd$ &$\surd$ &$\surd$ & $\surd$  & \O \\ 
+$\qed$ Barcode-Camera& Barcode, Camera & LR Public & $\surd$ &$\surd$ &$\surd$ & $\surd$  & \O \\ 
 $\qed$ Visual Comparison & Screen & LR Public & $\surd$ & $\surd$ &$\surd$ &$\surd$  & \O \\
 $\qed$ Blinking Light & LED light & LR Public & $\surd$ & $\surd$ &$\surd$ &$\surd$   & \O \\ \hline
 
@@ -250,10 +250,10 @@ $M \leftarrow open(c,d)$ & Open commitment algorithm take $c,d$ and produces a m
 Proposed by Rivest and Shamir in 1984, Interlock protocol exploits user's knowledge of communication pattern or voice recognition to eliminate eavesdropping attacks. In this scheme, two parties use their initial knowledge to mutually authenticate their public keys without any assistance of a third party. This protocol works as follows:
 \begin{enumerate}
 \item Alice and Bob exchange their public keys via a sound channel. 
-\item Alice produces $(M_A)_{PKB}$ then sends the first half of the result to Bob. 
-\item Bob produces $(M_B)_{PKA}$ then sends the first half of the result to to Alice. 
-\item Alice sends to Bob the second half of $(M_A)_{PKB}$. 
-\item Bob sends to Alice the second half of $(M_B)_{PKA}$. 
+\item Alice produces $(D_A)_{PK_B}$ then sends the first half of the result to Bob. 
+\item Bob produces $(D_B)_{PK_A}$ then sends the first half of the result to to Alice. 
+\item Alice sends to Bob the second half of $(D_A)_{PK_B}$. 
+\item Bob sends to Alice the second half of $(D_B)_{PK_A}$. 
 \item Both decrypt the combination of two halves with their own private key. 
 \end{enumerate}   
 
@@ -261,13 +261,13 @@ Proposed by Rivest and Shamir in 1984, Interlock protocol exploits user's knowle
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=0.5cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
-Data $M_A$ & & Data $M_B$ \\[-4mm]
+Data $D_A$ & & Data $D_B$ \\[-4mm]
  & $PK_A$& \\[-4mm]
  & $PK_B$& \\[-4mm]
- & $\{(M_A)_{PKB}\}_1$& \\[-4mm]
- & $\{(M_B)_{PKA}\}_1$& \\[-4mm]
- & $\{(M_A)_{PKB}\}_2$& \\[-4mm]
- & $\{(M_B)_{PKA}\}_2$& \\[-4mm]
+ & $\{(D_A)_{PK_B}\}_1$& \\[-4mm]
+ & $\{(D_B)_{PK_A}\}_1$& \\[-4mm]
+ & $\{(D_A)_{PK_B}\}_2$& \\[-4mm]
+ & $\{(D_B)_{PK_A}\}_2$& \\[-4mm]
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -283,7 +283,7 @@ Data $M_A$ & & Data $M_B$ \\[-4mm]
 \end{tikzpicture}
 \end{center}
 
-The strength of this protocol basically lies on encryption algorithms with which the adversary cannot decrypt the received halves of encrypted messages. In case of that the adversary intentionally send some new messages to destroy the communication, he will be revealed. 
+The strength of this protocol basically lies on encryption algorithms with which the attacker cannot decrypt the received halves of encrypted messages. In case of that the attacker intentionally send some new messages to destroy the communication, he will be revealed. 
 
 \subsubsection{Maher Manual Authentication}
 
@@ -318,13 +318,13 @@ $g^a$ & & $g^b$ \\[-4mm]
 \end{tikzpicture}
 \end{center}
 
-The protocol requires at least 80 bits over an authenticated channel to get enough secure. At a result, this length of bit string is over-weighted on any authenticated channel. 
+The protocol requires at least 80 bits over an out-of-band channel to get enough secure. At a result, this length of bit string is over-weighted on any out-of-band channel. 
  
 \subsubsection{Talking to Strangers}
 
 Balfanz et al. proposed a new scheme in \cite{Smetters02talkingto} using audio, or infrared channels to transmit a hash of public keys which is considered as a fingerprinting or digest value. The protocol works as follows:
 \begin{enumerate}
-\item Alice and Bob initially exchange their identifications and a hash of their pubic keys over an authenticated channel.
+\item Alice and Bob initially exchange their identifications and a hash of their pubic keys over an out-of-band channel.
 \item Both sides exchange their ID and their public key on insecure channel. 
 \end{enumerate}
 
@@ -348,7 +348,7 @@ Alice & & Bob\\[-4mm]
 \end{tikzpicture}
 \end{center}
 
-Security of this protocol mainly depends on security properties of out-of-band channels and the hash function. To prevent MITM attack, this protocol needs at least 80 bits information over each direction of OOB channel. Otherwise, the adversary can find out the pair of public keys $PK'_A/PK'_B$ in which $h(PK_A) = h(PK'_A)$ and $h(PK_B) = h(PK'_B)$ to launches a MITM attack.
+Security of this protocol mainly depends on security properties of out-of-band channels and the hash function. To prevent MITM attack, this protocol needs at least 80 bits information over each direction of OOB channel. Otherwise, the attacker can find out the pair of public keys $PK'_A/PK'_B$ in which $h(PK_A) = h(PK'_A)$ and $h(PK_B) = h(PK'_B)$ to launches a MITM attack.
 
 \subsubsection{Visual authentication based on Integrity Checking}
 
@@ -507,12 +507,12 @@ An out-of-band channel used in MANA I and II could be a public or protected chan
 \subsubsection{Ephemeral Pairing Protocols}
 \subsubsection*{Hoepman AKA Protocol}
 
-Jaap-Henk Hoepman in \cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over authenticated channels. The detail protocol is illustrated as follows.
+Jaap-Henk Hoepman in \cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over out-of-band channels. The detail protocol is illustrated as follows.
 
 \begin{enumerate}
 \item Alice and Bob generate DH-value $g^a$ and $g^b$ respectively. 
 \item Both sides exchange a long hashing value of $g^a$ and $g^b$ over an insecure channel. 
-\item After the reception of the long hashing value, both sides calculate a short hashing value of $g^a$ and $g^b$, exchange them over an authenticated channel. 
+\item After the reception of the long hashing value, both sides calculate a short hashing value of $g^a$ and $g^b$, exchange them over an out-of-band channel. 
 \item At the end, both sides reveal their value $g^a$ and $g^b$ to each other in the insecure channel. 
 \end{enumerate}
 
@@ -549,7 +549,7 @@ Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an improved ve
 \item Alice and Bob generate DH-value $g^a$ and $g^b$ respectively. 
 \item Alice sends $h(A,g^a)$ to Bob. 
 \item Both sides exchange $g^a$ and $g^b$ to each other. 
-\item At the end, Alice calculates a short hash of $g^a \oplus g'^b$, then sends it to Bob over an authenticated channel. 
+\item At the end, Alice calculates a short hash of $g^a \oplus g'^b$, then sends it to Bob over an out-of-band channel. 
 \end{enumerate}
 
 \begin{center}
@@ -578,11 +578,11 @@ $g^a$ & & $g^b$\\[-4mm]
 
 \subsubsection*{Analysis of Ephemeral Protocols}
 
-Security of Hoepman protocol heavily depends on freshness of DH public keys in each protocol session. Otherwise, adversary is able to discover a matching key with the same short hash output, then successfully launches a MITM attack. Hoepman also provided a proof of his protocol in the Bellare-Pointcheval- Rogaway model. The improvement scheme of Nguyen and Roscoe remains the same requirement. 
+Security of Hoepman protocol heavily depends on freshness of DH public keys in each protocol session. Otherwise, an attacker is able to discover a matching key with the same short hash output, then successfully launches a MITM attack. Hoepman also provided a proof of his protocol in the Bellare-Pointcheval- Rogaway model. The improvement scheme of Nguyen and Roscoe remains the same requirement. 
 
 \subsubsection{Wong-Stajano Multichanel Security Protocols}\label{WS}
 
-Wong and Stajano~\cite{10.1109/MPRV.2007.76} proposed new mutual authentication and key agreement protocols over bidirectional and unidirectional authentic channels. Their protocols exploit a short authenticated string over visual channels which provide data origin authenticity. 
+Wong and Stajano~\cite{10.1109/MPRV.2007.76} proposed new mutual authentication and key agreement protocols over bidirectional and unidirectional public out-of-band channels. Their protocols exploit a short authenticated string over visual channels which provide data origin authenticity. 
 
 \subsubsection*{Protocol with Bidirectional Channel}
 
@@ -594,7 +594,7 @@ Wong and Stajano introduced a new variant of MANA III protocol which works as fo
 \item Both sides exchange $g^a$ and $g^b$ to each other.
 \item Alice calculates $MAC_{K_A}(A,g^a,g'^b,r_a,K_A)$, then sends it to Bob. 
 \item Bob calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it to Alice.
-\item Both sides exchange their $r_a$ and $r_b$ to each other over an authenticated channel. 
+\item Both sides exchange their $r_a$ and $r_b$ to each other over an out-of-band channel. 
 \item At the end, Bob sides exchange their $K_A$ and $K_B$ to each other. 
 \end{enumerate}
 
@@ -629,14 +629,14 @@ Accept/Reject & & Accept/Reject \\[-4mm]
 \end{tikzpicture}
 \end{center}
 
-In term of usability, the above protocol spends 6-move insecure communication, and long hash of DH public keys that put a heavy pressure on constrained devices. Realising this limitation, the authors improved their first work by an improved version over the bidirectional authentic channel. The new protocol works as follows:
+In term of usability, the above protocol spends 6-move insecure communication, and long hash of DH public keys that put a heavy pressure on constrained devices. Realising this limitation, the authors improved their first work by an improved version over the bidirectional public out-of-band channel. The new protocol works as follows:
 
 \begin{enumerate}
 \item Alice generates a random number $r_a$, a key $K_A$, and DH-value $g^a$.
 \item Bob generates a random number $r_b$, a key $K_B$, and DH-value $g^b$.
 \item Alice calculates $MAC_{K_A}(A,g^a,g'^b,r_a,K_A)$, then sends it with Alice's identification $A$ and $g^a$ to Bob. 
 \item Bob calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it with Bob's identification $B$ and $g^b$ to Alice.
-\item Both sides exchange their $r_a$ and $r_b$ to each other over an authenticated channel. 
+\item Both sides exchange their $r_a$ and $r_b$ to each other over an out-of-band channel. 
 \item At the end, Bob sides exchange their $K_A$ and $K_B$ to each other. 
 \item Alice informs to Bob Accept or Reject the session.
 \end{enumerate}
@@ -672,14 +672,14 @@ The improved protocol combines the first 4 messages of MANA III variant to 2 mes
  
 \subsubsection*{Protocol with Unidirectional Channel}
 
-In the same paper, Wong and Stajano also proposed a new protocol with unidirectional authenticated channel. This version only spend 3 move on the wireless channel rather than 4-move in bidirectional version. The protocol works as follows:
+In the same paper, Wong and Stajano also proposed a new protocol with unidirectional out-of-band channel. This version only spend 3 move on the wireless channel rather than 4-move in bidirectional version. The protocol works as follows:
 \begin{enumerate}
 \item Alice generates a random number $r_a$ and DH-value $g^a$.
 \item Bob generates a random number $r_b$, a key $K_B$, and DH-value $g^b$.
 \item Alice sends $g^a$ to Bob. 
 \item Bob calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it with Bob's identification $B$ and $g^b$ to Alice.
-\item Alice informs to Bob that she has already received his message over an authenticated channel. 
-\item Bob sends $r_b$ to Alice over the authenticated channel. 
+\item Alice informs to Bob that she has already received his message over an out-of-band channel. 
+\item Bob sends $r_b$ to Alice over the out-of-band channel. 
 \item Bob sends $K_B$ to Alice. 
 \item Alice informs to Bob Accept or Reject the session.
 \end{enumerate}
@@ -720,7 +720,7 @@ Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an variant of 
 \item Bob calculates $h(B,g^b,r_b)$, then sends it to Alice.
 \item Alice sends $r_a$ and $g^a$ to Bob. 
 \item Bob sends $r_b$ and $g^b$ to Alice. 
-\item Alice calculates $r_a\oplus r'_b$, then pushes it on an authenticated channel to Bob. 
+\item Alice calculates $r_a\oplus r'_b$, then pushes it on an out-of-band channel to Bob. 
 \item Bob informs to Alice Accept or Reject the session.
 \end{enumerate}
 
@@ -767,8 +767,8 @@ Vaudenay presented his first authentication protocol based on a short authentica
 \item Bob computes $(c_B||d_B) \leftarrow Commit(0||M_B||r_b)$ sends $M_B, c_B$ to Alice.
 \item Alice sends $d_A$ to Bob. Then Bob computes $r'_a \leftarrow Open(0||M_A,c'_A,d'_A)$. 
 \item Bob sends $d_B$ to Alice. Then Alice computes $r'_b \leftarrow Open(0||M_B,c'_B,d'_B)$. 
-\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an authenticated channel. 
-\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his authenticated channel. 
+\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
+\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
 \item Both sides compare their calculated SAS value to received one from the other. 
 \end{enumerate}
 
@@ -806,8 +806,8 @@ Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease int
 \item Alice computes $(c||d) \leftarrow Commit(M||r_a)$, and sends $c$ to Bob.
 \item Bob sends $r_b$ to Alice.
 \item Alice sends $M$ to Bob. Then Bob computes $r'_a \leftarrow Open(M,c'_A,d'_A)$. 
-\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an authenticated channel. 
-\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his authenticated channel. 
+\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
+\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
 \item Bob verifies SAS and Alice. Alice compares both values of SAS and verifies Bob. 
 \end{enumerate}
 
@@ -844,8 +844,8 @@ New SAS-based Cross Authentication based on the previous 3-move mutual authentic
 \item Alice computes $(c_A||d_A) \leftarrow Commit(0,M_A,r_a)$, and sends $(M_A,c_A)$ to Bob.
 \item Bob sends $(M_B,r_b)$ to Alice.
 \item Alice sends $d_A$ to Bob. Bob computes $r_a \leftarrow Open(0|M'_A,c'_A,d'_A)$. 
-\item Alice computes $SAS_A \leftarrow r'_b \oplus h_{r_a}(M'_B)$, and send $SAS_A$ to Bob through authenticated channel. 
-\item Bob computes $SAS_B \leftarrow r_b \oplus h_{r'_a}(M_B)$ and send $SAS_B$ to Alice through authenticated channel. 
+\item Alice computes $SAS_A \leftarrow r'_b \oplus h_{r_a}(M'_B)$, and send $SAS_A$ to Bob through out-of-band channel. 
+\item Bob computes $SAS_B \leftarrow r_b \oplus h_{r'_a}(M_B)$ and send $SAS_B$ to Alice through out-of-band channel. 
 \item Alice and Bob check received $SAS$ with their own $SAS$. Alice verifies Bob and $M_B$. And, Bob verifies Alice and $M_A$.
 \end{enumerate}
 
@@ -972,10 +972,10 @@ Cagalj, Capkun and Huxbaux \cite{1580514} proposed three various protocols which
 \item Alice computes $M'_B \leftarrow Open(c'_B,d'_B)$ and verifies that 1 appears at beginning of $M'_B$
  \item If the verification of Alice is successful, both parties go to the next stage.
 \item Alice computes $i_A \leftarrow r'_b \oplus r_a$, Bob computes $i_B \leftarrow r_b \oplus r'_a$.
-\item Bob sides exchange their short values over an authenticated channel. If the received value equals the computed value, each side informs a successful signal. 
+\item Bob sides exchange their short values over an out-of-band channel. If the received value equals the computed value, each side informs a successful signal. 
 \end{enumerate}
 
-Note that, 0 and 1 are public values used to prevent reflection attack. The identification $ID_A$ and $ID_B$ are human readable, e.g. email addresses or names. The authors used screens or human-voice as an authenticated channel to securely transmit authenticated values.
+Note that, 0 and 1 are public values used to prevent reflection attack. The identification $ID_A$ and $ID_B$ are human readable, e.g. email addresses or names. The authors used screens or human-voice as an out-of-band channel to securely transmit authenticated values.
  
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
@@ -1081,7 +1081,7 @@ Integrity codes (I-codes) are used with communication channel such that that the
 \item $e_c:\mathcal{M} \rightarrow \mathcal{P^l}$ is a channel modulation function satisfying rules: (i) symbol "1" is transmitted using power level $p$, symbol "0" is transmitted using power level 0. 
 \end{enumerate} 
 
-Based on a concept of I-codes, its application on DH-SC is straightforward. Bob and Alice complete four steps of DH-SC protocol at beginning. Alice encoded authentication value $i_A$ into $I-code$, then transmits it in an authenticated channel to Bob. After reception of $I-code$, Bob probably ensures that this $I-code$ is sent from Alice, and verifies if authenticated value $i'_A$ is equal to $i_B$ or not. 
+Based on a concept of I-codes, its application on DH-SC is straightforward. Bob and Alice complete four steps of DH-SC protocol at beginning. Alice encoded authentication value $i_A$ into $I-code$, then transmits it in an out-of-band channel to Bob. After reception of $I-code$, Bob probably ensures that this $I-code$ is sent from Alice, and verifies if authenticated value $i'_A$ is equal to $i_B$ or not. 
  
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
@@ -1121,7 +1121,7 @@ The 3-move protocol between $Alice$ and $Bob$ is as follow.
 \begin{enumerate}
 \item A device $A$ sends A's public key $PK_A$ to device $B$.
 \item A device $B$ generates two random strings, $r$ and $SRS$. Then $B$ calculates a hashed value using $PK_A$, $PK_B$, $SRS$ and $r$ and sends this value to $A$.
-\item $B$ sends $SRS$ to $A$ over an authenticated channel. 
+\item $B$ sends $SRS$ to $A$ over an out-of-band channel. 
 \item $B$ sends $r$ to $A$.
 \item $A$ verifies the hashed value received in step 2 using $PK_A$, $PK_B$, $SRS$ and $R$. If it is successful, $A$ generates agreed key using authenticated B's public key. 
 \end{enumerate}
@@ -1181,9 +1181,9 @@ MANA III	& 4	& 1 & 2 * HASH	& 16-20bits K & MAC & \\ \hline
 
 Wong-Stajano MANA III & 6 & 2	& 1 MAC	& 2 *(20 bits N) & HF & \\ \hline 
 
-Wong-Stajano Bidirectional Authenticated Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & \\ \hline 
+Wong-Stajano Bidirectional Out-of-band Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & \\ \hline 
 
-Wong-Stajano Unidirectional Authenticated Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & \\ \hline 
+Wong-Stajano Unidirectional Out-of-band Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & \\ \hline 
 
 Improved Wong-Stajano & 4	& 1	& 1 HASH + 1 XOR	 & 1* (20 bits N) &	 HF + XOR & \\ \hline 
 
@@ -1257,7 +1257,7 @@ $g^a,r_a$ & & $r_b,g^b$ \\[-4mm]
 
 \end{tikzpicture}
 \end{center}
-\caption{New 2-move authenticated key agreement protocol} 
+\caption{New 2-move Authenticated Key Agreement Protocol} 
 \label{improved-wong-stajano-protocol}
 \end{figure}
 
@@ -1306,14 +1306,14 @@ We say that a protocol is a secure protocol enabling authentication of DH public
 
 \begin{Lemma}\label{lemme5.1}
 
-For any interaction between strand $st$ and $st'$, and adversary $X$, attack success probability of $X$ is lower or equal to $n.\gamma.2^{-k}$, 
+For any interaction between strand $st$ and $st'$, and attacker $X$, attack success probability of $X$ is lower or equal to $n.\gamma.2^{-k}$, 
 where $n$ is the number of participants on the network, $\gamma$ is the maximum number of sessions for each participant, $k$ is the length of short authenticated string. 
 \end{Lemma}
 
 \begin{proof}
-For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, adversary $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \oplus h_{r_{xb}}(g^a,g^{xb})) \oplus (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \oplus r_{xb} \oplus r_b \oplus h(g^a,g^{xb}) \oplus h(g^{xa},g^b)))$ (2). 
+For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, attacker $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \oplus h_{r_{xb}}(g^a,g^{xb})) \oplus (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \oplus r_{xb} \oplus r_b \oplus h(g^a,g^{xb}) \oplus h(g^{xa},g^b)))$ (2). 
 
-In the simplest case where adversary $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \oplus r_{xb} \oplus r_b$ or $r_{xa} \oplus r_b = r_a \oplus r_{xb}$ (3).
+In the simplest case where attacker $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \oplus r_{xb} \oplus r_b$ or $r_{xa} \oplus r_b = r_a \oplus r_{xb}$ (3).
 
 Observe that $X$ has to submit $r_{xb}$ before actually knowing $r_a$. Similarly, $X$ has to submit $r_{xa}$ before actually seeing $r_b$. Thus irrespectively, the attacking strategy taken by $X$, $r_a$ and $r_b$ will be revealed after $r_{xa}$ and $r_{xb}$ have been generated and submitted. If it happens that both $r_a$ and $r_b$ are revealed in the same time, then we can pick an arbitrary one. 
 
@@ -1387,7 +1387,7 @@ The Wong-Stajano protocol using bidirectional channel was presented at~\ref{WS} 
 
 \begin{table}[t]
 \centering
-\caption{\textsc{Attack scenario against Initiator's guarantee in Wong-Stajano protocol with Bidirectional Channel}}
+\caption{\textsc{Attack Scenario Against Initiator's Guarantee in Wong-Stajano Protocol with Bidirectional Channel}}
 \label{WSbiattacktable}
 {\small
 \begin{tabular}{| l | p{11cm} |}
@@ -1420,7 +1420,7 @@ The counterexample of Wong-Stajano protocol using unidirectional channel is illu
 
 \begin{table}[t]
 \centering
-\caption{\textsc{Attack scenario against Initiator's guarantee in Wong-Stajano protocol with Unidirectional Channel}}
+\caption{\textsc{Attack Scenario Against Initiator's Guarantee in Wong-Stajano Protocol with Unidirectional Channel}}
 \label{WSuniattack}
 {\small
 \begin{tabular}{| l | p{11cm} |}
@@ -1451,7 +1451,7 @@ Attack against SRS-AKA is closely identified with one in Wong-Stajano protocol u
 
 \begin{table}[t]
 \centering
-\caption{\textsc{Attack scenario against Initiator's guarantee in SRS-AKA protocol}}
+\caption{\textsc{Attack Scenario Against Initiator's Guarantee in SRS-AKA Protocol}}
 \label{SRSattacktable}
 {\small
 \begin{tabular}{| l | p{11cm} |}
@@ -1489,7 +1489,7 @@ Since the Hoepman protocol is quite similar to Wong-Stajano protocol with bidire
 
 \begin{table}[t]
 \centering
-\caption{\textsc{Attack scenario against Initiator's guarantee in Hoepman protocol}}
+\caption{\textsc{Attack Scenario Against Initiator's Guarantee in Hoepman Protocol}}
 \label{Hoepmantable}
 {\small
 \begin{tabular}{| l | p{11cm} |}
