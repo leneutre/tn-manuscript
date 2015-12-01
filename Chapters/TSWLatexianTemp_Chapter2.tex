@@ -233,7 +233,7 @@ $,$ & Concatenation of different parts of a message\\
 $\oplus$ & Bitwise "XOR" operation \\ 
 $g^x$ & Diffie-Hellman public key entity X \\ 
 $g^{xy}$ & Diffie-Hellman shared key between X and Y \\ 
-$(c,d) \leftarrow commit(m)$ & commitment algorithm takes $m$ to produce commit value $c$ and decommit $d$ \\ 
+$(c,d) \leftarrow commit(m)$ & Commitment algorithm takes $m$ to produce commit value $c$ and decommit $d$ \\ 
 $m \leftarrow open(c,d)$ & Open commitment algorithm take $c,d$ and produces a message $m$ or error signal \\ \hline 
 
 \end{tabular}
@@ -473,7 +473,7 @@ User enters $r$ & & User enters $r$ \\[-4mm]
 random $K_A$ & & random $K_B$\\[- 4mm]
 & $m$ & \\ [-4mm]
 
-$MAC_A = h_{K_A}(ID_A,m,r)$ & & $MAC_B = h_{K_B}(ID_B,m,r)$ \\[- 4mm]
+$MAC_A = h_{K_A}(ID_A,M,R)$ & & $MAC_B = h_{K_B}(ID_B,M,R)$ \\[- 4mm]
 
 & $MAC_A$ & \\ [-4mm]
 & $MAC_B$ & \\ [-4mm]
@@ -758,8 +758,8 @@ Vaudenay presented his first authentication protocol based on a short authentica
 
 \begin{enumerate}
 \item Alice types a message $m_A$, then picks a random value $r_a$. Bob types a message $m_B$, then picks a random value $r_b$
-\item Alice computes $(c_A,d_A) \leftarrow commit(0,m_A,r_a)$, and sends $m_A, c_A$ to Bob.
-\item Bob computes $(c_B,d_B) \leftarrow commit(1,m_B,r_b)$ sends $m_B, c_B$ to Alice.
+\item Alice computes $(c_A,d_A) \leftarrow Commit(0,m_A,r_a)$, and sends $m_A, c_A$ to Bob.
+\item Bob computes $(c_B,d_B) \leftarrow Commit(1,m_B,r_b)$ sends $m_B, c_B$ to Alice.
 \item Alice sends $d_A$ to Bob. Then Bob computes $(0,r'_a,m'_A) \leftarrow Open(c'_A,d'_A)$. 
 \item Bob sends $d_B$ to Alice. Then Alice computes $(1,r'_b,m'_B) \leftarrow Open(c'_B,d'_B)$. 
 \item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
@@ -772,8 +772,8 @@ Vaudenay presented his first authentication protocol based on a short authentica
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
 Data $m_A$, random $r_a$ & & Data $m_B$,random $r_b$ \\[-4mm]
-$(c_A,d_A)\rightarrow commit(0,m_A,r_a)$ & $(m_A,c_A)$ & \\[- 4mm]
-							 & $(m_B,c_B)$ & $(c_B,d_B)\rightarrow commit(1,m_B,r_b)$ \\[- 4mm]	
+$(c_A,d_A)\rightarrow Commit(0,m_A,r_a)$ & $(m_A,c_A)$ & \\[- 4mm]
+							 & $(m_B,c_B)$ & $(c_B,d_B)\rightarrow Commit(1,m_B,r_b)$ \\[- 4mm]	
 						  & $d_A$ & $(0,r'_a,m'_A) \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $(1,m'_B,r'_b) \leftarrow Open(c'_B,d'_B)$ & $d_B$ & \\[-4mm]
 $SAS_A \leftarrow r_a\oplus r_b $ & $SAS_A$ & check $SAS'_A = r'_a\oplus r_b$ \\ [-4mm]
@@ -798,7 +798,7 @@ Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease int
 
 \begin{enumerate}
 \item Alice types a message $m$, then picks a random value $r_a$. Bob types a message $m$, then picks a random value $r_b$
-\item Alice computes $(c_A,d_A) \leftarrow commit(m,r_a)$, and sends $c$ to Bob.
+\item Alice computes $(c_A,d_A) \leftarrow Commit(m,r_a)$, and sends $c$ to Bob.
 \item Bob sends $r_b$ to Alice.
 \item Alice sends $d_A$ to Bob. Then Bob computes $(r'_a,m') \leftarrow Open(c'_A,d'_A)$. 
 \item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
@@ -811,7 +811,7 @@ Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease int
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
 Data $m$, random $r_a$ & & Data $m$,random $r_b$ \\[-4mm]
-$(c_A,d_A)\rightarrow commit(m,r_a)$ & $c_A$ & \\[- 4mm]
+$(c_A,d_A)\rightarrow Commit(m,r_a)$ & $c_A$ & \\[- 4mm]
 									& $r_b$ & \\[- 4mm]
 									& $d_A$ & $(r'_a,m') \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $SAS_A \leftarrow r_a\oplus r_b' $ & $SAS_A$ & \\ [-4mm]
@@ -836,7 +836,7 @@ New SAS-based Cross Authentication based on the previous 3-move mutual authentic
  
 \begin{enumerate}
 \item Alice types message $m$, then picks a random value $r_a$. Bob  picks a random value $r_b$
-\item Alice computes $(c_A,d_A) \leftarrow commit(0,m,r_a)$, and sends $(c_A)$ to Bob.
+\item Alice computes $(c_A,d_A) \leftarrow Commit(0,m,r_a)$, and sends $(c_A)$ to Bob.
 \item Bob sends $(r_b)$ to Alice.
 \item Alice sends $d_A$ to Bob. Bob computes $(0,m',r'_a) \leftarrow Open(c'_A,d'_A)$. 
 \item Alice computes $SAS_A \leftarrow r'_b \oplus h_{r_a}(m)$, and send $SAS_A$ to Bob through out-of-band channel. 
@@ -849,10 +849,10 @@ New SAS-based Cross Authentication based on the previous 3-move mutual authentic
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
 Data $m$, random $r_a$ & & random $r_b$ \\[-4mm]
-$(c_A,d_A)\rightarrow commit(0,m_A,r_a)$ & $(c_A)$ & \\[- 4mm]
+$(c_A,d_A)\rightarrow Commit(0,m_A,r_A)$ & $(c_A)$ & \\[- 4mm]
 							 & $(r_b)$ & \\[- 4mm]	
 						  & $d_A$ & $(0,m',r'_a) \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
-$SAS_A \leftarrow r'_b\oplus h_{r_a}(m')$ & $SAS_A$ & \\ [-4mm]
+$SAS_A \leftarrow r'_b\oplus h_{r_A}(m')$ & $SAS_A$ & \\ [-4mm]
 								& $SAS_B$ & $SAS_B \leftarrow r_b\oplus h_{r'_A}(m)$ \\ [-4mm]
 check $SAS'_B = SAS_A$ 					 & & if $SAS'_A = SAS_B$ \\ [-4mm]
 accept Bob and $m$ 			 & & accept Alice and $m'$ \\ [-4mm]
@@ -874,10 +874,10 @@ accept Bob and $m$ 			 & & accept Alice and $m'$ \\ [-4mm]
 Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven Laur and Kaisa Nyberg \cite{Laur:2006kl} claimed that their proposal was more general, and had weaker security assumptions than one in ~\cite{Pasini:2006fu}. Three round cross-authentication protocol Mana IV with l-bit OOB messages is presented as follows. 
 
 \begin{enumerate}
-\item Alice computes $(c_A,d_A) \leftarrow commit(r_a)$ for random $r_a$, and sends $(m_A,c_A)$ to Bob.
-\item Bob chooses random $r_b$, and sends $(m_B,r_b)$ to Alice.
+\item Alice computes $(c_A,d_A) \leftarrow Commit(K_A)$ for random $K_A$, and sends $(m_A,c_A)$ to Bob.
+\item Bob chooses random $K_B$, and sends $(m_B,K_B)$ to Alice.
 \item Alice sends $d_A$ Bob.
-\item Bob computes $r'_a \leftarrow Open(c_A,d_A)$ and halts if $r'_a= NULL$. Both parties compute a test value $oob = h(r'_a,r_b,m_A,m_B)$ from received messages.
+\item Bob computes $K_A \leftarrow Open(c_A,d_A)$ and halts if $K_A = NULL$. Both parties compute a test value $oob = h(K_A,K_B,m_A,m_B)$ from received messages.
 \item Alice sends $oob_a$ to Bob over a secure channel. 
 \item Both parties accept $(m_A,m_B)$ iff the local l-bit test value $oob_a$ and $oob_b$ coincide. 
 \end{enumerate}
@@ -888,11 +888,11 @@ Specification: $h$ is a keyed hash function with sub-keys $K_A, K_B$.
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
-random $r_a$, data $m_A$ & & random $r_b$, data $m_B$ \\[-4mm]
-$(c_A,d_A)\rightarrow commit(r_a)$ & $(m_A,c_A)$ & \\[- 4mm]
-						 & $(m_B,r_b)$ & \\[- 4mm]
-						 & $d_A$ & $r'_a \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
-$oob_A = h(r_a,r'_b,m_A,m'_B)$ & & $oob_B = h(r'_a,r_b,m'_A,m_B)$\\ [-4mm]
+random $K_A$, data $m_A$ & & random $K_B$, data $m_B$ \\[-4mm]
+$(c_A,d_A)\rightarrow Commit(K_A)$ & $(m_A,c_A)$ & \\[- 4mm]
+						 & $(m_B,K_B)$ & \\[- 4mm]
+						 & $d_A$ & $K'_A \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
+$oob_A = h(K_A,K'_B,m_A,m'_B,)$ & & $oob_B = h(K'_A,K_B,m'_A,m_B)$\\ [-4mm]
 							&$oob_A$& \\ [-4mm]
  							& & $?oob_A = oob_B$ \\ [-4mm]
 accept $(m_A,m'_B)$ & & accept $(m'_A,m_B)$ \\ [-4mm]
@@ -912,10 +912,10 @@ accept $(m_A,m'_B)$ & & accept $(m'_A,m_B)$ \\ [-4mm]
 When revising MANA IV protocol, Laur and Kyberg~\cite{Laur:2006kl} indicated that the protocol was not computational efficiency. For this reason, they proposed a new modified protocol, namely Manually Authenticated Diffie-Hellman (MA-DH). The protocol runs as follows. 
  
 \begin{enumerate}
-\item Alice computes $(c,d) \leftarrow commit(g^a)$, and sends $(ID_A, c)$ to Bob.
-\item Bob computes $g^b$ for a random $b$, and sends $ (ID_B,g^b)$ to Alice.
+\item Alice computes $(c,d) \leftarrow Commit(K_A)$ for $K_A = g^a$, and sends $(ID_A, c)$ to Bob.
+\item Bob computes $K_B = g^b$ for a random $b$, and sends $ (ID_B,K_B)$ to Alice.
 \item Alice sends $d$ to Bob. 
-\item Bob computes $K'_A \leftarrow Open(c',d')$ and halts if $g'^a = NULL$. Both parties compute $sid = (ID_A,ID_B)$ and $oob= h(sid,g^a,g^b)$.
+\item Bob computes $K'_A \leftarrow Open(c',d')$ and halts if $K'_A = NULL$. Both parties compute $sid = (ID_A,ID_B)$ and $oob= h(sid,ka,kb)$.
 \item Both parties accept $key = (g^a)^b = (g^b)^a$ iff the l-bit test values $oob_a$ and $oob_b$ coincide. 
 \end{enumerate}
 
@@ -923,15 +923,15 @@ When revising MANA IV protocol, Laur and Kyberg~\cite{Laur:2006kl} indicated tha
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
-random $g^a$		 & & random $g^b$ \\[-4mm]
-$(c,d) \leftarrow commit(g^a)$ &$(ID_A,c)$ & \\[- 4mm]
-						& $(ID_B,g^b)$ & \\[- 4mm]
-						& $d$ & $g'^a \leftarrow Open(c',d')$ \\[-4mm]
-$sid=(ID_A,ID'_B)$			& & $sid=(ID'_A,ID_B)$	\\[-4mm]
-$oob_a =h(sid,g^a,g'^b)$ & & $oob_b =h(sid,g'^a,g^b)$\\[-4mm]
+random $K_A = g^a$		 & & random $K_B = g^b$ \\[-4mm]
+$(c,d) \leftarrow Commit(K_A)$ &$(ID_A,c)$ & \\[- 4mm]
+						& $(ID_B,K_B)$ & \\[- 4mm]
+						& $d$ & $K'_A \leftarrow Open(c',d)$ \\[-4mm]
+$sid=(ID_A,id'_B)$			& & $sid=(id'_A,ID_B)$	\\[-4mm]
+$oob_a =h(sid,K_A,K'_B)$ & & $oob_b =h(sid,K'_A,K_B)$\\[-4mm]
 					 & $oob_a$& \\ [-4mm]
  					 & & $?oob_a = oob_b$\\ [-4mm]
- accepts $key =(g^a)^b = (g'^b)^a$ & & accepts $key =(g'^a)^b = (g^b)^a$ \\ [-4mm] 
+ accepts $key =(g^a)^b = (g^b)^a$ & & accepts $key =(g^a)^b = (g^b)^a$ \\ [-4mm] 
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -958,11 +958,11 @@ Cagalj, Capkun and Huxbaux \cite{1580514} proposed three various protocols which
 \subsubsection*{Diffie-Hellman key agreement protocol with String Comparison}
 
 \begin{enumerate}
-\item Alice and Bob selects secret exponents $a$ and $b$, and choose random number $r_a$ and $r_b$ respectively. 
+\item Alice and Bob selects secret exponents $X_A$ and $X_B$, and choose random number $r_a$ and $r_b$ respectively. 
 \item Alice and Bob calculate DH public parameters $g^a$ and $g^b$. 
 \item Alice computes $m_A \leftarrow 0,ID_A,g^a,r_a$. Bob computes $m_B \leftarrow 1,ID_B,g^b,r_b$ .
-\item Alice computes $(c_A,d_A) \leftarrow commit(m_A)$ and sends $(c_A)$ to Bob.
-\item Bob computes $(c_B,d_B) \leftarrow commit(m_B)$ , and sends $(c_B)$ to Alice.
+\item Alice computes $(c_A,d_A) \leftarrow Commit(m_A)$ and sends $(c_A)$ to Bob.
+\item Bob computes $(c_B,d_B) \leftarrow Commit(m_B)$ , and sends $(c_B)$ to Alice.
 \item Alice sends $d_A$ to Bob. Bob computes $m'_A \leftarrow Open(c'_A,d'_A)$ and verifies that 0 appears at beginning of $m'_A$. If verification is successful, Bob sends $d_B$ to Alice.
 \item Alice computes $m'_B \leftarrow Open(c'_B,d'_B)$ and verifies that 1 appears at beginning of $m'_B$
  \item If the verification of Alice is successful, both parties go to the next stage.
@@ -979,7 +979,7 @@ Alice & & Bob\\[-4mm]
 Give $ID_A,g^a$		 & & Give $ID_B,g^b$ \\[-4mm]
 Random $r_a $		 & & Random $r_b $ \\[-4mm]
 $m_A \leftarrow 0,ID_A,g^a,r_a$ & & $m_B \leftarrow 1,ID_B,g^b,r_b$ \\[- 4mm]
-$(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4mm]
+$(c_A,d_A) \leftarrow Commit(m_A)$ & & $(c_B,d_B) \leftarrow Commit(m_B)$ \\[- 4mm]
 						& $c_A$ & \\[- 4mm]
 						& $c_B$ & \\[- 4mm]
 						& $d_A$ & $m'_A \leftarrow Open(c'_A,d'_A)$\\[- 4mm]
@@ -1017,8 +1017,8 @@ Alice & & Bob\\[-4mm]
 Give $ID_A,g^a$		 & & Give $ID_B,g^b$ \\[- 4mm]
 Random $r_a,r_a $		 & & Random $r_b,r_b $ \\[- 4mm]
 $m_A \leftarrow 0,ID_A,g^a,r_a$ & & $m_B \leftarrow 1,ID_B,g^b,r_b$ \\[- 4mm]
-$(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4mm]
-$(x_A,y_A) \leftarrow commit(0,r_a)$ & & $(x_B,y_B) \leftarrow commit(1,r_b)$ \\[- 4mm]
+$(c_A,d_A) \leftarrow Commit(m_A)$ & & $(c_B,d_B) \leftarrow Commit(m_B)$ \\[- 4mm]
+$(x_A,y_A) \leftarrow Commit(0,r_a)$ & & $(x_B,y_B) \leftarrow Commit(1,r_b)$ \\[- 4mm]
 						& $c_A,x_A$ & \\[-4mm]
 						& $c_B,x_B$ & \\[-4mm]
 						& $d_A$ & $m'_A \leftarrow Open_(c'_A,d'_A)$\\[-4mm]
@@ -1027,21 +1027,21 @@ $m'_B \leftarrow Open_(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$\\[-4mm]
 Verify 1 in $m'_B$ 	& & \\[-4mm]
 $i_A \leftarrow r'_b \oplus r_a$	& & \\[-2mm]
 					& \textbf{-DB Phase-} & \\[-2mm]
-$r_a$ bits = $r_{a1},..,r_{ak}$ & & $r_b$ bits = $r_{b1},..,r_{bk}$ \\[-4mm]
+$r_a$ bits = $R_{A1},..,R_{Ak}$ & & $r_b$ bits = $R_{B1},..,R_{Bk}$ \\[-4mm]
 $i_A$ bits = $i_{A1},..,i_{Ak}$ & & $i_B$ bits $= i_{B1},..,i_{Bk}$	\\[-4mm]
-$\alpha_1 \leftarrow r_{a1} \oplus i_{A1}$ & $\alpha_1$ & \\[-4mm]
-					& $\beta_1$ & 	$\beta_1 \leftarrow r_{b1} \oplus i_{B1} \oplus \alpha'_1$ \\[-4mm]
+$\alpha_1 \leftarrow R_{A1} \oplus i_{A1}$ & $\alpha_1$ & \\[-4mm]
+					& $\beta_1$ & 	$\beta_1 \leftarrow R_{B1} \oplus i_{B1} \oplus \alpha'_1$ \\[-4mm]
 					& ... & \\[-4mm]
-$\alpha_i \leftarrow r_{ai} \oplus i_{Ai} \oplus \beta'_{i-1}$ & $\alpha_i$ & \\[-4mm]
-					& $\beta_i$ & 	$\beta_i \leftarrow r_{bi} \oplus i_{Bi} \oplus \alpha'_i$ \\[-4mm]
+$\alpha_i \leftarrow R_{Ai} \oplus i_{Ai} \oplus \beta'_{i-1}$ & $\alpha_i$ & \\[-4mm]
+					& $\beta_i$ & 	$\beta_i \leftarrow R_{Bi} \oplus i_{Bi} \oplus \alpha'_i$ \\[-4mm]
 					& ... & \\[-4mm]
-$\alpha_k \leftarrow r_{ak} \oplus i_{Ak} \oplus \beta'_{k-1}$ & $\alpha_k$ & \\[-4mm]
-					& $\beta_k$ & 	$\beta_k \leftarrow r_{Bk} \oplus i_{Bk} \oplus \alpha'_k$ \\[-2mm]
+$\alpha_k \leftarrow R_{Ak} \oplus i_{Ak} \oplus \beta'_{k-1}$ & $\alpha_k$ & \\[-4mm]
+					& $\beta_k$ & 	$\beta_k \leftarrow R_{Bk} \oplus i_{Bk} \oplus \alpha'_k$ \\[-2mm]
 					& \textbf{-End of DB Phase-} & \\[-2mm]
 					& $y_A$ & $0,r'_a \leftarrow Open(x'_A,y'_A)$ \\[-4mm]
 $1,r'_b \leftarrow Open_(x'_B,y'_B)$ & $y_B$ & \\[-4mm]
-$i'_{Bi} \leftarrow \alpha_i \oplus \beta'_i \oplus r'_{bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \oplus r'_{a1}$ \\[-4mm] 
-& & $i'_{Ai} \leftarrow \alpha'_i \oplus \beta_{i-1} \oplus r'_{ai}$ (i=2,..,k) \\[-4mm]
+$i'_{Bi} \leftarrow \alpha_i \oplus \beta'_i \oplus R'_{Bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \oplus R'_{A1}$ \\[-4mm] 
+& & $i'_{Ai} \leftarrow \alpha'_i \oplus \beta_{i-1} \oplus R'_{Ai}$ (i=2,..,k) \\[-4mm]
 If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
 };
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -1085,7 +1085,7 @@ Alice & & Bob\\[-4mm]
 Give $ID_A,g^a$		 & & Give $ID_B,g^b$ \\[-4mm]
 Random $r_a $		 & & Random $r_b $ \\[-4mm]
 $m_A \leftarrow 0,ID_A,g^a,r_a$ & & $m_B \leftarrow 1,ID_B,g^b,r_b$ \\[- 4mm]
-$(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4mm]
+$(c_A,d_A) \leftarrow Commit(m_A)$ & & $(c_B,d_B) \leftarrow Commit(m_B)$ \\[- 4mm]
 						& $c_A$ & \\[- 4mm]
 						& $c_B$ & \\[- 4mm]
 						& $d_A$ & $m'_A \leftarrow Open(c'_A,d'_A)$\\[- 4mm]
@@ -1203,7 +1203,7 @@ DH-SC & 4 &	2 &	2 CS + 1 XOR & 15bits SAS & CS +XOR & \\ \hline
 DH-DB & 6 &	2 &	1 CS + 1 XOR & 15bits SAS & CS +XOR & \\ \hline \hline 
 
 \textbf{ID} &\multicolumn{2}{c}{Identification} & & & & \\
-\textbf{CS} &\multicolumn{2}{c}{commitment Scheme} & & & & \\
+\textbf{CS} &\multicolumn{2}{c}{Commitment Scheme} & & & & \\
 \textbf{XOR} &\multicolumn{2}{c}{XOR operation} & & & & \\
 \textbf{CV} &\multicolumn{2}{c}{Check Value} & & & & \\
 \textbf{CF} &\multicolumn{2}{c}{Check Function} & & & & \\
@@ -1352,8 +1352,8 @@ All tests have been done in normal lab environment. We ran 10 times, and in each
  \hline
 \textbf{Function} & \textbf{Time(ms)} \\ \hline \hline
 Generating Keys & 3898 \\ \hline
-commitment Calculation & 15 \\ \hline
-commitment Validation & 15 \\ \hline
+Commitment Calculation & 15 \\ \hline
+Commitment Validation & 15 \\ \hline
 Transferring OOB message & 3201 \\ \hline
 Complete Protocol & 21760 \\ \hline
 \end{tabular}
