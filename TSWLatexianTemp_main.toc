@@ -1,0 +1,44 @@
+\contentsline {chapter}{List of Figures}{iii}{dummy.2}
+\contentsline {chapter}{List of Tables}{iv}{dummy.4}
+\contentsline {chapter}{\numberline {1}Secure Device Pairing Protocols}{1}{chapter.6}
+\contentsline {section}{\numberline {1.1}Out-of-Band Channels}{1}{section.7}
+\contentsline {subsection}{\numberline {1.1.1}OOB Security Properties}{2}{subsection.8}
+\contentsline {subsection}{\numberline {1.1.2}OOB Classification}{3}{subsection.9}
+\contentsline {subsubsection}{\numberline {1.1.2.1}Physical Types of Channels}{3}{subsubsection.10}
+\contentsline {subsubsection}{\numberline {1.1.2.2}Channel Security Properties}{6}{subsubsection.11}
+\contentsline {subsection}{\numberline {1.1.3}OOB Penetrator Model}{7}{subsection.13}
+\contentsline {section}{\numberline {1.2}Overview on Secure Device Pairing Schemes}{8}{section.16}
+\contentsline {subsubsection}{\numberline {1.2.0.1}Interlock Protocol}{9}{subsubsection.18}
+\contentsline {subsubsection}{\numberline {1.2.0.2}Maher Manual Authentication}{10}{subsubsection.25}
+\contentsline {subsubsection}{\numberline {1.2.0.3}Talking to Strangers}{10}{subsubsection.30}
+\contentsline {subsubsection}{\numberline {1.2.0.4}Visual authentication based on Integrity Checking}{11}{subsubsection.33}
+\contentsline {subsubsection}{\numberline {1.2.0.5}Manual Authentication(MANA) Protocols}{12}{subsubsection.37}
+\contentsline {subsubsection}{\numberline {1.2.0.6}Ephemeral Pairing Protocols}{15}{subsubsection.61}
+\contentsline {subsubsection}{\numberline {1.2.0.7}Wong-Stajano Multichanel Security Protocols}{16}{subsubsection.73}
+\contentsline {subsubsection}{\numberline {1.2.0.8}Short Authenticated String-Based Authentication Key Agreement Protocols}{20}{subsubsection.108}
+\contentsline {subsubsection}{\numberline {1.2.0.9}Cagalj-Capkun-Huxbaux Protocols}{25}{subsubsection.148}
+\contentsline {subsubsection}{\numberline {1.2.0.10}Short Random String-Based Key Agreement Protocol}{28}{subsubsection.167}
+\contentsline {section}{\numberline {1.3}2-Move Secure Device Pairing Protocol}{29}{section.174}
+\contentsline {subsection}{\numberline {1.3.1}Analysis In Computational Model}{31}{subsection.183}
+\contentsline {subsection}{\numberline {1.3.2}An Implemetation on An Embedded System}{32}{subsection.186}
+\contentsline {section}{\numberline {1.4}Flaws Found in Some Pairing Protocols}{32}{section.189}
+\contentsline {subsection}{\numberline {1.4.1}Attack on Wong-Stajano Protocol using Bidirectional Channel}{33}{subsection.190}
+\contentsline {subsection}{\numberline {1.4.2}Attack on Wong-Stajano Protocol using Unidirectional Channel}{34}{subsection.193}
+\contentsline {subsection}{\numberline {1.4.3}Attack on SRS-AKA Protocol}{35}{subsection.196}
+\contentsline {subsection}{\numberline {1.4.4}Attack on Hoepman AKA Protocol}{35}{subsection.199}
+\contentsline {section}{\numberline {1.5}Conclusion}{35}{section.202}
+\vspace {2em}
+\contentsline {chapter}{\numberline {A}Strand Spaces Model}{40}{appendix.203}
+\contentsline {section}{\numberline {A.1}Fundamental Theory}{41}{section.207}
+\contentsline {section}{\numberline {A.2}Component, Authentication Tests}{43}{section.218}
+\contentsline {section}{\numberline {A.3}Shape and Skeleton}{45}{section.228}
+\contentsline {section}{\numberline {A.4}Penetrator Model}{46}{section.235}
+\contentsline {chapter}{\numberline {B}Analysis Wong-Stajano Protocol in AVISPA}{47}{appendix.237}
+\contentsline {section}{\numberline {B.1}Transformed Protocol}{47}{section.238}
+\contentsline {section}{\numberline {B.2}Source Code}{48}{section.239}
+\contentsline {section}{\numberline {B.3}Results}{52}{section.240}
+\contentsline {chapter}{\numberline {C}Implementation of 2-Move Secure Device Pairing on Arduino}{55}{appendix.241}
+\contentsline {section}{\numberline {C.1}UDP Client Source Code}{55}{section.242}
+\contentsline {section}{\numberline {C.2}UDP Server Source Code}{64}{section.243}
+\vspace {2em}
+\contentsline {chapter}{Bibliography}{73}{dummy.244}
