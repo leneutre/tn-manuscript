@@ -8,7 +8,17 @@
 
 In 1997, Fabrega, Herzog and Gutman developed a new method to prove a protocol if it achieves authentication and secrecy properties or not. First published internally as a technical report, the work went out public in a conference paper ~\cite{674832} in a year later. Following this approach, the authors continued maturing their model. Basic Strand Spaces theory was extended with \emph{honest idea}~\cite{Thayer:1998:HIS:794198.795096} which allows to learn general principles that limit penetrators' capabilities. After that, \emph{mixed strands}~\cite{Thayer:1999:MSS:794199.795113} was proposed to study problems of mixed protocols. One huge milestone of Strand Spaces theory is \emph{authentication tests}~\cite{Guttman:2002:ATS:568264.568267} proposed in 2000. In a study of cryptographic protocols, authors realized that after emitting a message containing a new value, a participant receives a cryptographic form of this value, this must exist a regular participant of the protocol sent it. This scheme, so called an authentication test, works as a powerful tool to minimise work of proving, and straightforwardly give results of authentication protocols. From 2002 to 2007, Strand Spaces theory was enriched with \emph{shape of bundle, skeleton and homomorphism}~\cite{Doghmi:2007:SHS:1230146.1230260}. These theories study about a sort of protocols that share the same forms. Current developments of Strand Spaces are focusing on various of types of protocols such as TLS~\cite{Kamil:2011:ATS:2590701.2590707}, location-awareness protocols~\cite{Thayer:2010aa}, and DH protocols~\cite{1212716}. 
 
+<<<<<<< HEAD
 In our work, we continue adding more ingredients in Strand Spaces to get more juice in wireless context. We select and present some extensions that we will use in our model. Other extensions objective closely to our work will be presented in related work of chapter 3 and 4. Definitions used in thesis are referred from \cite{674832}, \cite{Guttman:2002:ATS:568264.568267} and~\cite{Doghmi:2007:SHS:1230146.1230260}. 
+=======
+Definitions used in thesis are referred from \cite{674832}, \cite{Guttman:2002:ATS:568264.568267} and~\cite{Doghmi:2007:SHS:1230146.1230260}. Furthermore, to make readers conformable with the theory, the Needham-Schroeder(NS) protocol~\cite{Needham:1978:UEA:359657.359659} presented below is used as an example through this part. 
+
+\begin{enumerate}
+\item $A \rightarrow B$: $\{N_a, A\}_{K_B}$
+\item $B \rightarrow A$: $\{N_a,N_b, B\}_{K_A}$
+\item $A \rightarrow B$: $\{N_b\}_{K_B}$
+\end{enumerate}
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \section{Fundamental Theory}
 
@@ -21,7 +31,11 @@ A security protocol is an ordered sequence of messages that participants exchang
 \end{itemize}
 \end{Definition}
 
+<<<<<<< HEAD
 For convention, from now we express the concatenation of two term $t$ and $t'$ as $\textit{tt'}$ and encryption of term $t$ with key $K$ as $\{t\}_K$. We continue defining a relation, \textit{subterm relation}, on the set $\mathcal{A}$. 
+=======
+For convention, from now we express the concatenation of two term $t$ and $t'$ as $\textit{t,t'}$ and encryption of term $t$ with key $K$ as $\{t\}_K$. We continue defining a relation, \textit{subterm relation}, on the set $\mathcal{A}$. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \begin{Definition} The $\emph{subterm relation}$ $\sqsubseteq$ over $\mathcal{A}$ is defined inductively as: 
 	\begin{itemize}
@@ -32,16 +46,28 @@ For convention, from now we express the concatenation of two term $t$ and $t'$ a
 	\end{itemize} 
 \end{Definition}
 
+<<<<<<< HEAD
 Remark that, $t_1\sqsubseteq t$ means $t_1$ is a subterm of $t$. A \textit{subterm} is just a term that can be easily extracted from a term with an appropriate key. Taking the Needham-Schroeder \cite{Needham:1978:UEA:359657.359659}(NS) protocol as an example, initiator A starts sending a message (or a $term$) of the form $\{N_a,A\}_{PK_B}$ to intentional responder B, where $PK_B$ is the public key of B. Subterms of term $\{N_a,A\}_{PK_B}$ could be $N_a, A$, or $\{N_a,A\}_{PK_B}$. Since $PK_B$ is a key, $PK_B \not\sqsubseteq \{N_a,A\}_{PK_B}$, except a case when $PK_B$ is in a value of this message. 
+=======
+Remark that, $t_1\sqsubseteq t$ means $t_1$ is a subterm of $t$. A \textit{subterm} is just a term that can be easily extracted from a term with an appropriate key. In NS protocol, initiator $A$ starts sending to intentional responder $B$ a message (or a $term$) of the form $\{N_a,A\}_{K_B}$ where $K_B$ is the public key of $B$. Subterms of term $\{N_a,A\}_{K_B}$ could be $N_a, A$, or $\{N_a,A\}_{K_B}$. Since $K_B$ is a key, $K_B \not\sqsubseteq \{N_a,A\}_{K_B}$, except a case when $K_B$ is in a value of this message. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 Terms are extended to $\textit{signed term}$ including a positive represented to a transmission, and a negative one represented to a reception. 
 
 \begin{Definition} A $\emph{signed term}$ is a pair $\langle\delta,a\rangle$ with $a \in A$ and $\delta$ one of the symbols $+,-$. We will write a signed term as $+t$ or $-t$. $(\pm A)^*$ is the set of finite sequences of signed terms. We denote a typical element of $(\pm A)^*$ by $\langle \delta_1,a_1\rangle,.....,\langle\delta_n,a_n\rangle$.
 \end{Definition}
 
+<<<<<<< HEAD
 A sequence of sending and receiving messages in a protocol is called $strand$, and a set of strands is called $\textit{Strand Spaces}$. 
 
 When modeling a protocol, the strand of a principal is a sequence of events as seen by that principal in a particular protocol run and in a particular instance of role. For example, the strand of the initiator for the NS protocol is $\langle+\{N_a,A\}_{PK_B}, -\{N_a,N_b\}_{PK_A},+\{N_b\}_{PK_B} \rangle$. The first event is emission of $\{N_a,A\}_{PK_B}$ followed by reception of $\{N_a,N_b\}_{PK_A}$ and so on. 
+=======
+Note that, the unsigned term is the term without direction. For example, a signed term $+t$ has direction $+$, and an unsigned term $t$. 
+
+A sequence of sending and receiving messages in a protocol is called $strand$, and a set of strands is called $\textit{Strand Spaces}$. 
+
+When modeling a protocol, the strand of a principal is a sequence of events as seen by that principal in a particular protocol run and in a particular instance of role. For example, the strand of the initiator for the NS protocol is $\langle+\{N_a,A\}_{K_B}, -\{N_a,N_b\}_{K_A},+\{N_b\}_{K_B} \rangle$. The first event is emission of $\{N_a,A\}_{K_B}$ followed by reception of $\{N_a,N_b\}_{K_A}$ and so on. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \begin{Definition}
 A $\emph{Strand Spaces}$ is a set $\Sigma$ with a trace mapping tr: $\Sigma \rightarrow (\pm A)^*$.
@@ -69,6 +95,13 @@ For a Strand Spaces $\Sigma$:
 		\item An unsigned term $t$ is $\textit{uniquely originating}$ iff $t$ originates on a unique $n \in \mathcal{N}$ 
 
 	\end{itemize}
+<<<<<<< HEAD
+=======
+
+Let  the Initiator strand be $st = \langle +\{N_a,A\}_{K_B}, -\{N_a,N_b\}_{K_A},+\{N_b\}_{K_B} \rangle$, and the responder strand be $st' = \langle -\{N_a,A\}_{K_B}, +\{N_a,N_b\}_{K_A},-\{N_b\}_{K_B} \rangle$.
+
+The first node of Initiator strand is $\langle st,1 \rangle = +\{N_a,A\}_{K_B}$. Moreover, $\langle st,1 \rangle \Rightarrow \langle st,2 \rangle$ means node $\langle st,1 \rangle$ is a causal predecessor of node $\langle st,2 \rangle$. $N_a$ occurs in $term(\langle st,1 \rangle)$. Additionally, since sign of $\langle st,1 \rangle$ is positive, and there does not exist any predecessor of $\langle st,1 \rangle$, $N_a$ uniquely originates at $\langle st,1 \rangle$.  
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 	
 Let $\mathcal{N}$ be a set of nodes, and let $\mathcal{E}$ be the union of the sets of $\rightarrow$ and $\Rightarrow$ edges. A directed graph $\mathcal{G}$ has a structure $\mathcal{G} = \langle \mathcal{N},\mathcal{E}\rangle$. A $bundle$ is a finite subgraph of this graph in which the edges express casual dependencies of the nodes.
 
@@ -81,7 +114,11 @@ Let $\mathcal{N}$ be a set of nodes, and let $\mathcal{E}$ be the union of the s
 \end{enumerate}
 \end{Definition}
 
+<<<<<<< HEAD
 Remark: Guttman implicitly expressed that when a node transmits a message, there is more than one (or none) receiving node of the message. However, we hardly see more than two receptions in their studies. 
+=======
+The graph consisting of the Initiator strand $st$ and responder strand $st'$ is called a NS bundle. Remarking that Guttman implicitly expressed that when a node transmits a message, there is more than one (or none) receiving node of the message. However, we hardly see more than two receptions in their studies. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \begin{Definition}
 A node $n$ belongs to a bundle $\mathcal{B} = \langle \mathcal{N_B},\mathcal{E_B}\rangle$ , written $n \in \mathcal{B}$ if $n \in \mathcal{N_B}$. The $\mathcal{B} -height$ of a strand $s \in \mathcal{B}$ is the largest $i$ such that $\langle s,i \rangle \in \mathcal{B}$. 
@@ -104,18 +141,33 @@ Conveniently, we refer the example of Thayer\cite{Thayer:2010aa}. If we have a t
  For a strand s, a term t is \emph{new} at $n = \langle s,i\rangle$ if t is a component of term(n), but t is not a component of node $\langle s,j\rangle$ for every $j<i$. 
 \end{Definition}
 
+<<<<<<< HEAD
 \begin{Definition} Suppose that $n \in \mathcal{B}$ is positive, $\emph{a}$ $\in \mathcal{A}$ is a subterm of $term(n)$. The edge $n \Rightarrow^+ n'$ is a \emph{transformed edge} for $\emph{a}$ if there exits a negative node $n' \in \mathcal{B}$, and there is a new component $t_2$ of $n'$ such that $a \sqsubseteq t_2$.
 \end{Definition}
 
 Respectively, \textit{a transforming edge} is denoted. 
+=======
+Taking NS protocol as an example, the component $\{N_a,N_b,B\}_{K_B}$ is new at node $\langle st,2 \rangle$ since it is clearly not a component of $\langle st,1 \rangle$. 
+
+\begin{Definition} Suppose that $n \in \mathcal{B}$ is positive, $\emph{a}$ $\in \mathcal{A}$ is a subterm of $term(n)$. The edge $n \Rightarrow^+ n'$ is a \emph{transformed edge} for $\emph{a}$ if there exits a negative node $n' \in \mathcal{B}$, and there is a new component $t_2$ of $n'$ such that $a \sqsubseteq t_2$.
+\end{Definition}
+
+Respectively, \textit{a transforming edge} is denoted.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \begin{Definition} Suppose that $n \in \mathcal{B}$ is negative, $\emph{a}$ $\in \mathcal{A}$ is a subterm of $term(n)$. The edge $n \Rightarrow^+ n'$ is a \emph{transforming edge} for $\emph{a}$ if there exits a positive node $n' \in \mathcal{B}$, and there is a new component $t_2$ of $n'$ such that $a \sqsubseteq t_2$.
 \end{Definition}
 
+<<<<<<< HEAD
+=======
+ For example, the edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ is a transformed edge for the term $N_a$, and  $\langle st',1\rangle \Rightarrow \langle st',2\rangle$ is a transforming edge for $N_a$. 
+
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \begin{Definition} 
 The edge $n \Rightarrow^+ n'$ is \emph{a test} for $\emph{a}$ $\in \mathcal{A}$ if $\emph{a}$ uniquely originates at $n$, and $n \Rightarrow^+ n'$ is a transformed edge for $\emph{a}$. 
 \end{Definition}
 
+<<<<<<< HEAD
 \begin{Definition} Suppose that $n, n' \in \mathcal{B}$.
 \begin{enumerate}
 \item The edge $n \Rightarrow^+ n'$ is \emph{a outgoing test} for $a$ $\sqsubseteq t = \{|h|\}_K$ if it is a test for $a$ in which $K^{-1} \not\in P$, $a$ does not occur in any component of $n$ other than t. Moreover, $t$ is a test component for $a$ in $n$.
@@ -126,15 +178,38 @@ The edge $n \Rightarrow^+ n'$ is \emph{a test} for $\emph{a}$ $\in \mathcal{A}$ 
 Subsequently, authentication tests~\cite{authenticationtests} are provided as powerful and simple tools to guarantee existence of regular strands in a bundle. 
 
 \emph{Authentication Test 1}: Suppose that $n' \in \mathcal{B}$, and $n \Rightarrow^+ n'$ is outgoing test for $\emph{a}$ $\sqsubseteq t$ with $t = term(n)$. Then there exist regular nodes $m,m' \in \mathcal{B}$ such that $t$ is a component of $m$, and  $m \Rightarrow^+m'$ is a transforming edge for $\emph{a}$. In addition that $\emph{a}$ occurs only in component $t_1=\{|h_1|\}_{K_1}$ of $m'$, that $t_1$ is not a proper subterm of any regular component, and that $K^{-1}_1 \not\in P$. There is a negative regular node with $t_1$ as a component. 
+=======
+The transformed edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ is a test for $N_a$ since $N_a$ uniquely originates at $\langle st,1\rangle$. 
+
+\begin{Definition} Suppose that $n, n' \in \mathcal{B}$.
+\begin{enumerate}
+\item The edge $n \Rightarrow^+ n'$ is \emph{a outgoing test} for $a$ $\sqsubseteq t = \{h\}_K$ if it is a test for $a$ in which $K^{-1} \not\in P$, $a$ does not occur in any component of $n$ other than t. Moreover, $t$ is a test component for $a$ in $n$.
+\item The edge $n \Rightarrow^+ n'$ is \emph{a incoming test} for $a$ $\sqsubseteq t_1 = \{h\}_K$ if it is a test for $a$ in which $K \not\in P$, and $t_1$ is a test component for $a$ in $n'$.
+\end{enumerate}
+\end{Definition}
+
+The transformed edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ could be considered as an incoming test for $N_a$. 
+
+Subsequently, authentication tests~\cite{authenticationtests} are provided as powerful and simple tools to guarantee existence of regular strands in a bundle. 
+
+\emph{Authentication Test 1}: Suppose that $n' \in \mathcal{B}$, and $n \Rightarrow^+ n'$ is outgoing test for $\emph{a}$ $\sqsubseteq t$ with $t = term(n)$. Then there exist regular nodes $m,m' \in \mathcal{B}$ such that $t$ is a component of $m$, and  $m \Rightarrow^+m'$ is a transforming edge for $\emph{a}$. In addition that $\emph{a}$ occurs only in component $t_1=\{h_1\}_{K_1}$ of $m'$, that $t_1$ is not a proper subterm of any regular component, and that $K^{-1}_1 \not\in P$. There is a negative regular node with $t_1$ as a component. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 
 \emph{Authentication Test 2}: Suppose that $n \in \mathcal{B}$, and $n \Rightarrow^+ n'$ is incoming test for $\emph{a}$ $\sqsubseteq t'$ with $t' = term(n')$. Then there exist regular nodes $m,m' \in \mathcal{B}$ such that $t'$ is a component of $m'$, and  $m \Rightarrow^+m'$ is a transforming edge for $\emph{a}$. 
 
 \begin{Definition} 
+<<<<<<< HEAD
 A negative node is an \emph{unsolicited test} for $t = \{|h|\}_K$ if $t$ is a test component for any $a$ in $n$ and $K \not\in P$. 
 \end{Definition}
 
 \emph{Authentication Test 3}: Suppose that a node $n$ is in a bundle $\mathcal{B}$, and $n$ be an unsolicited test for $t = \{|h|\}_K$, then there exists a positive regular node $m \in \mathcal{B}$ such that $t$ is a component of $m$. 
+=======
+A negative node is an \emph{unsolicited test} for $t = \{h\}_K$ if $t$ is a test component for any $a$ in $n$ and $K \not\in P$. 
+\end{Definition}
+
+\emph{Authentication Test 3}: Suppose that a node $n$ is in a bundle $\mathcal{B}$, and $n$ be an unsolicited test for $t = \{h\}_K$, then there exists a positive regular node $m \in \mathcal{B}$ such that $t$ is a component of $m$. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
  
 The proofs of these authentication tests are out of scope in this part. So if readers eager to deeply understand the proofs, please regard to the paper \cite{Guttman:2002:ATS:568264.568267}.
 
@@ -162,6 +237,11 @@ A preskeleton describes the regular parts of a set of bundles. Formally presente
 \begin{Definition}[Shape] $\mathcal{A}'$ is a $shape$ for $\mathcal{A}$ if (1) some $H : \mathcal{A} \rightarrow \mathcal{A'}$, (2) $\mathcal{A'}$ is realised, and (3) no proper skeleton of $\mathcal(A')$ satisfies (1) and (2). 
 \end{Definition}
 
+<<<<<<< HEAD
+=======
+A strand could be considered as a skeleton. And a bundle could be considered as a shape. Furthermore, a bundle containing a penetrator strand is also a possible shape of the protocol. 
+
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \section{Penetrator Model}
 
 Original Strand Spaces theory uses Dolev-Yao \cite{dolev-yao} model as its penetrator model. Penetrator's power is built up from two ingredients: initially known keys available to the penetrator, and actions that allows the penetrator manipulates messages. The actions are summarized to discard message, to generate arbitrary messages, to concatenate messages together, and to apply cryptographic operation using available keys. The model is described as follows. 
@@ -180,3 +260,7 @@ Original Strand Spaces theory uses Dolev-Yao \cite{dolev-yao} model as its penet
 \end{Definition}
 
 This penetrator's trace set given here could be extended if desired without any modification on the whole model. However, the proofs should be adjusted to take into account the additional penetrator traces. This ability gives us an open space to add some physical penetrator traces without worry of proving way. 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
