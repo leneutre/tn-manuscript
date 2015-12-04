@@ -90,13 +90,13 @@ A drawback of these approaches is that embedded accelerometers sometimes are not
 
 \emph{Combination}
 
-Claude Castelluccia and Pars Mutaf introduced \emph{Shake Them Up}~\cite{Castelluccia:2005} to allow two constrained devices to share a secret in minimal requirements of both hardware and out-of-band channel. In this scheme, both involved devices are required to shake and twirl together in very proximity. During shaking process, both devices also exchange radio packets. When finishing the steps, they together get the same secret key. Attackers cannot interfere key exchange process because they cannot determine source of each radio packet. To limit the attackers' ability, the author exploited the source indistinguishability achieved by CDMA-based system, and sharking devices in close proximity. 
+Claude Castelluccia and Pars Mutaf introduced \emph{Shake Them Up}~\cite{Castelluccia:2005} to allow two constrained devices to share a secret in minimal requirements of both hardware and out-of-band channel. In this scheme, both involved devices are required to shake and twirl together in close proximity. During shaking process, both devices also exchange radio packets. When finishing the steps, they together get the same secret key. Attackers cannot interfere key exchange process because they cannot determine source of each radio packet due to the source indistinguishability achieved by CDMA-based system, and sharking devices in close proximity. 
 
 Varshavsky et al. introduced AMIGO \cite{Scannell07amigo:proximity-based} investigated that radio signal fluctuations is too hard to predict at a specific location and time. With this result, the authors pointed that any attacker who is not physically close to the signal source would see a different pattern of signal strength. 
 
 \subsubsection{Channel Security Properties}
 
-The types of OOB channels can be also presented via properties of channels. We refer the classification in the work~\cite{6687314}, and adapt each type with the definitions of channel security properties. In addition to, we divide the public channel into sub-public channels. 
+The types of OOB channels can be also classified by security properties. We refer the classification in the work~\cite{6687314}, and adapt each type with the definitions of channel security properties. In addition to, we divide the public channel into sub-public channels. 
 \begin{itemize}
  \item a \textit{private channel} ensures all channel security properties;
  \item a \textit{protected channel} ensures channel origin authentication and channel confidentiality but not channel occupancy;
@@ -230,7 +230,7 @@ $MAC_K(m)$ & Message authentication code of message M using shared key K \\
 $h_K(K)$ & Universal hash function of message M using the key K \\ 
 h(m) & One-way hash function of message M \\ 
 $,$ & Concatenation of different parts of a message\\ 
-$\oplus$ & Bitwise "XOR" operation \\ 
+$\otimes$ & Bitwise "XOR" operation \\ 
 $g^x$ & Diffie-Hellman public key entity X \\ 
 $g^{xy}$ & Diffie-Hellman shared key between X and Y \\ 
 $(c,d) \leftarrow commit(m)$ & commitment algorithm takes $m$ to produce commit value $c$ and decommit $d$ \\ 
@@ -242,13 +242,13 @@ $m \leftarrow open(c,d)$ & Open commitment algorithm take $c,d$ and produces a m
 
 \subsubsection{Interlock Protocol}
 
-Proposed by Rivest and Shamir in 1984, Interlock protocol exploits user's knowledge of communication pattern or voice recognition to eliminate eavesdropping attacks. In this scheme, two parties use their initial knowledge to mutually authenticate their public keys without any assistance of a third party. This protocol works as follows:
+Proposed by Rivest and Shamir in 1984, Interlock protocol exploits user's knowledge of communication pattern or voice recognition as a long-range public out-of-band channel. In this scheme, two parties use their initial knowledge to mutually authenticate their public keys without any assistance of a third party. This protocol works as follows:
 \begin{enumerate}
 \item Alice and Bob exchange their public keys via a sound channel. 
-\item Alice produces $(m_A)_{PK_B}$ then sends the first half of the result to Bob. 
-\item Bob produces $(m_B)_{PK_A}$ then sends the first half of the result to to Alice. 
-\item Alice sends to Bob the second half of $(m_A)_{PK_B}$. 
-\item Bob sends to Alice the second half of $(m_B)_{PK_A}$. 
+\item Alice produces $(m_A)_{PK_B}$ then sends the first half of the result  $\{(m_A)_{PK_B}\}_1$ to Bob. 
+\item Bob produces $(m_B)_{PK_A}$ then sends the first half of the result $\{(m_B)_{PK_A}\}_1$ to Alice. 
+\item Alice sends to Bob the second half $\{(m_A)_{PK_B}\}_2$. 
+\item Bob sends to Alice the second half $\{(m_B)_{PK_A}\}_2$. 
 \item Both decrypt the combination of two halves with their own private key. 
 \end{enumerate}   
 
@@ -268,10 +268,10 @@ Data $m_A$ & & Data $m_B$ \\[-4mm]
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-3.south east)--(m-1-3.south west);
 
-\draw[shorten <=-1cm,shorten >=-1cm,-latex] (m-3-2.south west)--(m-3-2.south east);
-\draw[shorten <=-1cm,shorten >=-1cm,-latex] (m-4-2.south east)--(m-4-2.south west);
-\draw[shorten <=-1cm,shorten >=-1cm,-latex] (m-5-2.south west)--(m-5-2.south east);
-\draw[shorten <=-1cm,shorten >=-1cm,-latex] (m-6-2.south east)--(m-6-2.south west);
+\draw[shorten <=-1cm,shorten >=-1cm,-latex,densely dotted] (m-3-2.south west)--(m-3-2.south east);
+\draw[shorten <=-1cm,shorten >=-1cm,-latex,densely dotted] (m-4-2.south east)--(m-4-2.south west);
+\draw[shorten <=-1cm,shorten >=-1cm,-latex,] (m-5-2.south west)--(m-5-2.south east);
+\draw[shorten <=-1cm,shorten >=-1cm,-latex,] (m-6-2.south east)--(m-6-2.south west);
 \draw[shorten <=-1cm,shorten >=-1cm,-latex] (m-7-2.south west)--(m-7-2.south east);
 \draw[shorten <=-1cm,shorten >=-1cm,-latex] (m-8-2.south east)--(m-8-2.south west);
 
@@ -544,7 +544,7 @@ Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an improved ve
 \item Alice and Bob generate DH-value $g^a$ and $g^b$ respectively. 
 \item Alice sends $h(A,g^a)$ to Bob. 
 \item Both sides exchange $g^a$ and $g^b$ to each other. 
-\item At the end, Alice calculates a short hash of $g^a \oplus g'^b$, then sends it to Bob over an out-of-band channel. 
+\item At the end, Alice calculates a short hash of $g^a \otimes g'^b$, then sends it to Bob over an out-of-band channel. 
 \end{enumerate}
 
 \begin{center}
@@ -555,7 +555,7 @@ $g^a$ & & $g^b$\\[-4mm]
 & $h(A,g^a)$ & \\[-4mm]
 & $g^b$ & \\[-4mm]
 & $g^a$ & \\[-4mm]
-& $S\_h(g^a\oplus g'^b)$ & \\[-4mm]
+& $S\_h(g^a\otimes g'^b)$ & \\[-4mm]
 & & Accept/Reject \\[-4mm]
 };
 
@@ -707,7 +707,7 @@ Accept/Reject & & \\[-4mm]
 In term of efficiency, this unidirectional protocol only spends 5 messages including 2 out-of-band messages, that decreases both computation and communication cost compared to costs of two previous protocols. 
 \subsubsection*{Improved Wong-Stajano Key Agreement Protocol}
 
-Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an variant of Wong-Stajano protocol. The new scheme cuts off long keys, and replaces two different authenticated string $r_a$ and $r_b$ by a single value $r_a\oplus r'_b$. The protocol works as follows:
+Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an variant of Wong-Stajano protocol. The new scheme cuts off long keys, and replaces two different authenticated string $r_a$ and $r_b$ by a single value $r_a\otimes r'_b$. The protocol works as follows:
 \begin{enumerate}
 \item Alice generates a random number $r_a$ and DH-value $g^a$.
 \item Bob generates a random number $r_b$, and DH-value $g^b$.
@@ -715,7 +715,7 @@ Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an variant of 
 \item Bob calculates $h(B,g^b,r_b)$, then sends it to Alice.
 \item Alice sends $r_a$ and $g^a$ to Bob. 
 \item Bob sends $r_b$ and $g^b$ to Alice. 
-\item Alice calculates $r_a\oplus r'_b$, then pushes it on an out-of-band channel to Bob. 
+\item Alice calculates $r_a\otimes r'_b$, then pushes it on an out-of-band channel to Bob. 
 \item Bob informs to Alice Accept or Reject the session.
 \end{enumerate}
 
@@ -728,7 +728,7 @@ $r_a,g^a$ & & $r_b,g^b$ \\[-4mm]
 & $h(B,g^b,r_b)$ & \\[-4mm]
 & $r_a,g^a$ & \\[-4mm]
 & $r_b,g^b$ & \\[-4mm]
-& $r_a\oplus r'_b$ & \\[-4mm]
+& $r_a\otimes r'_b$ & \\[-4mm]
 & & Accept/Reject \\[-4mm]
 };
 
@@ -762,8 +762,8 @@ Vaudenay presented his first authentication protocol based on a short authentica
 \item Bob computes $(c_B,d_B) \leftarrow commit(1,m_B,r_b)$ sends $m_B, c_B$ to Alice.
 \item Alice sends $d_A$ to Bob. Then Bob computes $(0,r'_a,m'_A) \leftarrow Open(c'_A,d'_A)$. 
 \item Bob sends $d_B$ to Alice. Then Alice computes $(1,r'_b,m'_B) \leftarrow Open(c'_B,d'_B)$. 
-\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
-\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
+\item Alice computes $SAS_A \leftarrow r_a \otimes r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
+\item Bob computes $SAS_B = r'_a \otimes r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
 \item Both sides compare their calculated SAS value to received one from the other. 
 \end{enumerate}
 
@@ -776,8 +776,8 @@ $(c_A,d_A)\rightarrow commit(0,m_A,r_a)$ & $(m_A,c_A)$ & \\[- 4mm]
 							 & $(m_B,c_B)$ & $(c_B,d_B)\rightarrow commit(1,m_B,r_b)$ \\[- 4mm]	
 						  & $d_A$ & $(0,r'_a,m'_A) \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $(1,m'_B,r'_b) \leftarrow Open(c'_B,d'_B)$ & $d_B$ & \\[-4mm]
-$SAS_A \leftarrow r_a\oplus r'_b $ & $SAS_A$ & check $SAS'_A = r'_a\oplus r_b$ \\ [-4mm]
-check $SAS'_B = r_a\oplus r'_b$ & $SAS_B$ & $SAS_B \leftarrow r'_a\oplus r_b $ \\ [-4mm]
+$SAS_A \leftarrow r_a\otimes r'_b $ & $SAS_A$ & check $SAS'_A = r'_a\otimes r_b$ \\ [-4mm]
+check $SAS'_B = r_a\otimes r'_b$ & $SAS_B$ & $SAS_B \leftarrow r'_a\otimes r_b $ \\ [-4mm]
 verify Bob and $m'_B$ 			 & & verify Alice and $m'_A$ \\ [-4mm]
 };
 
@@ -801,8 +801,8 @@ Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease int
 \item Alice computes $(c_A,d_A) \leftarrow commit(m,r_a)$, and sends $c$ to Bob.
 \item Bob sends $r_b$ to Alice.
 \item Alice sends $d_A$ to Bob. Then Bob computes $(r'_a,m') \leftarrow Open(c'_A,d'_A)$. 
-\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
-\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
+\item Alice computes $SAS_A \leftarrow r_a \otimes r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
+\item Bob computes $SAS_B = r'_a \otimes r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
 \item Bob verifies SAS and Alice. Alice compares both values of SAS and verifies Bob. 
 \end{enumerate}
 
@@ -814,8 +814,8 @@ Alice & & Bob\\[-4mm]
 $(c_A,d_A)\rightarrow commit(m,r_a)$ & $c_A$ & \\[- 4mm]
 									& $r_b$ & \\[- 4mm]
 									& $d_A$ & $(r'_a,m') \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
-$SAS_A \leftarrow r_a\oplus r_b' $ & $SAS_A$ & \\ [-4mm]
-						 	 & $SAS_B$ & $SAS_B \leftarrow r'_a\oplus r_b$ \\ [-4mm] 
+$SAS_A \leftarrow r_a\otimes r_b' $ & $SAS_A$ & \\ [-4mm]
+						 	 & $SAS_B$ & $SAS_B \leftarrow r'_a\otimes r_b$ \\ [-4mm] 
 check $SAS'_B = SAS_A$ 					 & & if $SAS'_A = SAS_B$ \\ [-4mm]
 accept Bob 			 & & accept Alice \\ [-4mm]
 };
@@ -839,8 +839,8 @@ New SAS-based Cross Authentication based on the previous 3-move mutual authentic
 \item Alice computes $(c_A,d_A) \leftarrow commit(0,m,r_a)$, and sends $(c_A)$ to Bob.
 \item Bob sends $(r_b)$ to Alice.
 \item Alice sends $d_A$ to Bob. Bob computes $(0,m',r'_a) \leftarrow Open(c'_A,d'_A)$. 
-\item Alice computes $SAS_A \leftarrow r'_b \oplus h_{r_a}(m)$, and send $SAS_A$ to Bob through out-of-band channel. 
-\item Bob computes $SAS_B \leftarrow r_b \oplus h_{r'_a}(m')$ and send $SAS_B$ to Alice through out-of-band channel. 
+\item Alice computes $SAS_A \leftarrow r'_b \otimes h_{r_a}(m)$, and send $SAS_A$ to Bob through out-of-band channel. 
+\item Bob computes $SAS_B \leftarrow r_b \otimes h_{r'_a}(m')$ and send $SAS_B$ to Alice through out-of-band channel. 
 \item Alice and Bob check received $SAS$ with their own $SAS$. Alice verifies Bob and $m$. And, Bob verifies Alice and $m$.
 \end{enumerate}
 
@@ -852,8 +852,8 @@ Alice & & Bob\\[-4mm]
 $(c_A,d_A)\rightarrow commit(0,m,r_a)$ & $(c_A)$ & \\[- 4mm]
 							 & $(r_b)$ & \\[- 4mm]	
 						  & $d_A$ & $(0,m',r'_a) \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
-$SAS_A \leftarrow r'_b\oplus h_{r_a}(m')$ & $SAS_A$ & \\ [-4mm]
-								& $SAS_B$ & $SAS_B \leftarrow r_b\oplus h_{r'_A}(m)$ \\ [-4mm]
+$SAS_A \leftarrow r'_b\otimes h_{r_a}(m')$ & $SAS_A$ & \\ [-4mm]
+								& $SAS_B$ & $SAS_B \leftarrow r_b\otimes h_{r'_A}(m)$ \\ [-4mm]
 check $SAS'_B = SAS_A$ 					 & & if $SAS'_A = SAS_B$ \\ [-4mm]
 accept Bob and $m$ 			 & & accept Alice and $m'$ \\ [-4mm]
 };
@@ -966,7 +966,7 @@ Cagalj, Capkun and Huxbaux \cite{1580514} proposed three various protocols which
 \item Alice sends $d_A$ to Bob. Bob computes $m'_A \leftarrow Open(c'_A,d'_A)$ and verifies that 0 appears at beginning of $m'_A$. If verification is successful, Bob sends $d_B$ to Alice.
 \item Alice computes $m'_B \leftarrow Open(c'_B,d'_B)$ and verifies that 1 appears at beginning of $m'_B$
  \item If the verification of Alice is successful, both parties go to the next stage.
-\item Alice computes $i_A \leftarrow r'_b \oplus r_a$, Bob computes $i_B \leftarrow r_b \oplus r'_a$.
+\item Alice computes $i_A \leftarrow r'_b \otimes r_a$, Bob computes $i_B \leftarrow r_b \otimes r'_a$.
 \item Bob sides exchange their short values over an out-of-band channel. If the received value equals the computed value, each side informs a successful signal. 
 \end{enumerate}
 
@@ -983,8 +983,8 @@ $(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4
 						& $c_A$ & \\[- 4mm]
 						& $c_B$ & \\[- 4mm]
 						& $d_A$ & $m'_A \leftarrow Open(c'_A,d'_A)$\\[- 4mm]
-$m'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$, $i_B \leftarrow r_b \oplus r'_a$\\[- 4mm]
-Verify 1 in $m'_B$, $i_A \leftarrow r'_b \oplus r_a$	& & \\[-4mm]
+$m'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$, $i_B \leftarrow r_b \otimes r'_a$\\[- 4mm]
+Verify 1 in $m'_B$, $i_A \leftarrow r'_b \otimes r_a$	& & \\[-4mm]
 						& $i_A$ & \\[-4mm]
 						& $i_B$ & \\[-4mm]
 If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
@@ -1023,25 +1023,25 @@ $(x_A,y_A) \leftarrow commit(0,r_a)$ & & $(x_B,y_B) \leftarrow commit(1,r_b)$ \\
 						& $c_B,x_B$ & \\[-4mm]
 						& $d_A$ & $m'_A \leftarrow Open_(c'_A,d'_A)$\\[-4mm]
 $m'_B \leftarrow Open_(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$\\[-4mm]
-						& &	$i_B \leftarrow r_b \oplus r'_a$\\[-4mm]
+						& &	$i_B \leftarrow r_b \otimes r'_a$\\[-4mm]
 Verify 1 in $m'_B$ 	& & \\[-4mm]
-$i_A \leftarrow r'_b \oplus r_a$	& & \\[-2mm]
+$i_A \leftarrow r'_b \otimes r_a$	& & \\[-2mm]
 					& \textbf{-DB Phase-} & \\[-2mm]
 $r_a$ bits = $r_{a1},..,r_{ak}$ & & $r_b$ bits = $r_{b1},..,r_{bk}$ \\[-4mm]
 $i_A$ bits = $i_{A1},..,i_{Ak}$ & & $i_B$ bits $= i_{B1},..,i_{Bk}$	\\[-4mm]
-$\alpha_1 \leftarrow r_{a1} \oplus i_{A1}$ & $\alpha_1$ & \\[-4mm]
-					& $\beta_1$ & 	$\beta_1 \leftarrow r_{b1} \oplus i_{B1} \oplus \alpha'_1$ \\[-4mm]
+$\alpha_1 \leftarrow r_{a1} \otimes i_{A1}$ & $\alpha_1$ & \\[-4mm]
+					& $\beta_1$ & 	$\beta_1 \leftarrow r_{b1} \otimes i_{B1} \otimes \alpha'_1$ \\[-4mm]
 					& ... & \\[-4mm]
-$\alpha_i \leftarrow r_{ai} \oplus i_{Ai} \oplus \beta'_{i-1}$ & $\alpha_i$ & \\[-4mm]
-					& $\beta_i$ & 	$\beta_i \leftarrow r_{bi} \oplus i_{Bi} \oplus \alpha'_i$ \\[-4mm]
+$\alpha_i \leftarrow r_{ai} \otimes i_{Ai} \otimes \beta'_{i-1}$ & $\alpha_i$ & \\[-4mm]
+					& $\beta_i$ & 	$\beta_i \leftarrow r_{bi} \otimes i_{Bi} \otimes \alpha'_i$ \\[-4mm]
 					& ... & \\[-4mm]
-$\alpha_k \leftarrow r_{ak} \oplus i_{Ak} \oplus \beta'_{k-1}$ & $\alpha_k$ & \\[-4mm]
-					& $\beta_k$ & 	$\beta_k \leftarrow r_{Bk} \oplus i_{Bk} \oplus \alpha'_k$ \\[-2mm]
+$\alpha_k \leftarrow r_{ak} \otimes i_{Ak} \otimes \beta'_{k-1}$ & $\alpha_k$ & \\[-4mm]
+					& $\beta_k$ & 	$\beta_k \leftarrow r_{Bk} \otimes i_{Bk} \otimes \alpha'_k$ \\[-2mm]
 					& \textbf{-End of DB Phase-} & \\[-2mm]
 					& $y_A$ & $0,r'_a \leftarrow Open(x'_A,y'_A)$ \\[-4mm]
 $1,r'_b \leftarrow Open_(x'_B,y'_B)$ & $y_B$ & \\[-4mm]
-$i'_{Bi} \leftarrow \alpha_i \oplus \beta'_i \oplus r'_{bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \oplus r'_{a1}$ \\[-4mm] 
-& & $i'_{Ai} \leftarrow \alpha'_i \oplus \beta_{i-1} \oplus r'_{ai}$ (i=2,..,k) \\[-4mm]
+$i'_{Bi} \leftarrow \alpha_i \otimes \beta'_i \otimes r'_{bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \otimes r'_{a1}$ \\[-4mm] 
+& & $i'_{Ai} \leftarrow \alpha'_i \otimes \beta_{i-1} \otimes r'_{ai}$ (i=2,..,k) \\[-4mm]
 If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
 };
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -1089,11 +1089,11 @@ $(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4
 						& $c_A$ & \\[- 4mm]
 						& $c_B$ & \\[- 4mm]
 						& $d_A$ & $m'_A \leftarrow Open(c'_A,d'_A)$\\[- 4mm]
-$m'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$, $i_B \leftarrow r_b \oplus r'_a$\\[- 4mm]
-Verify 1 in $m'_B$, $i_B \leftarrow r'_b \oplus r_a$	& & \\[-4mm]
+$m'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$, $i_B \leftarrow r_b \otimes r'_a$\\[- 4mm]
+Verify 1 in $m'_B$, $i_B \leftarrow r'_b \otimes r_a$	& & \\[-4mm]
 Push a button			& $I-codes(i_A)$ & \\[-4mm]
 Inform "Message Sent" & & Push a button \\[-4mm]
-					& & Verify $i'_A = r'_b \oplus r_a$ \\[-4mm]
+					& & Verify $i'_A = r'_b \otimes r_a$ \\[-4mm]
 If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
 };
 
@@ -1129,7 +1129,7 @@ In the protocol, the verification process is only decided by $A$, then attackers
 Alice & & Bob\\[-4mm]
 						 & &  $r, SRS$ \\[-4mm]
 						 & $PK_A$ & \\[- 4mm]
-						& $c_B$ & $ $c_B = $ \\ [- 4mm]
+						& $c_B$ & $c_B = $ \\ [- 4mm]
 						& & $h(PK'_A,PK_B,r,SRS),PK_B$\\[- 4mm]
 									& $SRS$ & \\[-4mm]
 								 & $r$ & \\[-4mm]
@@ -1159,48 +1159,50 @@ Summing up this part is presented at the table \ref{paircom}.
 {\scriptsize
 \begin{tabular}{ | p{2cm} | p{1.4cm} | p{1.4cm} | p{2cm} | p{2.2cm} | p{2cm} | p{2cm}| }
 \hline
-\textbf{Approach} &\multicolumn{2}{c}{ \textbf{Number of Message}} & \textbf{Computation} & \textbf{Communication} & \textbf{Required Cryptographic} & \textbf{Comment}\\ 
+\textbf{Approach} &\multicolumn{2}{c}{ \textbf{Number of Message}} & \textbf{Computation} & \textbf{Communication} & \textbf{Required Cryptographic} & \textbf{OOB Type}\\ 
  & \textbf{Wireless Channel} & \textbf{OOB Channel} & \textbf{Cost per Sid} & \textbf{Cost over OOB} & \textbf{Primitives} & \\ \hline \hline
 
-Maher Manual Authentication & 2 & 2 & 1 CF & 2* 80 bits & CF & Long OOB message \\ \hline
+Interlock & 4 & 2 & 2 HASH & 2* 80 bits & HF & Long-range public \\ \hline
 
-Talking to Strangers & 2 &	 2	& 1 HASH &	 2 ID + 2 HASH	& HF	& Not specific HASH output length, long OOB message \\ \hline 
+Maher Manual Authentication & 2 & 2 & 1 CF & 2* 80 bits & CF & Long-range public \\ \hline
 
-VIC & 3	& 1	& 1 HASH 	 & 20 bits HASH	& HF & Long OOB message \\ \hline 
+Talking to Strangers & 2 &	 2	& 1  HASH &	 2 * ID + 2 * HASH	& HF	&  Long-range public \\ \hline 
 
-MANA I	& 0	& 1	& 1 CF & 20 bits K + 20bits CV	& CF & \\ \hline 
+VIC & 3	& 1	& 1 HASH 	 & 20 bits & HF & Long-range public \\ \hline 
 
-MANA II	& 1	& 1 & 1 CF & 20 bits K + 20bits CV	& CF & \\ \hline 
+MANA I	& 0	& 1	& 1 CF & 20 bits K + 20bits CV  & MAC & Protected\\ \hline 
 
-MANA III	& 4	& 1 & 2 * HASH	& 16-20bits K & MAC & \\ \hline 
+MANA II	& 1	& 1 & 1 CF & 20 bits K + 20bits CV	& CF & Long-range \\ \hline 
+
+MANA III	& 4	& 1 & 2  HASH	& 16-20bits K & MAC & Long-range\\ \hline 
 
 Wong-Stajano MANA III & 6 & 2	& 1 MAC	& 2 *(20 bits N) & HF & \\ \hline 
 
-Wong-Stajano Bidirectional Out-of-band Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & \\ \hline 
+Wong-Stajano Bidirectional Out-of-band Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & Long-range\\ \hline 
 
-Wong-Stajano Unidirectional Out-of-band Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & \\ \hline 
+Wong-Stajano Unidirectional Out-of-band Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & Long-range \\ \hline 
 
-Improved Wong-Stajano & 4	& 1	& 1 HASH + 1 XOR	 & 1* (20 bits N) &	 HF + XOR & \\ \hline 
+Improved Wong-Stajano & 4	& 1	& 1 HASH + 1 XOR	 & 1* (20 bits N) &	 HF + XOR & Long-range \\ \hline 
 
-Hoepman AKA & 4	& 2 &	 1 L\_HASH + 1 S\_HASH & 	2* (n bits S\_HASH) &	 Short(S\_) and Long(L\_) HF & n is unclear, fresh random DH public keys \\ \hline 
+Hoepman AKA & 4	& 2 &	 1 L\_HASH + 1 S\_HASH & 	2* (n bits S\_HASH) &	 Short(S\_) and Long(L\_) HF & Long-range \\ \hline 
 
-Improved	Ephemeral Pairing & 3 &	 1 &	 1 L\_HASH + 1 S\_HASH &	80 bits S\_HASH & Short(S\_) and Long(L\_) HF & fresh random DH public keys \\ \hline 
+Improved	Ephemeral Pairing & 3 &	 1 &	 1 L\_HASH + 1 S\_HASH &	80 bits S\_HASH & Short(S\_) and Long(L\_) HF & Long-range \\ \hline 
  
-4-move SAS Vaudenay & 4	& 2 & 1 CS + 1 XOR & 15bits SAS	& CS + XOR & \\ \hline 
+4-move SAS Vaudenay & 4	& 2 & 1 CS + 1 XOR & 15bits SAS	& CS + XOR & Long-range\\ \hline 
 
-3-move SAS Vaudenay & 3	& 1 & 1 CS + 1 XOR & 15bits SAS	& CS + XOR & \\ \hline 
+3-move SAS Vaudenay & 3	& 1 & 1 CS + 1 XOR & 15bits SAS	& CS + XOR & Long-range\\ \hline 
  																				
-SAS Cros AKA Pasini-Vaudenay &	3 &	2 &	1 CS + 1 XOR + 1 HASH & 2 * (15-20bits SAS) & CS + XOR + HF & \\ \hline 
+SAS Cros AKA Pasini-Vaudenay &	3 &	2 &	1 CS + 1 XOR + 1 HASH & 2 * (15-20bits SAS) & CS + XOR + HF & Long-range\\ \hline 
 
-MANA IV & 3 & 1 & 1 CS + 1 HASH & 14bits SAS & CS + HF & \\ \hline 
+MANA IV & 3 & 1 & 1 CS + 1 HASH & 14bits SAS & CS + HF & Long-range\\ \hline 
 
-MA-DH & 3 &	1 &	1 CS + 1 HASH & 14bits SAS & CS + HF & \\ \hline 
+MA-DH & 3 &	1 &	1 CS + 1 HASH & 14bits SAS & CS + HF & Long-range \\ \hline 
 
- SRS-based AK & 3 & 1 &	1 CS &	 15 bits SRS &	 CS & \\ \hline 
+ SRS-based AK & 3 & 1 &  1 CS &	 15 bits SRS &	 CS & Long-range \\\hline 
 
-DH-SC & 4 &	2 &	2 CS + 1 XOR & 15bits SAS & CS +XOR & \\ \hline 
+DH-SC & 4 &	2 &	2 CS + 1 XOR & 15bits SAS & CS +XOR & Short-range\\ \hline 
 
-DH-DB & 6 &	2 &	1 CS + 1 XOR & 15bits SAS & CS +XOR & \\ \hline \hline 
+DH-DB & 6 &	2 &	1 CS + 1 XOR & 15bits SAS & CS +XOR & Short-range\\ \hline \hline 
 
 \textbf{ID} &\multicolumn{2}{c}{Identification} & & & & \\
 \textbf{CS} &\multicolumn{2}{c}{commitment Scheme} & & & & \\
@@ -1225,7 +1227,7 @@ The protocol is depicted in Figure ~\ref{improved-wong-stajano-protocol}. It run
 \item Alice picks a random value $r_a$. Bob picks a random value $r_b$
 \item Alice sends $(g^a,h(g^a,r_a))$ to Bob.
 \item Bob sends $(g^b,r_b)$ to Alice.
-\item Alice sends $(r_a \oplus h_{r_b}(g^a,g^b) )$ to Bob over a public channel. 
+\item Alice sends $(r_a \otimes h_{r_b}(g^a,g^b) )$ to Bob over a public channel. 
 \item Bob verifies received value and announces the result to Alice. 
 \item Alice confirms by pushing an Accept button. 
 \end{enumerate}
@@ -1238,7 +1240,7 @@ Alice & & Bob\\[-4mm]
 $g^a,r_a$ & & $r_b,g^b$ \\[-4mm]
 					 &$g^a,h(g^a,r_a)$ & \\[- 4mm]
 						& $g^b,r_b$ & \\[- 4mm]
-						& $r_a \oplus h_{r_b}(g^a,g^b)$ & \\[- 4mm]
+						& $r_a \otimes h_{r_b}(g^a,g^b)$ & \\[- 4mm]
 & $OK$(Push button) & \\[-4mm]
 };
 
@@ -1306,9 +1308,9 @@ where $n$ is the number of participants on the network, $\gamma$ is the maximum 
 \end{Lemma}
 
 \begin{proof}
-For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, attacker $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \oplus h_{r_{xb}}(g^a,g^{xb})) \oplus (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \oplus r_{xb} \oplus r_b \oplus h(g^a,g^{xb}) \oplus h(g^{xa},g^b)))$ (2). 
+For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, attacker $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \otimes h_{r_{xb}}(g^a,g^{xb})) \otimes (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \otimes r_{xb} \otimes r_b \otimes h(g^a,g^{xb}) \otimes h(g^{xa},g^b)))$ (2). 
 
-In the simplest case where attacker $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \oplus r_{xb} \oplus r_b$ or $r_{xa} \oplus r_b = r_a \oplus r_{xb}$ (3).
+In the simplest case where attacker $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \otimes r_{xb} \otimes r_b$ or $r_{xa} \otimes r_b = r_a \otimes r_{xb}$ (3).
 
 Observe that $X$ has to submit $r_{xb}$ before actually knowing $r_a$. Similarly, $X$ has to submit $r_{xa}$ before actually seeing $r_b$. Thus irrespectively, the attacking strategy taken by $X$, $r_a$ and $r_b$ will be revealed after $r_{xa}$ and $r_{xb}$ have been generated and submitted. If it happens that both $r_a$ and $r_b$ are revealed in the same time, then we can pick an arbitrary one. 
 
@@ -1318,9 +1320,9 @@ Assume that $r_a$ is revealed after $r_b$, we have:
  \item [(ii)] $r_{xa}$ and $r_{xb}$ must be generated and submitted before either $r_a$ is revealed, 
  \item [(iii)] each principal can open at most $\gamma$ sessions. 
 \end{description}
-The same holds for a case where $r_b$ is revealed after $r_a$. Therefore, $Pr[r_{xa} \oplus r_b = r_a \oplus r_{xb}] \leq n.\gamma.2^{-k}$.
+The same holds for a case where $r_b$ is revealed after $r_a$. Therefore, $Pr[r_{xa} \otimes r_b = r_a \otimes r_{xb}] \leq n.\gamma.2^{-k}$.
 
-In a normal case where $X$ cannot find collision, let $t= h(g^a,g^{xb}) \oplus h(g^{xa},g^b)$ since $g^a$ and $g^b$ are not changed over sessions. We have (i)$r_{xa} \oplus r_b = r_a \oplus r_{xb} \oplus t $, (ii) $t$ could be constant, hence, $Pr[r_{xa} \oplus r_b = r_a \oplus r_{xb} \oplus t ] \leq n.\gamma.2^{-k}$. 
+In a normal case where $X$ cannot find collision, let $t= h(g^a,g^{xb}) \otimes h(g^{xa},g^b)$ since $g^a$ and $g^b$ are not changed over sessions. We have (i)$r_{xa} \otimes r_b = r_a \otimes r_{xb} \otimes t $, (ii) $t$ could be constant, hence, $Pr[r_{xa} \otimes r_b = r_a \otimes r_{xb} \otimes t ] \leq n.\gamma.2^{-k}$. 
 \end{proof}
 
 \subsection{An Implemetation on An Embedded System} 

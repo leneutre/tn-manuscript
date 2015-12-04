@@ -282,10 +282,10 @@ An infiltrated Strand Spaces $(\Sigma,\mathcal{B})$ is the protocol space if $\S
 \begin{enumerate}
 \item Penetrator strand $s_p \in \mathcal{P}$,
 \item "Initiator strand'' with trace {\small $Init[g^a,g^b,r_a,r_b]$} defined to be: \\ 
- {\small $\langle +(g^a,h(g^a,r_a)),-(g^b,r_b),+_o(r_a \oplus h_{r_b}(g^a,g^b))$, \\ where $g^a,g^b \in \mathcal{B} \backslash \mathcal{P}$,}
+ {\small $\langle +(g^a,h(g^a,r_a)),-(g^b,r_b),+_o(r_a \otimes h_{r_b}(g^a,g^b))$, \\ where $g^a,g^b \in \mathcal{B} \backslash \mathcal{P}$,}
 \item "Responder strand'' with trace\\
  {\small $Resp[g^a,g^b,r_a,r_b]$} defined to be: \\ 
- {\small $\langle -\{g^a,h(g^a,r_a)\},+\{g^b,r_b\}, -_o(r_a \oplus h_{r_b}(g^a,g^b))$, \\ where $g^a,g^b \in \mathcal{B} \backslash \mathcal{P}$,}
+ {\small $\langle -\{g^a,h(g^a,r_a)\},+\{g^b,r_b\}, -_o(r_a \otimes h_{r_b}(g^a,g^b))$, \\ where $g^a,g^b \in \mathcal{B} \backslash \mathcal{P}$,}
 \end{enumerate}
 with $o$ a long-range public OOB channel.
 \end{Definition}
@@ -318,14 +318,14 @@ Since $r_a$ uniquely originates in $\Sigma$, and node $\langle st,1 \rangle$ is 
 \end{proof}
 
 \begin{Lemma}\label{lemme4.3}
-There is a regular node $n_3$ such that $term(n_3)= -_o(r_a \oplus h_{r_b}(g^a,g^b))$ on a responder strand. 
+There is a regular node $n_3$ such that $term(n_3)= -_o(r_a \otimes h_{r_b}(g^a,g^b))$ on a responder strand. 
 \end{Lemma}
 
 \begin{proof}
-Since $term(\langle st,3 \rangle) = +_o(r_a \oplus h_{r_b}(g^a,g^b))$, only a regular responder strand can use the channel $o$ to receive this message. Let call $n_3$ the node which receives $(r_a \oplus h_{r_b}(g^a,g^b))$, and $n_3$ belongs to some $Resp[*,g^b,*,r_b]$.
+Since $term(\langle st,3 \rangle) = +_o(r_a \otimes h_{r_b}(g^a,g^b))$, only a regular responder strand can use the channel $o$ to receive this message. Let call $n_3$ the node which receives $(r_a \otimes h_{r_b}(g^a,g^b))$, and $n_3$ belongs to some $Resp[*,g^b,*,r_b]$.
 \end{proof}
 
-Note that, $g^b$ and $r_b$ could be sent from the attacker, hence let assume that B receives $(r_a \oplus h_{r_{xb}}(g^a,g^{xb}))$ in which $r_{xb}$ and $g^{xb}$ are sent from the attacker. Moreover, in case $n_3 \in SUS$, then the attacker would get $r_a$ and $r_b$ at this step. We will check them in following lemmas. 
+Note that, $g^b$ and $r_b$ could be sent from the attacker, hence let assume that B receives $(r_a \otimes h_{r_{xb}}(g^a,g^{xb}))$ in which $r_{xb}$ and $g^{xb}$ are sent from the attacker. Moreover, in case $n_3 \in SUS$, then the attacker would get $r_a$ and $r_b$ at this step. We will check them in following lemmas. 
 
 \begin{Lemma}\label{lemme4.4}
 There is a regular node $n_1$ such that $term(n_1)= -(g^a,h(g^a,r_a))$ on a responder strand. 
@@ -334,8 +334,8 @@ There is a regular node $n_1$ such that $term(n_1)= -(g^a,h(g^a,r_a))$ on a resp
 \begin{proof}
 Following the proof of lemma~\ref{lemme4.3}, the responder verifies the committed value at $n_1$ using $r_a$ extracted in $n_3$. If the verification fails, the responder shows a Reject status immediately. 
 
-The responder calculates $r'_{a} = (r_a \oplus h_{r_{xb}}(g^a,g^{xb})) \oplus (h_{r_b}(g^{xa},g^b))$ where $r_{xa},r_{xb}$ and $g^{xa},g^{xb}$ are created by some attackers. 
-From the assumption on keyed hash functions, $r'_{a} = (r_a \oplus r_b \oplus r_{xb} \oplus h(g^a,g^{xb}) \oplus h(g^{xa},g^b))$ (1).
+The responder calculates $r'_{a} = (r_a \otimes h_{r_{xb}}(g^a,g^{xb})) \otimes (h_{r_b}(g^{xa},g^b))$ where $r_{xa},r_{xb}$ and $g^{xa},g^{xb}$ are created by some attackers. 
+From the assumption on keyed hash functions, $r'_{a} = (r_a \otimes r_b \otimes r_{xb} \otimes h(g^a,g^{xb}) \otimes h(g^{xa},g^b))$ (1).
 
 From following facts,
 \begin{description} 
@@ -395,14 +395,14 @@ $r_b$ is a subterm of the positive node $\langle st',2 \rangle$, thus it could l
 \end{proof}
  
 \begin{Lemma}\label{4.10}
-There is a regular node $n_3$ such that $term(n_3)= +_o(r_a \oplus h_{r_b}(g^a,g^b))$ 
+There is a regular node $n_3$ such that $term(n_3)= +_o(r_a \otimes h_{r_b}(g^a,g^b))$ 
 \end{Lemma}
 
 \begin{proof}
-Since the responder must receive an authenticated message over $o$ before notifying an Accept/Reject status, it means that some initiator has sent a message on a channel $o$. Therefore, let call $n_3$ with $term(n_3)= +_o(r_a \oplus h_{r_b}(g^a,g^b))$. Even if $n_3$ is on a $SUS$ or $REL$ strand, its value is not modified due to the reception on OOB channel. Consequently, there is a regular initiator strand $st \in Init[g^a,*, r_a,*]$ such that $n_3 \in st$. 
+Since the responder must receive an authenticated message over $o$ before notifying an Accept/Reject status, it means that some initiator has sent a message on a channel $o$. Therefore, let call $n_3$ with $term(n_3)= +_o(r_a \otimes h_{r_b}(g^a,g^b))$. Even if $n_3$ is on a $SUS$ or $REL$ strand, its value is not modified due to the reception on OOB channel. Consequently, there is a regular initiator strand $st \in Init[g^a,*, r_a,*]$ such that $n_3 \in st$. 
 \end{proof}
 
-We note that $r_b$ and $g^b$ could be generated by some penetrator strands. Suppose that the responder receives $r_{xb}$ instead of $r_b$, and $g^{xb}$ instead of $g^b$. So the $term(n_3)$ could be $+_o(r_a \oplus h_{r_{xb}}(g^a,g^{xb}))$.
+We note that $r_b$ and $g^b$ could be generated by some penetrator strands. Suppose that the responder receives $r_{xb}$ instead of $r_b$, and $g^{xb}$ instead of $g^b$. So the $term(n_3)$ could be $+_o(r_a \otimes h_{r_{xb}}(g^a,g^{xb}))$.
 
 \begin{Lemma}\label{4.11}
 There is a regular node $n_1$ such that $term(n_1)= +(g^a,h(g^a,r_a))$.
@@ -411,7 +411,7 @@ There is a regular node $n_1$ such that $term(n_1)= +(g^a,h(g^a,r_a))$.
 \begin{proof}
 Assume that $n_1$ resides on some attackers, and $term(n_1) = +(g^{xa},h(g^{xa},r_{xa}))$ where $g^{xa}$ and $r_{xa}$ are generated by an attacker. According to last analysis in lemma ~\ref{4.10}, $n_3$ could lay on $SUS$ and be reused in another session against the responder. 
 
-Now the responder calculates $r'_{a} = (r_a \oplus h_{r_{xb}}(g^a,g^{xb}) \oplus (h_{r_b}(g^{xa},g^b))$, then checks if $h(g^{xa},r'_{a})$ equals $h(g^{xa},r_{xa})$ or not. 
+Now the responder calculates $r'_{a} = (r_a \otimes h_{r_{xb}}(g^a,g^{xb}) \otimes (h_{r_b}(g^{xa},g^b))$, then checks if $h(g^{xa},r'_{a})$ equals $h(g^{xa},r_{xa})$ or not. 
 
 We have,
 \begin{description} 
