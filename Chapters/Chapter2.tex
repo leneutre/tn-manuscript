@@ -14,47 +14,73 @@ The need to secure communications between personal devices is increasing nowaday
 
 In this part, we study in depth current secure device pairing protocols. We found that current approaches are not effective in term of computation and communication for Internet of Things applications. Therefore, we introduce a new key agreement protocol between two wireless devices. This protocol, only using two wireless messages and one out-of-band message, offers better communication costs than currently existing solutions, yet still ensuring a reasonable security. Security of our proposal is validated by estimation of attack success probability in a computational model.  
 
-The chapter begins with a short introduction to out-of-band channels, and existing device pairing schemes. Then, our novel device pairing will come after that.  Finally, we are willing to introduce flaws we found in some current approaches. 
+
+The chapter begins with a short introduction to out-of-band channels, and existing device pairing schemes. Then, we propose a novel device pairing protocol.  Finally, we describe flaws we found in some existing protocols. 
+
 
 \section{Out-of-Band Channels}
 
-Securing wireless communication is establishing an initial trust relation between dissociated devices. Such a trust initialisation process is commonly called either \textit{Secure Device Pairing}, or \textit{Secure Bootstrapping}, or \textit{Secure First Connect}. Due to heterogeneity of devices and lacking of official standards, no existing security infrastructure or schemes could provide a universal solution for this task. Additionally, unfamiliar devices with no common trust cannot take advantage from traditional cryptographic protocols (i.e. authenticated key exchange protocols) when there does not exist any pre-shared secret, or authenticated public keys.
+Securing wireless communication is establishing an initial trust relation between non associated devices. Such a trust initialisation process is commonly called either \textit{Secure Device Pairing}, or \textit{Secure Bootstrapping}, or \textit{Secure First Connect}. Due to heterogeneity of devices and lack of official standards, no existing security infrastructure or schemes could provide a universal solution for this task. Additionally, unfamiliar devices with no common trust cannot take advantage from traditional cryptographic protocols (i.e. authenticated key exchange protocols) when there does not exist any pre-shared secret, or authenticated public keys.
 
-Trying to solve these problems, a great body of work proposes some forms of human involvement in secure pairing process. This human involvement is achieved by using an auxiliary channel between the devices that is both observable and controllable by human that manages the devices. This auxiliary channel received various names such as \textit{out-of-band channel}, or \textit{human-assisted channel} or \textit{manual channel}. In this thesis, we adopt the general term out-of-band channel. 
+Trying to solve this problem, a great body of work proposes some forms of human involvement in secure pairing process. This human involvement is achieved by using an auxiliary channel between the devices that is both observable and controllable by the owner of the devices. This auxiliary channel received various names such as \textit{out-of-band channel}, or \textit{human-assisted channel}, or \textit{manual channel}. In this thesis, we adopt the general term out-of-band channel (OOB). 
 
 \subsection{OOB Security Properties}
 
-One easily misunderstands concept of security properties of data or messages versus security properties related to physical channels because they sometimes overlap. Data security properties are usually ensured using cryptographic primitives such as symmetric or asymmetric encryption algorithms, signatures or hash functions. In meanwhile, a secure physical channel is able to provide not only data security properties without help of cryptographic mechanisms, but also physical security such as stall-free, listener-ready, non-forwarding, time and distance constraint guarantees and so on. In our chapter, we consider following security properties. The notation $S$ and $R$ represents for principals, $m$ is a message, $o$ is a channel, $T$ is an interval of time:
+One easily misunderstands concept of security properties of data or messages versus security properties related to a physical channel because they sometimes overlap. Data security properties are usually ensured using cryptographic primitives such as symmetric or asymmetric encryption algorithms, signatures or hash functions. A secure physical channel not only provides data security properties without help of cryptographic mechanisms, but also physical security properties such as stall-free, listener-ready, non-forwarding, time and distance constraint guarantees and so on. In this chapter, we consider the following security properties, where $S$ and $R$ denote principals, $m$ a message, $o$ a channel, $T$ is an interval of time:
 
 \begin{itemize}
-\item \emph{Data Origin Authentication}[DOA]: Data origin authentication is also called \emph{message authentication}. Let $m$ be a message originally created by $S$, then any receiver of $m$ is able to authenticate $S$ as an original source of the message. It means that in a particular penetrator cannot modify $m$; thus message authentication includes message integrity. However, a penetrator may block or replay $m$. 
-\item \emph{Data Confidentiality}[DC]: If a sender determines that only a specified $R$ can observe content of a message $m$, then no one including penetrators, yet except $R$ is allowed to know the content of $m$.
-\item \emph{Channel Occupancy}[CO] : If a specific receiver $R$ uses a channel $o$ to communicate with someone during interval of time $T$, then there is indeed a sender using $o$ with $R$ during $T$. A penetrator cannot manipulate $o$ during $T$ if $o$ is not exclusively used by the penetrator. 
-\item \emph{Channel Origin Authentication}[COA] \cite{Mausch94}: Only a specified sender $S$ can use a channel $o$ to send messages and this fact is known to determined receivers. Thus, a penetrator cannot impersonate $S$ on $o$. However, a penetrator can suspend message transmission to know messages before they reach to their desired destination. 
-\item \emph{Channel Confidentiality}[CC] \cite{Mausch94}: Only a specified receiver $R$ can receive messages on a channel $o$, and this fact is known to determined senders. Thus, a penetrator cannot impersonate $R$ to receive message on $o$. A penetrator cannot overhear messages sent on $o$.
+\item \emph{Data Origin Authentication (DOA)}: Data origin authentication is also called \emph{message authentication}. Let $m$ be a message originally created by $S$, then any receiver of $m$ is able to authenticate $S$ as an original source of the message. It means that in a particular penetrator cannot modify $m$; thus message authentication includes message integrity. However, a penetrator may block or replay $m$. 
+\item \emph{Data Confidentiality (DC)}: If a sender determines that only a specified $R$ can observe content of a message $m$, then no one including penetrators, excepted $R$, is allowed to know the content of $m$.
+\item \emph{Channel Origin Authentication (COA)}: Only a specified sender $S$ can use a channel $o$ to send messages and this fact is known to determined receivers. Thus, a penetrator cannot impersonate $S$ on $o$. However, a penetrator can suspend message transmission to know messages before they reach their desired destination. 
+\item \emph{Channel Confidentiality (CC)}: Only a specified receiver $R$ can receive messages on a channel $o$, and this fact is known to determined senders. Thus, a penetrator cannot impersonate $R$ to receive message on $o$. A penetrator cannot overhear messages sent on $o$.
+\item \emph{Channel Occupancy (CO)}: If a specific receiver $R$ uses a channel $o$ to communicate with someone during interval of time $T$, then there is indeed a sender using $o$ with $R$ during $T$. A penetrator cannot manipulate $o$ during $T$ if $o$ is not exclusively used by the penetrator.
 \end{itemize} 
 
+Both the channel origin authentication and channel confidentiality properties were initially defined in\cite{Mausch94}. The definitions above overlap: channel confidentiality implies data confidentiality and channel origin authentication implies data origin authentication. The definition of channel occupancy is an adaptation of locale occupancy property introduced in~\cite{Thayer:2010aa}.
+<<<<<<< HEAD
+Note that, channel occupancy allows participants to ensure distance and presence of their protocol partners. Straightforwardly, penetrators cannot use forwarding or suspending attack on messages over such channels.
+=======
 Note that, channel occupancy allows participants to ensure distance and presence of their protocol partners. Straightforwardly, penetrators cannot use suspending attack on messages over such channels.
+<<<<<<< HEAD
 
-The definition of channel occupancy is an adaptation of locale occupancy property introduced in~\cite{Thayer:2010aa} and both the channel origin authentication and channel confidentiality properties were initially defined in\cite{Mausch94}. The definitions above overlap: channel confidentiality implies data confidentiality and channel origin authentication implies data origin authentication.
+Both the channel origin authentication and channel confidentiality properties were initially defined in\cite{Mausch94}. The definitions above overlap: channel confidentiality implies data confidentiality and channel origin authentication implies data origin authentication. The definition of channel occupancy is an adaptation of locale occupancy property introduced in~\cite{Thayer:2010aa}.
 
 \subsection{OOB Classification}
 
-In this subsection, we classify out-of-band channels in two ways based on physical types of channels, and security properties that channels offer. 
+In this subsection, we classify out-of-band channels according to their physical, but also the security properties they offer
+=======
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+
+\subsection{OOB Classification}
+
+In this subsection, we classify out-of-band channels according to their physical, but also the security properties thety offer. 
+>>>>>>> leneutre/master
 
 \subsubsection{Physical Types of Channels}
 
-In this part, we classify existing approaches based on physical characteristics of channels into groups such as cable-based, audio-based, visual-based, tactile-based, motion-based, biometric-based, wireless-based, and combination. We refer this classification in ~\cite{KhanPathanbook}.
+Following the classification from~\cite{KhanPathanbook}, existing OOB channels can be grouped into categories depending on their  physical characteristics: cable-based channels, audio-based channels, visual-based channels, tactile-based channels, motion-based channels, biometric-based channels, wireless-based channels, or channels based on a combination of previous types.
+<<<<<<< HEAD
+ 
 
 \emph{Cable-based}
 
-Authors~\cite{Stajano:2000bs} proposed a resurrecting duckling model that maps relationship between devices. A master device, so-called "Mother", is a device which imprints "duckling" slave devices. The slaves is either imprinted or imprint-able. Imprint-able state is the beginning state of a slave before it is chosen by a master. In meanwhile, the imprinted state is once a slave has got a secret from a master. The imprinted process actually bounds a slave to a master until the slave's death. As a consequence, the slave remains faithful to its master and obeys no one else. Because the secret key needs to be transferred from a master to a slave, the authors suggest that it could be sent in plain text over a physical connection (such as cable). Complex and heavy cryptographic key exchange like DH scheme is not recommended. This thing, hence, is not convenient in practice. Nevertheless, this approach takes advantages of minimal requirement of human interaction in authentication phase. 
+A cable-based connection is used in the \textit{Resurrecting duckling policy} model proposed in~\cite{Stajano:2000bs} to map relationship between devices. A master device, so-called "Mother", imprints "duckling" slave devices. The slaves is either imprinted or imprint-able. Imprint-able state is the beginning state of a slave before it is chosen by a master. In meanwhile, the imprinted state is once a slave has got a secret from a master. The imprinted process actually bounds a slave to a master until the slave's death. As a consequence, the slave remains faithful to its master and obeys no one else. Because the secret key needs to be transferred from a master to a slave, the authors suggest that it could be sent in plain text over a physical connection (such as cable). Complex and heavy cryptographic key exchange like DH scheme is not recommended. This thing, hence, is not convenient in practice. Nevertheless, this approach takes advantages of minimal requirement of human interaction in authentication phase.  
+=======
+
+\emph{Cable-based}
+
+A cable-based connection is used in the \textit{Resurrecting duckling policy} model proposed in~\cite{Stajano:2000bs} to map relationship between devices. A master device, so-called "Mother", imprints "duckling" slave devices. The slaves is either imprinted or imprint-able. Imprint-able state is the beginning state of a slave before it is chosen by a master. In meanwhile, the imprinted state is once a slave has got a secret from a master. The imprinted process actually bounds a slave to a master until the slave's death. As a consequence, the slave remains faithful to its master and obeys no one else. Because the secret key needs to be transferred from a master to a slave, the authors suggest that it could be sent in plain text over a physical connection (such as cable). Complex and heavy cryptographic key exchange like DH scheme is not recommended. This thing, hence, is not convenient in practice. Nevertheless, this approach takes advantages of minimal requirement of human interaction in authentication phase. 
+>>>>>>> leneutre/master
 
 \emph{Audio-based}
 
 Audio channels could be used as secure channels. The work~\cite{1648797, Soriente:2008, Lin:2011, Saxena:2008:UDP:1408664.1408672, 5678019, Sigg:2012aa} proposes ideas to encode cryptographic materials into nonsensical audio sentences. Then after transmitted from a speaker to a microphone, the sentences are reconstructed into the cryptographic materials at the target device. User takes responsibility for comparing results and deciding the pairing. 
 
+<<<<<<< HEAD
+Audio-based schemes normally require some kinds of physical interfaces such as speaker, microphones. But, these interfaces are often suffered from denial of services or noise enviroments. For instance, ambient noise in crowded environments (e.g. in subway, in airport, or in bars) makes the authentication either weaker or difficult in L\&C (speaker-to-speaker), HAPADEP, as well as in others. Moreover, handicap users are not suitable for these schemes. 
+=======
 Audio-based schemes normally require some kinds of physical interfaces such as speaker, microphones. But, these interfaces are often suffered from denial of services or noise environments. For instance, ambient noise in crowded environments (e.g. in subway, in airport, or in bars) makes the authentication either weaker or difficult in speaker-to-speaker, as well as in others. Moreover, handicap users are not suitable for these schemes. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 Recently, researchers have made improvement on both security levels and usability, thank to advanced speech engines and audio codec technologies. 
 
@@ -66,19 +92,31 @@ Visual-based schemes also share the limitations of audio-based ones on hardware 
 
 \emph{Tactile-based}
 
-BEDA \cite{Soriente07beda:button-enabled}, proposed by Soriente et. al, presents ways to transmit a secret among devices using very basic interfaces like buttons. There are four BEDA variants: Button-to-Button, Display to Button, Short Vibration to Button, and Long Vibration to Button. The only difference of these variants is the way a first device transfers a secret to others. 
+<<<<<<< HEAD
+BEDA~\cite{Soriente07beda:button-enabled}, proposed by Soriente et. al, presents ways to transmit a secret among devices using very basic interfaces like buttons. There are four BEDA variants: Button-to-Button, Display to Button, Short Vibration to Button, and Long Vibration to Button. The only difference of these variants is the way a first device transfers a secret to others.
+=======
+BEDA~\cite{Soriente07beda:button-enabled}, proposed by Soriente et. al, presents ways to transmit a secret among devices using very basic interfaces like buttons. There are four BEDA variants: Button-to-Button, Display to Button, Short Vibration to Button, and Long Vibration to Button. The only difference of these variants is the way a first device transfers a secret to others. 
+>>>>>>> leneutre/master
 
 To transmit the secret code, two approaches are suggested. In the first approach, both devices get the same secret via the use of single button. In the Button-Button approach, the user simultaneously presses and then releases buttons on both devices until the secret is acquired. In Display to Button approach, a device equipped with an output interface signals the user to press a button on the other device. Then, idle time between two pushing actions are is to calculate the secret. 
 
 \emph{Wireless-based}
 
-In order to establish a secure channel, some types of wireless channels such as infra-red~\cite{5654588}, ultrasound~\cite{Mayrhofer06anauthentication}, RFID~\cite{Amariucai:2012aa}, Bluetooth, and NFC could be used. Talking to Stranger and other its variants \cite{5654588,Mayrhofer06anauthentication,4159919,Amariucai:2012aa} are examples. However, a drawback of those schemes is that they are strongly suffered by denial of service attacks or passive eavesdropping attacks. 
+<<<<<<< HEAD
+In order to establish a secure channel, some types of wireless channels such as infra-red~\cite{5654588}, ultrasound~\cite{Mayrhofer06anauthentication}, RFID~\cite{Amariucai:2012aa}, Bluetooth, and NFC could be used. Talking to Stranger and other its variants~\cite{5654588,Mayrhofer06anauthentication,4159919,Amariucai:2012aa} are examples. However, a drawback of those schemes is that they are strongly suffered by denial of service attacks or passive eavesdropping attacks.
+=======
+In order to establish a secure channel, some types of wireless channels such as infra-red~\cite{5654588}, ultrasound~\cite{Mayrhofer06anauthentication}, RFID~\cite{Amariucai:2012aa}, Bluetooth, and NFC could be used. Talking to Stranger and other its variants~\cite{5654588,Mayrhofer06anauthentication,4159919,Amariucai:2012aa} are examples. However, a drawback of those schemes is that they are strongly suffered by denial of service attacks or passive eavesdropping attacks. 
+>>>>>>> leneutre/master
 
+<<<<<<< HEAD
+Pairing scheme using Bluetooth demands 4-digits pre-shared PIN code between two devices. Unfortunately, adversaries can guest and break the PIN code from long distance. As an alternative method, NFC, an extremely short communication, is concerned on solving limitations of Bluetooth and infra-red. In many scenarios, NFC combines with Bluetooth to offer quicker setup, and better security. Nevertheless, NFC does not provide any protection against eavesdropping attacks, as well as data corruption and data modification. In spite of that, it is impractical to launch MITM attack in NFC authentication session. As this reason, NFC is still considered safety for current applications. 
+=======
 Pairing scheme using Bluetooth demands 4-digits pre-shared PIN code between two devices. Unfortunately, adversaries can guest and break the PIN code from long distance. As an alternative method, NFC, an extremely short communication, is concerned on solving limitations of Bluetooth and infra-red. In many scenarios, NFC combines with Bluetooth to offer quicker setup, and better security. Nevertheless, NFC does not provide any protection against eavesdropping attacks, as well as data corruption and data modification. In spite of that, it is hard to launch MITM attack in NFC authentication session. As this reason, NFC is still considered safety for current applications. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \emph{Biometric-based}
 
-A first work which tried to apply biometric data to establish a secure channel was found in Feeling-is-Believing \cite{Buhan_feelingis} in which authors proposed a method to share secret key using authenticated biometric information. 
+A first work which tried to apply biometric data to establish a secure channel was found in Feeling-is-Believing~\cite{Buhan_feelingis} in which authors proposed a method to share secret key using authenticated biometric information. 
 
 In users' point of view, biometric-based schemes sound more secure and usable than others. But in practice, biometric processing is not sufficiently accurate and requires more calculation cost. To overcome this obstacle, thank to advanced technologies, the accuracy of recognition is significantly improved in many commercial devices such as modern smartphones and laptops. The only drawback of these such schemes is that biometric scanners must be equipped on both devices. 
 
@@ -92,7 +130,11 @@ A drawback of these approaches is that embedded accelerometers sometimes are not
 
 Claude Castelluccia and Pars Mutaf introduced \emph{Shake Them Up}~\cite{Castelluccia:2005} to allow two constrained devices to share a secret in minimal requirements of both hardware and out-of-band channel. In this scheme, both involved devices are required to shake and twirl together in close proximity. During shaking process, both devices also exchange radio packets. When finishing the steps, they together get the same secret key. Attackers cannot interfere key exchange process because they cannot determine source of each radio packet due to the source indistinguishability achieved by CDMA-based system, and sharking devices in close proximity. 
 
-Varshavsky et al. introduced AMIGO \cite{Scannell07amigo:proximity-based} investigated that radio signal fluctuations is too hard to predict at a specific location and time. With this result, the authors pointed that any attacker who is not physically close to the signal source would see a different pattern of signal strength. 
+<<<<<<< HEAD
+Varshavsky et al. introduced AMIGO~\cite{Scannell07amigo:proximity-based} investigated that radio signal fluctuations is too hard to predict at a specific location and time. With this result, the authors pointed that any attacker who is not physically close to the signal source would see a different pattern of signal strength.
+=======
+Varshavsky et al. introduced AMIGO~\cite{Scannell07amigo:proximity-based} investigated that radio signal fluctuations is too hard to predict at a specific location and time. With this result, the authors pointed that any attacker who is not physically close to the signal source would see a different pattern of signal strength. 
+>>>>>>> leneutre/master
 
 \subsubsection{Channel Security Properties}
 
@@ -141,7 +183,11 @@ As described in previous subsections, the penetrator is prevented from performin
 {\scriptsize
 \begin{tabular}{ l l l l l l l l | }
 \hline
+<<<<<<< HEAD
+\multicolumn{1}{c}{Out of Band Channel} & \multicolumn{4}{c}{Adversary Power} \\
+=======
 \multicolumn{1}{c}{Out of Band Channel} & \multicolumn{4}{c}{Attacker's Power} \\
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \hline
 \hline
 Type & Overhear & Block & Suspend & Replay \\
@@ -162,6 +208,39 @@ The difference between types of OOB channels and penetrator power for each kind 
 \caption{\textsc{Out-of-Band Channel Summarization}}
 \label{channelsum}
 {\scriptsize
+<<<<<<< HEAD
+\begin{tabular}{ p{3.5cm} p{3cm} l | l l l l l }
+\hline
+\multicolumn{3}{c}{Out of Band Chanel} & \multicolumn{5}{c}{Adversary Power} \\
+\hline
+\hline
+Pairing Method & Interface & OOB Type & Overhear &Block & Suspend & Relay & Forge \\
+\hline\hline
+ \parbox[t]{3cm}{Resurrecting \\ Duckling Model} & Cable & Private & \O & \O & \O& \O& \O \\ \hline
+Motion-based Model & Accelerometer & SR Public & $\surd$ & $\surd$  & \O& \O & \O \\ \hline
+BEDA Methods & & & & & & & \\ 
+$\qed$ Button-Button & Button & SR Public & $\surd$ & $\surd$ & \O& \O & \O \\ 
+$\qed$ Display-Button & Display, Button & SR Public & $\surd$ & $\surd$ &\O & \O & \O \\ 
+$\qed$ Vibration-Button & Accelerometer, Button & SR Public & $\surd$ & $\surd$ & \O & \O & \O \\ 
+\hline 
+Audio-based Methods & & & & & & & \\
+$\qed$ Audio Context Recognition & Speaker, Microphone & LR Public & $\surd$ & $\surd$ & $\surd$& $\surd$ & \O \\ 
+$\qed$ L\&C & Speaker & LR Public & $\surd$ & $\surd$ & $\surd$& $\surd$ & \O \\ 
+$\qed$ HAPADEP & Speaker, Microphone & LR Public & $\surd$ & $\surd$ & $\surd$ & $\surd$ & \O \\ \hline
+
+Visual-based Methods & & & & & & & \\
+$\qed$ Seeing-is-Believing& Barcode, Camera & LR Public & $\surd$ &$\surd$ &$\surd$ & $\surd$  & \O \\ 
+$\qed$ Visual Comparison & Screen & LR Public & $\surd$ & $\surd$ &$\surd$ &$\surd$  & \O \\
+$\qed$ Blinking Light & LED light & LR Public & $\surd$ & $\surd$ &$\surd$ &$\surd$   & \O \\ \hline
+
+Wireless-based Methods & Wireless Interface & & & & & & \\ 
+$\qed$ GPRS/3G/4G & & LR Public & $\surd$ &$\surd$ & $\surd$ & $\surd$ & \O \\
+$\qed$ Bluetooth & & Insecure & $\surd$ &$\surd$ &$\surd$ &$\surd$ & $\surd$ \\ 
+$\qed$ Zigbee & & Insecure & $\surd$ &$\surd$ &$\surd$ &$\surd$ & $\surd$ \\ 
+$\qed$ WiFi & & Insecure & $\surd$ & $\surd$ & $\surd$ &$\surd$ & $\surd$ \\ 
+$\qed$ Infrared & & SR Public & $\surd$ & $\surd$ & \O & \O & \O \\ 
+$\qed$ NFC & & SR Public & $\surd$ & $\surd$ & \O& \O & \O \\ \hline
+=======
 \begin{tabular}{ p{3.5cm} p{3cm} l | l l l l }
 \hline
 \multicolumn{3}{c}{Out of Band Chanel} & \multicolumn{4}{c}{Attacker's Power} \\
@@ -190,6 +269,7 @@ Wireless-based Methods & Wireless Interface & & & & &  \\
 $\qed$ GPRS/3G/4G & & LR Public & $\surd$ &$\surd$ & $\surd$ & $\surd$  \\
 $\qed$ Infrared & & SR Public & $\surd$ & $\surd$ & \O & \O \\ 
 $\qed$ NFC & & SR Public & $\surd$ & $\surd$ & \O& \O \\ \hline
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \end{tabular}
 }
 \end{table}
@@ -206,49 +286,91 @@ We refer the survey~\cite{6687314} and sum up existing device pairing proposals.
 A protocol utilises commitment schemes which commit on an arbitrary non-hidden message $m$ together with a hidden k-bit string $r$. These schemes are formalised by three algorithms.
 
 \begin{itemize}
+<<<<<<< HEAD
 \item \textbf{commit(m)} takes a message $m$ and produces two strings: a commit value $c$ and decommit value $d$. 
 \item \textbf{open(c,d)} takes $m$ or  an error signal. 
 \end{itemize} 
 
-%The notations used in our report are summarised in Table\ref{notation}
+=======
+<<<<<<< HEAD
+\item \textbf{step} generates a random parameter $N$ and secret key $K$.
+\item \textbf{commit(m,r)} takes a message $x= m || r$ and produces two strings: a commit value $c$ and decommit value $d$. $x$ includes a tag $m$, and a hidden $k-bit$ $r$.
+\item \textbf{open(m,c,d)} takes $m,c,d$ and produces a message $r$ or an error signal. 
+=======
+\item \textbf{commit(M)} takes a message $M$ and produces two strings: a commit value $c$ and decommit value $d$. 
+\item \textbf{open(c,d)} takes $M$ or  an error signal. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\end{itemize} 
 
-%\begin{table}[ht] 
-%\centering
-%\caption{\textsc{The Notations}}
-%\label{notation}
-%{\scriptsize
-%\begin{tabular}{|p{5cm} | p{10cm} |}
-%\hline
-%\textbf{Symbol} & \textbf{Meaning} \\ \hline 
-%Aice(A) and Bob(B) & Communicating entities \\ 
-%$ID_X$ & Device X identifier \\ 
-%$r_x$ & Random number generated by entity X \\
-%$K_X$ & Key generated by entity X \\
-%$PK_X$ & Public Key of entity X \\ 
-%m & Message/Data \\ 
-%$MAC_K(m)$ & Message authentication code of message M using shared key K \\ 
-%$h_K(K)$ & Universal hash function of message M using the key K \\ 
-%h(m) & One-way hash function of message M \\ 
-%$,$ & Concatenation of different parts of a message\\ 
-%$\otimes$ & Bitwise "XOR" operation \\ 
-%$g^x$ & Diffie-Hellman public key entity X \\ 
-%$g^{xy}$ & Diffie-Hellman shared key between X and Y \\ 
-%$(c,d) \leftarrow commit(m)$ & commitment algorithm takes $m$ to produce commit value $c$ and decommit $d$ \\ 
-%$m \leftarrow open(c,d)$ & Open commitment algorithm take $c,d$ and produces a message $m$ or error signal \\ \hline 
+The notations used in our report are summarised in Table\ref{notation}
 
-%\end{tabular}
-%}
-%\end{table}
+\begin{table}[ht] 
+\centering
+\caption{\textsc{The Notations}}
+\label{notation}
+{\scriptsize
+\begin{tabular}{|p{5cm} | p{10cm} |}
+\hline
+\textbf{Symbol} & \textbf{Meaning} \\ \hline 
+Aice(A) and Bob(B) & Communicating entities \\ 
+$ID_X$ & Device X identifier \\ 
+$r_x$ & Random number generated by entity X \\
+$K_X$ & Key generated by entity X \\
+$PK_X$ & Public Key of entity X \\ 
+<<<<<<< HEAD
+D & Data \\ 
+$MAC_K(M)$ & Message authentication code of message M using shared key K \\ 
+$m_K(M)$ & Short message authentication code of message M using short shared key K \\
+$h_K(K)$ & Universal hash function of message M using the key K \\ 
+h(M) & One-way hash function of message M \\ 
+$||$ and , & Concatenation of different parts of a message\\ 
+$\oplus$ & Bitwise "XOR" operation \\ 
+$g^x$ & Diffie-Hellman public key entity X \\ 
+$g^{xy}$ & Diffie-Hellman shared key between X and Y \\ 
+$(c,d) \leftarrow commit(M)$ & Commitment algorithm takes $M$ to produce commit value $c$ and decommit $d$ \\ 
+$M \leftarrow open(c,d)$ & Open commitment algorithm take $c,d$ and produces a message $M$ or error signal \\ \hline 
+=======
+m & Data \\ 
+$MAC_K(m)$ & Message authentication code of message M using shared key K \\ 
+$h_K(K)$ & Universal hash function of message M using the key K \\ 
+h(m) & One-way hash function of message M \\ 
+$,$ & Concatenation of different parts of a message\\ 
+$\oplus$ & Bitwise "XOR" operation \\ 
+$g^x$ & Diffie-Hellman public key entity X \\ 
+$g^{xy}$ & Diffie-Hellman shared key between X and Y \\ 
+$(c,d) \leftarrow commit(m)$ & commitment algorithm takes $m$ to produce commit value $c$ and decommit $d$ \\ 
+$m \leftarrow open(c,d)$ & Open commitment algorithm take $c,d$ and produces a message $m$ or error signal \\ \hline 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
+\end{tabular}
+}
+\end{table}
+
+>>>>>>> leneutre/master
 \subsubsection{Interlock Protocol}
 
 Proposed by Rivest and Shamir in 1984, Interlock protocol exploits user's knowledge of communication pattern or voice recognition as a long-range public out-of-band channel. In this scheme, two parties use their initial knowledge to mutually authenticate their public keys without any assistance of a third party. This protocol works as follows:
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ and $Bob$ exchange their public keys via a sound channel. 
 \item $Alice$ produces $(m_A)_{PK_B}$ then sends the first half of the result  $\{(m_A)_{PK_B}\}_1$ to $Bob$. 
 \item $Bob$ produces $(m_B)_{PK_A}$ then sends the first half of the result $\{(m_B)_{PK_A}\}_1$ to $Alice$. 
 \item $Alice$ sends to $Bob$ the second half $\{(m_A)_{PK_B}\}_2$. 
 \item $Bob$ sends to $Alice$ the second half $\{(m_B)_{PK_A}\}_2$. 
+=======
+\item Alice and Bob exchange their public keys via a sound channel. 
+<<<<<<< HEAD
+\item Alice produces $(M_A)_{PKB}$ then sends the first half of the result to Bob. 
+\item Bob produces $(M_B)_{PKA}$ then sends the first half of the result to to Alice. 
+\item Alice sends to Bob the second half of $(M_A)_{PKB}$. 
+\item Bob sends to Alice the second half of $(M_B)_{PKA}$. 
+=======
+\item Alice produces $(m_A)_{PK_B}$ then sends the first half of the result to Bob. 
+\item Bob produces $(m_B)_{PK_A}$ then sends the first half of the result to to Alice. 
+\item Alice sends to Bob the second half of $(m_A)_{PK_B}$. 
+\item Bob sends to Alice the second half of $(m_B)_{PK_A}$. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \item Both decrypt the combination of two halves with their own private key. 
 \end{enumerate}   
 
@@ -256,6 +378,15 @@ Proposed by Rivest and Shamir in 1984, Interlock protocol exploits user's knowle
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=0.5cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
+Data $M_A$ & & Data $M_B$ \\[-4mm]
+ & $PK_A$& \\[-4mm]
+ & $PK_B$& \\[-4mm]
+ & $\{(M_A)_{PKB}\}_1$& \\[-4mm]
+ & $\{(M_B)_{PKA}\}_1$& \\[-4mm]
+ & $\{(M_A)_{PKB}\}_2$& \\[-4mm]
+ & $\{(M_B)_{PKA}\}_2$& \\[-4mm]
+=======
 Data $m_A$ & & Data $m_B$ \\[-4mm]
  & $PK_A$& \\[-4mm]
  & $PK_B$& \\[-4mm]
@@ -263,6 +394,7 @@ Data $m_A$ & & Data $m_B$ \\[-4mm]
  & $\{(m_B)_{PK_A}\}_1$& \\[-4mm]
  & $\{(m_A)_{PK_B}\}_2$& \\[-4mm]
  & $\{(m_B)_{PK_A}\}_2$& \\[-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -278,7 +410,11 @@ Data $m_A$ & & Data $m_B$ \\[-4mm]
 \end{tikzpicture}
 \end{center}
 
+<<<<<<< HEAD
+The strength of this protocol basically lies on encryption algorithms with which the adversary cannot decrypt the received halves of encrypted messages. In case of that the adversary intentionally send some new messages to destroy the communication, he will be revealed. 
+=======
 The strength of this protocol basically lies on encryption algorithms with which the attacker cannot decrypt the received halves of encrypted messages. In case of that the attacker intentionally send some new messages to destroy the communication, he will be revealed. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \subsubsection{Maher Manual Authentication}
 
@@ -313,13 +449,25 @@ $g^a$ & & $g^b$ \\[-4mm]
 \end{tikzpicture}
 \end{center}
 
+<<<<<<< HEAD
+The protocol requires at least 80 bits over an authenticated channel to get enough secure. At a result, this length of bit string is over-weighted on any authenticated channel. 
+=======
 The protocol requires at least 80 bits over an out-of-band channel to get enough secure. At a result, this length of bit string is over-weighted on any out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
  
 \subsubsection{Talking to Strangers}
 
-Balfanz et al. proposed a new scheme in \cite{Smetters02talkingto} using audio, or infrared channels as a long-range public OOB channel to transmit a hash of public keys which is considered as a fingerprinting or digest value. The protocol works as follows:
+Balfanz et al. proposed a new scheme in~\cite{Smetters02talkingto} using audio, or infrared channels to transmit a hash of public keys which is considered as a fingerprinting or digest value. The protocol works as follows:
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ and $Bob$ initially exchange their identifications and a hash of their pubic keys over an out-of-band channel.
+=======
+<<<<<<< HEAD
+\item Alice and Bob initially exchange their identifications and a hash of their pubic keys over an authenticated channel.
+=======
+\item Alice and Bob initially exchange their identifications and a hash of their pubic keys over an out-of-band channel.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \item Both sides exchange their ID and their public key on insecure channel. 
 \end{enumerate}
 
@@ -343,11 +491,15 @@ Alice & & Bob\\[-4mm]
 \end{tikzpicture}
 \end{center}
 
+<<<<<<< HEAD
+Security of this protocol mainly depends on security properties of out-of-band channels and the hash function. To prevent MITM attack, this protocol needs at least 80 bits information over each direction of OOB channel. Otherwise, the adversary can find out the pair of public keys $PK'_A/PK'_B$ in which $h(PK_A) = h(PK'_A)$ and $h(PK_B) = h(PK'_B)$ to launches a MITM attack.
+=======
 Security of this protocol mainly depends on security properties of out-of-band channels and the hash function. To prevent MITM attack, this protocol needs at least 80 bits information over each direction of OOB channel. Otherwise, the attacker can find out the pair of public keys $PK'_A/PK'_B$ in which $h(PK_A) = h(PK'_A)$ and $h(PK_B) = h(PK'_B)$ to launches a MITM attack.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \subsubsection{Visual authentication based on Integrity Checking}
 
-Saxena et al in \cite{1624021} proposed a new pairing protocol, namely Visual authentication based on Integrity Checking(VIC) which works as follows:
+Saxena et al in~\cite{1624021} proposed a new pairing protocol, namely Visual authentication based on Integrity Checking(VIC) which works as follows:
 
 \begin{enumerate}
 \item $Alice$ and $Bob$ initially exchange their pubic keys.
@@ -361,7 +513,11 @@ Saxena et al in \cite{1624021} proposed a new pairing protocol, namely Visual au
 Alice & & Bob\\[-4mm]
  & $PK_A$ & \\[-4mm]
  & $PK_B$ & \\[-4mm]
+<<<<<<< HEAD
+ & $h(PK_A||PK'_B)$ & \\[-4mm]
+=======
  & $h(PK_A,PK'_B)$ & \\[-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
  & & Accept/Reject \\[-4mm]
 };
 
@@ -378,17 +534,24 @@ Security of VIC heavily depends on strength of the hash function and requires at
  
 \subsubsection{Manual Authentication(MANA) Protocols}
 
-Due to the long length of OOB messages in~\cite{1624021}, and \cite{Smetters02talkingto}, some studies tried to truncate this length into 16 or 32 bits (4 or 8 hexadecimal digits, respectively), this could lead to security weakness. Adversaries probably recover the messages from the hash-codes. To overcome this problem, Christian Gehramann and Chirs J.Michell \cite{Mitchell:2004p25948} proposed three type of manual authentication protocols: MANA I for Output-Input, MANA II for Output-Output, and MANA III for Input-Input. These protocols remarkably reduce bandwidth of OOB channel to k bits (16-20 bits) in each way while a MITM attack success probability is still hold at $2^{-k}$. 
+Due to the long length of OOB messages in~\cite{1624021}, and~\cite{Smetters02talkingto}, some studies tried to truncate this length into 16 or 32 bits (4 or 8 hexadecimal digits, respectively), this could lead to security weakness. Adversaries probably recover the messages from the hash-codes. To overcome this problem, Christian Gehramann and Chirs J.Michell~\cite{Mitchell:2004p25948} proposed three type of manual authentication protocols: MANA I for Output-Input, MANA II for Output-Output, and MANA III for Input-Input. These protocols remarkably reduce bandwidth of OOB channel to k bits (16-20 bits) in each way while a MITM attack success probability is still hold at $2^{-k}$. 
 
 \subsubsection*{MANA I protocol}
 
-The authors presented a first example scheme \cite{Mitchell:2004p25948}, which is designed for situation in which one device has a keyboard, the other has a display. Although the scheme uses keyed check-function with short check-value (16 to 20 bits), it is proved to provide sufficient secure. 
+The authors presented a first example scheme~\cite{Mitchell:2004p25948}, which is designed for situation in which one device has a keyboard, the other has a display. Although the scheme uses keyed check-function with short check-value (16 to 20 bits), it is proved to provide sufficient secure. 
 
 \begin{enumerate}
+<<<<<<< HEAD
+\item $Alice$ sends a message $M$ to $Bob$ over an insecure channel. 
+\item $Alice$ generates a random key $K$(16-20) bits. $Alice$ also generates $m_K(M)$, then output to its display.
+\item User enters $m_K(M)$ and $K$ to $Bob$.
+\item $Bob$ uses $K$ and recomputes $m_K(M)$, then compares the value that the user has entered.
+=======
 \item $Alice$ sends a message $m$ to $Bob$ over an insecure channel. 
 \item $Alice$ generates a random key $K$(16-20) bits. $Alice$ also generates $h_K(m)$, then output to its display.
 \item User enters $h_K(m)$ and $K$ to $Bob$.
 \item $Bob$ uses $K$ and recomputes $h_K(m)$, then compares the value that the user has entered.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \item The user copies success or failure. 
 \end{enumerate}
 
@@ -396,11 +559,27 @@ The authors presented a first example scheme \cite{Mitchell:2004p25948}, which i
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=0.5cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
  $m$,  $K$ & &  \\[-4mm]
 $MAC_A = h_K(m)$ & & \\ [-4mm]
 				&m& \\ [-4mm]
 				&$K,MAC_A$ & \\ [-4mm]
 & & $MAC_B = h_K'(m')$ \\ [-4mm]
+=======
+<<<<<<< HEAD
+Data $M$, random $K$ & &  \\[-4mm]
+$MAC_A = m_K(M)$ & & \\ [-4mm]
+				&M& \\ [-4mm]
+				&$K,MAC_A$ & \\ [-4mm]
+& & $MAC_B = m_K'(M)$ \\ [-4mm]
+=======
+Data $m$, random $K$ & &  \\[-4mm]
+$MAC_A = h_K(m)$ & & \\ [-4mm]
+				&m& \\ [-4mm]
+				&$K,MAC_A$ & \\ [-4mm]
+& & $MAC_B = h_K'(m)$ \\ [-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 & & If $MAC'_A = MAC_B$, ouput OK \\ [-4mm]
 };
 
@@ -414,13 +593,20 @@ $MAC_A = h_K(m)$ & & \\ [-4mm]
 
 \subsubsection*{MANA II protocol}
 
-MANA II \cite{Mana2} is a variant of MANA I. In this scheme, both devices are equipped with displays and keyboards. The protocol works as follows: 
+MANA II~\cite{Mana2} is a variant of MANA I. In this scheme, both devices are equipped with displays and keyboards. The protocol works as follows: 
 
 \begin{enumerate}
+<<<<<<< HEAD
+\item $Alice$ sends a message $M$ to $Bob$ over an insecure channel. 
+\item $Alice$ generates a random key $K_A$(16-20) bits. $Alice$ also generates $m_{K_A}(M)$, then output it to the user over a secured channel. 
+\item $Alice$ sends key $K_A$ to $Bob$ over the insecure channel. 
+\item $Bob$ uses $K_A$ and recomputes $m_{K_A}(M)$, then sends $m_{K_A}(M)$ to the user. 
+=======
 \item $Alice$ sends a message $m$ to $Bob$ over an insecure channel. 
 \item $Alice$ generates a random key $K_A$(16-20) bits. $Alice$ also generates $h_{K_A}(m)$, then output it to the user over a secured channel. 
 \item $Alice$ sends key $K_A$ to $Bob$ over the insecure channel. 
 \item $Bob$ uses $K_A$ and recomputes $h_{K_A}(m)$, then sends $h_{K_A}(m)$ to the user. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \item The user compares two values from both devices. Then if results are matched, the user indicates success to both devices over a secured channel. 
 \end{enumerate}
 
@@ -428,11 +614,27 @@ MANA II \cite{Mana2} is a variant of MANA I. In this scheme, both devices are eq
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=0.5cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
  $m$,  $K_A$ & & \\[-4mm]
 & $m$ & \\ [-4mm]
 $MAC_A = h_{K_A}(m)$ & $MAC_A$ &\\[- 4mm]
 & $K_A$ & \\ [-4mm]
 & & $MAC_B = h_{K'_A}(m')$ \\[-4mm]
+=======
+<<<<<<< HEAD
+Data $M$, random $K_A$ & & \\[-4mm]
+& M & \\ [-4mm]
+$MAC_A = m_{K_A}(M)$ & $MAC_A$ &\\[- 4mm]
+& $K_A$ & \\ [-4mm]
+& & $MAC_B = m_{K'_A}(M)$ \\[-4mm]
+=======
+Data $m$, random $K_A$ & & \\[-4mm]
+& m & \\ [-4mm]
+$MAC_A = h_{K_A}(m)$ & $MAC_A$ &\\[- 4mm]
+& $K_A$ & \\ [-4mm]
+& & $MAC_B = h_{K'_A}(m)$ \\[-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 &User compares $MAC_A, MAC_B$ & \\ [-4mm]
 };
 
@@ -452,14 +654,30 @@ $MAC_A = h_{K_A}(m)$ & $MAC_A$ &\\[- 4mm]
 MANA III protocol~\cite{Mitchell:2004p25948} is designed for a situation in which both devices have keyboards. The keyboards serve as a long-range public OOB channel between two devices. Both devices are assumed on agreement on a public data $m$. Here, $ID_A$ and $ID_B$ are identifications of $Alice$ and $Bob$, respectively. The scheme operates as follows. 
 
 \begin{enumerate}
+<<<<<<< HEAD
+\item $Alice$ sends a message $M$ to $Bob$ over an insecure channel. 
+\item A user generates a short random bit-string (16-20) bits $R$ and enters it to 2 devices.
+\item $Alice$ generates a key $K_A$, computes $MAC_A = m_{K_A}(ID_A,M,R)$, then sends $MAC_A$ to $Bob$ over a wireless link.
+\item $Bob$ generates a key $K_B$, computes $MAC_B = m_{K_B}(ID_B,M,R)$, then sends $MAC_B$ to $Alice$ over the wireless link.
+\item When $Alice$ receives $MAC_B$, then sends $K_A$ to $Bob$ over a secured channel.
+\item When $Bob$ receives $MAC_A$, then sends $K_B$ to $Alice$ over the secured channel.
+\item $Alice$ recomputes $MAC_B$ and verifies its stored value of $M$, the expected identifier $I_B$, and random value $R$.
+\item $Bob$ recomputes $MAC_A$ and verifies its stored value of $M$, the expected identifier$I_A$, and random $R$.
+=======
 \item $Alice$ sends a message $m$ to $Bob$ over an insecure channel. 
 \item A user generates a short random bit-string (16-20) bits $r$ and enters it to 2 devices.
 \item $Alice$ generates a key $K_A$, computes $MAC_A = h_{K_A}(ID_A,m,r)$, then sends $MAC_A$ to $Bob$ over a wireless link.
 \item $Bob$ generates a key $K_B$, computes $MAC_B = h_{K_B}(ID_B,m,r)$, then sends $MAC_B$ to $Alice$ over the wireless link.
 \item When $Alice$ receives $MAC_B$, then sends $K_A$ to $Bob$ over a secured channel.
 \item When $Bob$ receives $MAC_A$, then sends $K_B$ to $Alice$ over the secured channel.
+<<<<<<< HEAD
 \item $Alice$ recomputes $MAC_B$ and verifies its stored value of $m$, the expected identifier $ID_B$, and random value $r$.
 \item $Bob$ recomputes $MAC_A$ and verifies its stored value of $m$, the expected identifier $ID_A$, and random $r$.
+=======
+\item $Alice$ recomputes $MAC_B$ and verifies its stored value of $m$, the expected identifier $I_B$, and random value $r$.
+\item $Bob$ recomputes $MAC_A$ and verifies its stored value of $m$, the expected identifier $I_A$, and random $r$.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \item If(and only if) both devices indicate success, the user indicates success two both devices.
 \end{enumerate}
 
@@ -468,12 +686,21 @@ MANA III protocol~\cite{Mitchell:2004p25948} is designed for a situation in whic
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=0.5cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
+Data $M$ & &  \\[-4mm]
+User enters $R$ & & User enters $R$ \\[-4mm]
+random $K_A$ & & random $K_B$\\[- 4mm]
+& $M$ & \\ [-4mm]
+
+$MAC_A = m_{K_A}(ID_A,M,R)$ & & $MAC_B = m_{K_B}(ID_B,M,R)$ \\[- 4mm]
+=======
 Data $m$ & &  \\[-4mm]
 User enters $r$ & & User enters $r$ \\[-4mm]
 $K_A$ & &  $K_B$\\[- 4mm]
 & $m$ & \\ [-4mm]
 
 $MAC_A = h_{K_A}(ID_A,m,r)$ & & $MAC_B = h_{K_B}(ID_B,m,r)$ \\[- 4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 & $MAC_A$ & \\ [-4mm]
 & $MAC_B$ & \\ [-4mm]
@@ -502,12 +729,24 @@ An out-of-band channel used in MANA I and II could be a public or protected chan
 \subsubsection{Ephemeral Pairing Protocols}
 \subsubsection*{Hoepman AKA Protocol}
 
-Jaap-Henk Hoepman in \cite{Hoepman:2004aa} proposed his protocols by exploited long-range public out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over out-of-band channels. The detail protocol is illustrated as follows.
+<<<<<<< HEAD
+Jaap-Henk Hoepman in~\cite{Hoepman:2004aa} proposed his protocols by exploited long-range public out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over out-of-band channels. The detail protocol is illustrated as follows.
+=======
+<<<<<<< HEAD
+Jaap-Henk Hoepman in~\cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over authenticated channels. The detail protocol is illustrated as follows.
+=======
+Jaap-Henk Hoepman in~\cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over out-of-band channels. The detail protocol is illustrated as follows.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 
 \begin{enumerate}
 \item $Alice$ and $Bob$ generate DH-value $g^a$ and $g^b$ respectively. 
 \item Both sides exchange a long hashing value of $g^a$ and $g^b$ over an insecure channel. 
+<<<<<<< HEAD
+\item After the reception of the long hashing value, both sides calculate a short hashing value of $g^a$ and $g^b$, exchange them over an authenticated channel. 
+=======
 \item After the reception of the long hashing value, both sides calculate a short hashing value of $g^a$ and $g^b$, exchange them over an out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \item At the end, both sides reveal their value $g^a$ and $g^b$ to each other in the insecure channel. 
 \end{enumerate}
 
@@ -544,7 +783,15 @@ Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an improved ve
 \item $Alice$ and $Bob$ generate DH-value $g^a$ and $g^b$ respectively. 
 \item $Alice$ sends $h(A,g^a)$ to $Bob$. 
 \item Both sides exchange $g^a$ and $g^b$ to each other. 
+<<<<<<< HEAD
 \item At the end, $Alice$ calculates a short hash $S\_h(g^a\otimes g'^b)$, then sends it to $Bob$ over the out-of-band channel. 
+=======
+<<<<<<< HEAD
+\item At the end, Alice calculates a short hash of $g^a \oplus g'^b$, then sends it to Bob over an authenticated channel. 
+=======
+\item At the end, Alice calculates a short hash of $g^a \oplus g'^b$, then sends it to Bob over an out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
@@ -573,11 +820,19 @@ $g^a$ & & $g^b$\\[-4mm]
 
 \subsubsection*{Analysis of Ephemeral Protocols}
 
+<<<<<<< HEAD
+Security of Hoepman protocol heavily depends on freshness of DH public keys in each protocol session. Otherwise, adversary is able to discover a matching key with the same short hash output, then successfully launches a MITM attack. Hoepman also provided a proof of his protocol in the Bellare-Pointcheval- Rogaway model. The improvement scheme of Nguyen and Roscoe remains the same requirement. 
+
+\subsubsection{Wong-Stajano Multichanel Security Protocols}\label{WS}
+
+Wong and Stajano~\cite{10.1109/MPRV.2007.76} proposed new mutual authentication and key agreement protocols over bidirectional and unidirectional authentic channels. Their protocols exploit a short authenticated string over visual channels which provide data origin authenticity. 
+=======
 Security of Hoepman protocol heavily depends on freshness of DH public keys in each protocol session. Otherwise, an attacker is able to discover a matching key with the same short hash output, then successfully launches a MITM attack. Hoepman also provided a proof of his protocol in the Bellare-Pointcheval- Rogaway model. The improvement scheme of Nguyen and Roscoe remains the same requirement. 
 
 \subsubsection{Wong-Stajano Multichanel Security Protocols}\label{WS}
 
 Wong and Stajano~\cite{10.1109/MPRV.2007.76} proposed new mutual authentication and key agreement protocols over bidirectional and unidirectional public out-of-band channels. Their protocols exploit a short authenticated string over visual channels which provide data origin authenticity. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \subsubsection*{Protocol with Bidirectional Channel}
 
@@ -587,10 +842,21 @@ Wong and Stajano introduced a new variant of MANA III protocol which works as fo
 \item $Alice$ generates a random number $r_a$, a key $K_A$, and DH-value $g^a$.
 \item $Bob$ generates a random number $r_b$, a key $K_B$, and DH-value $g^b$.
 \item Both sides exchange $g^a$ and $g^b$ to each other.
+<<<<<<< HEAD
 \item $Alice$ calculates $MAC_{K_A}(A,g^a,g'^b,r_a,K_A)$, then sends it to $Bob$. 
 \item $Bob$ calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it to $Alice$.
 \item Both sides exchange their $r_a$ and $r_b$ to each other over an out-of-band channel. 
 \item At the end, $Bob$ sides exchange their $K_A$ and $K_B$ to each other. 
+=======
+\item Alice calculates $MAC_{K_A}(A,g^a,g'^b,r_a,K_A)$, then sends it to Bob. 
+\item Bob calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it to Alice.
+<<<<<<< HEAD
+\item Both sides exchange their $r_a$ and $r_b$ to each other over an authenticated channel. 
+=======
+\item Both sides exchange their $r_a$ and $r_b$ to each other over an out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\item At the end, Bob sides exchange their $K_A$ and $K_B$ to each other. 
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
@@ -624,6 +890,7 @@ Accept/Reject & & Accept/Reject \\[-4mm]
 \end{tikzpicture}
 \end{center}
 
+<<<<<<< HEAD
 In term of usability, the above protocol spends 6-move insecure communication, and long hash of DH public keys that put a heavy pressure on constrained devices. Realising this limitation, the authors improved their first work by an improved version over the bidirectional long-range public out-of-band channel. The new protocol works as follows:
 
 \begin{enumerate}
@@ -634,6 +901,26 @@ In term of usability, the above protocol spends 6-move insecure communication, a
 \item Both sides exchange their $r_a$ and $r_b$ to each other over an out-of-band channel. 
 \item At the end, $Bob$ sides exchange their $K_A$ and $K_B$ to each other. 
 \item $Alice$ informs to $Bob$ Accept or Reject the session.
+=======
+<<<<<<< HEAD
+In term of usability, the above protocol spends 6-move insecure communication, and long hash of DH public keys that put a heavy pressure on constrained devices. Realising this limitation, the authors improved their first work by an improved version over the bidirectional authentic channel. The new protocol works as follows:
+=======
+In term of usability, the above protocol spends 6-move insecure communication, and long hash of DH public keys that put a heavy pressure on constrained devices. Realising this limitation, the authors improved their first work by an improved version over the bidirectional public out-of-band channel. The new protocol works as follows:
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+
+\begin{enumerate}
+\item Alice generates a random number $r_a$, a key $K_A$, and DH-value $g^a$.
+\item Bob generates a random number $r_b$, a key $K_B$, and DH-value $g^b$.
+\item Alice calculates $MAC_{K_A}(A,g^a,g'^b,r_a,K_A)$, then sends it with Alice's identification $A$ and $g^a$ to Bob. 
+\item Bob calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it with Bob's identification $B$ and $g^b$ to Alice.
+<<<<<<< HEAD
+\item Both sides exchange their $r_a$ and $r_b$ to each other over an authenticated channel. 
+=======
+\item Both sides exchange their $r_a$ and $r_b$ to each other over an out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\item At the end, Bob sides exchange their $K_A$ and $K_B$ to each other. 
+\item Alice informs to Bob Accept or Reject the session.
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
@@ -667,6 +954,7 @@ The improved protocol combines the first 4 messages of MANA III variant to 2 mes
  
 \subsubsection*{Protocol with Unidirectional Channel}
 
+<<<<<<< HEAD
 In the same paper, Wong and Stajano also proposed a new protocol with unidirectional long-range public out-of-band channel. This version only spend 3 move on the wireless channel rather than 4-move in bidirectional version. The protocol works as follows:
 \begin{enumerate}
 \item $Alice$ generates a random number $r_a$ and DH-value $g^a$.
@@ -677,6 +965,27 @@ In the same paper, Wong and Stajano also proposed a new protocol with unidirecti
 \item $Bob$ sends $r_b$ to $Alice$ over the out-of-band channel. 
 \item $Bob$ sends $K_B$ to $Alice$. 
 \item $Alice$ informs to $Bob$ Accept or Reject the session.
+=======
+<<<<<<< HEAD
+In the same paper, Wong and Stajano also proposed a new protocol with unidirectional authenticated channel. This version only spend 3 move on the wireless channel rather than 4-move in bidirectional version. The protocol works as follows:
+=======
+In the same paper, Wong and Stajano also proposed a new protocol with unidirectional out-of-band channel. This version only spend 3 move on the wireless channel rather than 4-move in bidirectional version. The protocol works as follows:
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\begin{enumerate}
+\item Alice generates a random number $r_a$ and DH-value $g^a$.
+\item Bob generates a random number $r_b$, a key $K_B$, and DH-value $g^b$.
+\item Alice sends $g^a$ to Bob. 
+\item Bob calculates $MAC_{K_B}(B,g^b,g'^a,r_b,K_B)$, then sends it with Bob's identification $B$ and $g^b$ to Alice.
+<<<<<<< HEAD
+\item Alice informs to Bob that she has already received his message over an authenticated channel. 
+\item Bob sends $r_b$ to Alice over the authenticated channel. 
+=======
+\item Alice informs to Bob that she has already received his message over an out-of-band channel. 
+\item Bob sends $r_b$ to Alice over the out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\item Bob sends $K_B$ to Alice. 
+\item Alice informs to Bob Accept or Reject the session.
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
@@ -709,6 +1018,7 @@ In term of efficiency, this unidirectional protocol only spends 5 messages inclu
 
 Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an variant of Wong-Stajano protocol. The new scheme cuts off long keys, and replaces two different authenticated string $r_a$ and $r_b$ by a single value $r_a\otimes r'_b$. The protocol works as follows:
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ generates a random number $r_a$ and DH-value $g^a$.
 \item $Bob$ generates a random number $r_b$, and DH-value $g^b$.
 \item $Alice$ calculates $h(A,g^a,r_a)$, and sends it to $Bob$. 
@@ -717,6 +1027,20 @@ Nguyen and Roscoe~\cite{Nguyen09authenticationprotocols} proposed an variant of 
 \item $Bob$ sends $r_b$ and $g^b$ to $Alice$. 
 \item $Alice$ calculates $r_a\otimes r'_b$, then pushes it on a long-range public out-of-band channel to $Bob$. 
 \item $Bob$ informs to $Alice$ Accept or Reject the session.
+=======
+\item Alice generates a random number $r_a$ and DH-value $g^a$.
+\item Bob generates a random number $r_b$, and DH-value $g^b$.
+\item Alice calculates $h(A,g^a,r_a)$, and sends it to Bob. 
+\item Bob calculates $h(B,g^b,r_b)$, then sends it to Alice.
+\item Alice sends $r_a$ and $g^a$ to Bob. 
+\item Bob sends $r_b$ and $g^b$ to Alice. 
+<<<<<<< HEAD
+\item Alice calculates $r_a\oplus r'_b$, then pushes it on an authenticated channel to Bob. 
+=======
+\item Alice calculates $r_a\oplus r'_b$, then pushes it on an out-of-band channel to Bob. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\item Bob informs to Alice Accept or Reject the session.
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
@@ -726,9 +1050,18 @@ Alice & & Bob\\[-4mm]
 $r_a,g^a$ & & $r_b,g^b$ \\[-4mm]
 & $h(A,g^a,r_a)$ & \\[-4mm]
 & $h(B,g^b,r_b)$ & \\[-4mm]
+<<<<<<< HEAD
+& $r_a||g^a$ & \\[-4mm]
+& $r_b||g^b$ & \\[-4mm]
+=======
 & $r_a,g^a$ & \\[-4mm]
 & $r_b,g^b$ & \\[-4mm]
+<<<<<<< HEAD
 & $r_a\otimes r'_b$ & \\[-4mm]
+=======
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+& $r_a\oplus r'_b$ & \\[-4mm]
+>>>>>>> leneutre/master
 & & Accept/Reject \\[-4mm]
 };
 
@@ -757,6 +1090,7 @@ MANA-based protocol family usually requires a strong assumption on a channel on 
 Vaudenay presented his first authentication protocol based on a short authenticated string over an OOB channel~\cite{Vaudenay:2005qa}. The protocol is illustrated as follows.
 
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ types a message $m_A$, then picks a random value $r_a$. $Bob$ types a message $m_B$, then picks a random value $r_b$
 \item $Alice$ computes $(c_A,d_A) \leftarrow commit(0,m_A,r_a)$, and sends $m_A, c_A$ to $Bob$.
 \item $Bob$ computes $(c_B,d_B) \leftarrow commit(1,m_B,r_b)$ sends $m_B, c_B$ to $Alice$.
@@ -764,21 +1098,62 @@ Vaudenay presented his first authentication protocol based on a short authentica
 \item $Bob$ sends $d_B$ to $Alice$. Then $Alice$ computes $(1,r'_b,m'_B) \leftarrow Open(c'_B,d'_B)$. 
 \item $Alice$ computes $SAS_A \leftarrow r_a \otimes r'_b$, and sends $SAS$ to $Bob$ over an out-of-band channel. 
 \item $Bob$ computes $SAS_B = r'_a \otimes r_b$, then sends $SAS_B$ back to $Alice$ over his out-of-band channel. 
+=======
+<<<<<<< HEAD
+\item Alice types a message $M_A$, then picks a random value $r_a$. Bob types a message $M_B$, then picks a random value $r_b$
+\item Alice computes $(c_A||d_A) \leftarrow Commit(0||M_A||r_a)$, and sends $M_A, c_A$ to Bob.
+\item Bob computes $(c_B||d_B) \leftarrow Commit(0||M_B||r_b)$ sends $M_B, c_B$ to Alice.
+\item Alice sends $d_A$ to Bob. Then Bob computes $r'_a \leftarrow Open(0||M_A,c'_A,d'_A)$. 
+\item Bob sends $d_B$ to Alice. Then Alice computes $r'_b \leftarrow Open(0||M_B,c'_B,d'_B)$. 
+\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an authenticated channel. 
+\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his authenticated channel. 
+=======
+\item Alice types a message $m_A$, then picks a random value $r_a$. Bob types a message $m_B$, then picks a random value $r_b$
+\item Alice computes $(c_A,d_A) \leftarrow commit(0,m_A,r_a)$, and sends $m_A, c_A$ to Bob.
+\item Bob computes $(c_B,d_B) \leftarrow commit(1,m_B,r_b)$ sends $m_B, c_B$ to Alice.
+\item Alice sends $d_A$ to Bob. Then Bob computes $(0,r'_a,m'_A) \leftarrow Open(c'_A,d'_A)$. 
+\item Bob sends $d_B$ to Alice. Then Alice computes $(1,r'_b,m'_B) \leftarrow Open(c'_B,d'_B)$. 
+\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
+\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \item Both sides compare their calculated SAS value to received one from the other. 
 \end{enumerate}
 
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
+<<<<<<< HEAD
 Alice & & Bob \\[-4mm]
  $m_A$,  $r_a$ & &  $m_B$, $r_b$ \\[-4mm]
+=======
+Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
+Data $M_A$, random $r_a$ & & Data $M_B$,random $r_b$ \\[-4mm]
+$(c_A,d_A)\rightarrow Commit(0||M_A||r_a)$ & $(M_A||c_A)$ & \\[- 4mm]
+							 & $(M_B||c_B)$ & $(c_B,d_B)\rightarrow Commit(0|M_B||r_b)$ \\[- 4mm]	
+						  & $d_A$ & $r'_a \leftarrow Open(0||M'_A,c'_A,d'_A)$ \\[-4mm]
+$r_b \leftarrow Open(1||M_B,c_B,d_B)$ & $d_B$ & \\[-4mm]
+$SAS_A \leftarrow r_a\oplus r_b $ & $SAS_A$ & check $SAS'_A = r'_a\oplus r_b$ \\ [-4mm]
+check $SAS'_B = r_a\oplus r'_b$ & $SAS_B$ & $SAS_B \leftarrow r'_a\oplus r_b $ \\ [-4mm]
+verify Bob and $M'_B$ 			 & & verify Alice and $M'_A$ \\ [-4mm]
+=======
+Data $m_A$, random $r_a$ & & Data $m_B$,random $r_b$ \\[-4mm]
+>>>>>>> leneutre/master
 $(c_A,d_A)\rightarrow commit(0,m_A,r_a)$ & $(m_A,c_A)$ & \\[- 4mm]
 							 & $(m_B,c_B)$ & $(c_B,d_B)\rightarrow commit(1,m_B,r_b)$ \\[- 4mm]	
 						  & $d_A$ & $(0,r'_a,m'_A) \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $(1,m'_B,r'_b) \leftarrow Open(c'_B,d'_B)$ & $d_B$ & \\[-4mm]
+<<<<<<< HEAD
 $SAS_A \leftarrow r_a\otimes r'_b $ & $SAS_A$ & check $SAS'_A = r'_a\otimes r_b$ \\ [-4mm]
 check $SAS'_B = r_a\otimes r'_b$ & $SAS_B$ & $SAS_B \leftarrow r'_a\otimes r_b $ \\ [-4mm]
 verify $Bob$ and $m'_B$ 			 & & verify $Alice$ and $m'_A$ \\ [-4mm]
+=======
+$SAS_A \leftarrow r_a\oplus r_b $ & $SAS_A$ & check $SAS'_A = r'_a\oplus r_b$ \\ [-4mm]
+check $SAS'_B = r_a\oplus r'_b$ & $SAS_B$ & $SAS_B \leftarrow r'_a\oplus r_b $ \\ [-4mm]
+verify Bob and $m'_B$ 			 & & verify Alice and $m'_A$ \\ [-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -794,9 +1169,10 @@ verify $Bob$ and $m'_B$ 			 & & verify $Alice$ and $m'_A$ \\ [-4mm]
 
 \subsubsection*{3-Move SAS-based Mutual-Authentication}
 
-Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease interaction cost of the protocol~\cite{Vaudenay:2005qa} down to 3 moves by advantage of a random oracle model. The protocol runs as follows. 
+Sylvain Pasini and Serge Vaudenay~\cite{Pasini:2006fu} attempted to decrease interaction cost of the protocol~\cite{Vaudenay:2005qa} down to 3 moves by advantage of a random oracle model. The protocol runs as follows. 
 
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ types a message $m$, then picks a random value $r_a$. $Bob$ picks a random value $r_b$
 \item $Alice$ computes $(c_A,d_A) \leftarrow commit(m,r_a)$, and sends $c$ to $Bob$.
 \item $Bob$ sends $r_b$ to $Alice$.
@@ -804,18 +1180,52 @@ Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease int
 \item $Alice$ computes $SAS_A \leftarrow r_a \otimes r'_b$, and sends $SAS$ to $Bob$ over an out-of-band channel. 
 \item $Bob$ computes $SAS_B = r'_a \otimes r_b$, then sends $SAS_B$ back to $Alice$ over his out-of-band channel. 
 \item $Bob$ verifies SAS and $Alice$. $Alice$ compares both values of SAS and verifies $Bob$. 
+=======
+<<<<<<< HEAD
+\item Alice types a message $M$, then picks a random value $r_a$. Bob types a message $M$, then picks a random value $r_b$
+\item Alice computes $(c||d) \leftarrow Commit(M||r_a)$, and sends $c$ to Bob.
+\item Bob sends $r_b$ to Alice.
+\item Alice sends $M$ to Bob. Then Bob computes $r'_a \leftarrow Open(M,c'_A,d'_A)$. 
+\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an authenticated channel. 
+\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his authenticated channel. 
+=======
+\item Alice types a message $m$, then picks a random value $r_a$. Bob types a message $m$, then picks a random value $r_b$
+\item Alice computes $(c_A,d_A) \leftarrow commit(m,r_a)$, and sends $c$ to Bob.
+\item Bob sends $r_b$ to Alice.
+\item Alice sends $d_A$ to Bob. Then Bob computes $(r'_a,m') \leftarrow Open(c'_A,d'_A)$. 
+\item Alice computes $SAS_A \leftarrow r_a \oplus r'_b$, and sends $SAS$ to Bob over an out-of-band channel. 
+\item Bob computes $SAS_B = r'_a \oplus r_b$, then sends $SAS_B$ back to Alice over his out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\item Bob verifies SAS and Alice. Alice compares both values of SAS and verifies Bob. 
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
  $m$,  $r_a$ & &  $r_b$ \\[-4mm]
 $(c_A,d_A)\rightarrow commit(m,r_a)$ & $c_A$ & \\[- 4mm]
 									& $r_b$ & \\[- 4mm]
 									& $d_A$ & $(r'_a,m') \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $SAS_A \leftarrow r_a\otimes r_b' $ & $SAS_A$ & \\ [-4mm]
 						 	 & $SAS_B$ & $SAS_B \leftarrow r'_a\otimes r_b$ \\ [-4mm] 
+=======
+<<<<<<< HEAD
+Data $M$, random $r_a$ & & Data $M$,random $r_b$ \\[-4mm]
+$(c_A,d_A)\rightarrow Commit(M||r_a)$ & $c_A$ & \\[- 4mm]
+									& $r_b$ & \\[- 4mm]
+									& $d_A$ & $r'_a \leftarrow Open(M,c'_A,d'_A)$ \\[-4mm]
+=======
+Data $m$, random $r_a$ & & Data $m$,random $r_b$ \\[-4mm]
+$(c_A,d_A)\rightarrow commit(m,r_a)$ & $c_A$ & \\[- 4mm]
+									& $r_b$ & \\[- 4mm]
+									& $d_A$ & $(r'_a,m') \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+$SAS_A \leftarrow r_a\oplus r_b' $ & $SAS_A$ & \\ [-4mm]
+						 	 & $SAS_B$ & $SAS_B \leftarrow r'_a\oplus r_b$ \\ [-4mm] 
+>>>>>>> leneutre/master
 check $SAS'_B = SAS_A$ 					 & & if $SAS'_A = SAS_B$ \\ [-4mm]
 accept $Bob$ 			 & & accept $Alice$ \\ [-4mm]
 };
@@ -835,6 +1245,7 @@ accept $Bob$ 			 & & accept $Alice$ \\ [-4mm]
 New SAS-based Cross Authentication based on the previous 3-move mutual authentication protocol improves a number of exchanged messages and uses a strongly universal hash function family. The protocol is presented as follow. 
  
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ types message $m$, then picks a random value $r_a$. $Bob$  picks a random value $r_b$
 \item $Alice$ computes $(c_A,d_A) \leftarrow commit(0,m,r_a)$, and sends $(c_A)$ to $Bob$.
 \item $Bob$ sends $(r_b)$ to $Alice$.
@@ -842,20 +1253,59 @@ New SAS-based Cross Authentication based on the previous 3-move mutual authentic
 \item $Alice$ computes $SAS_A \leftarrow r'_b \otimes h_{r_a}(m)$, and send $SAS_A$ to $Bob$ through out-of-band channel. 
 \item $Bob$ computes $SAS_B \leftarrow r_b \otimes h_{r'_a}(m')$ and send $SAS_B$ to $Alice$ through out-of-band channel. 
 \item $Alice$ and $Bob$ check received $SAS$ with their own $SAS$. $Alice$ verifies $Bob$ and $m$. And, $Bob$ verifies $Alice$ and $m$.
+=======
+<<<<<<< HEAD
+\item Alice types message $M_A$, then picks a random value $r_a$. Bob types message $M_B$, then picks a random value $r_b$
+\item Alice computes $(c_A||d_A) \leftarrow Commit(0,M_A,r_a)$, and sends $(M_A,c_A)$ to Bob.
+\item Bob sends $(M_B,r_b)$ to Alice.
+\item Alice sends $d_A$ to Bob. Bob computes $r_a \leftarrow Open(0|M'_A,c'_A,d'_A)$. 
+\item Alice computes $SAS_A \leftarrow r'_b \oplus h_{r_a}(M'_B)$, and send $SAS_A$ to Bob through authenticated channel. 
+\item Bob computes $SAS_B \leftarrow r_b \oplus h_{r'_a}(M_B)$ and send $SAS_B$ to Alice through authenticated channel. 
+\item Alice and Bob check received $SAS$ with their own $SAS$. Alice verifies Bob and $M_B$. And, Bob verifies Alice and $M_A$.
+=======
+\item Alice types message $m$, then picks a random value $r_a$. Bob  picks a random value $r_b$
+\item Alice computes $(c_A,d_A) \leftarrow commit(0,m,r_a)$, and sends $(c_A)$ to Bob.
+\item Bob sends $(r_b)$ to Alice.
+\item Alice sends $d_A$ to Bob. Bob computes $(0,m',r'_a) \leftarrow Open(c'_A,d'_A)$. 
+\item Alice computes $SAS_A \leftarrow r'_b \oplus h_{r_a}(m)$, and send $SAS_A$ to Bob through out-of-band channel. 
+\item Bob computes $SAS_B \leftarrow r_b \oplus h_{r'_a}(m')$ and send $SAS_B$ to Alice through out-of-band channel. 
+\item Alice and Bob check received $SAS$ with their own $SAS$. Alice verifies Bob and $m$. And, Bob verifies Alice and $m$.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
  $m$,  $r_a$ & &  $r_b$ \\[-4mm]
 $(c_A,d_A)\rightarrow commit(0,m,r_a)$ & $(c_A)$ & \\[- 4mm]
+=======
+<<<<<<< HEAD
+Data $M_A$, random $K_A$ & & Data $M_B$, random $r_b$ \\[-4mm]
+$(c_A,d_A)\rightarrow Commit(0||M_A,K_A)$ & $(M_A,c_A)$ & \\[- 4mm]
+							 & $(M_B,r_b)$ & \\[- 4mm]	
+						  & $d_A$ & $K'_A \leftarrow Open(0||M'_A,c'_A,d'_A)$ \\[-4mm]
+$SAS_A \leftarrow r'_b\oplus h_{K_A}(M'_B)$ & $SAS_A$ & \\ [-4mm]
+								& $SAS_B$ & $SAS_B \leftarrow r_b\oplus h_{K'_A}(M_B)$ \\ [-4mm]
+check $SAS'_B = SAS_A$ 					 & & if $SAS'_A = SAS_B$ \\ [-4mm]
+accept Bob and $M'_B$ 			 & & accept Alice and $M'_A$ \\ [-4mm]
+=======
+Data $m$, random $r_a$ & & random $r_b$ \\[-4mm]
+$(c_A,d_A)\rightarrow commit(0,m_A,r_a)$ & $(c_A)$ & \\[- 4mm]
+>>>>>>> leneutre/master
 							 & $(r_b)$ & \\[- 4mm]	
 						  & $d_A$ & $(0,m',r'_a) \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $SAS_A \leftarrow r'_b\otimes h_{r_a}(m')$ & $SAS_A$ & \\ [-4mm]
 								& $SAS_B$ & $SAS_B \leftarrow r_b\otimes h_{r'_A}(m)$ \\ [-4mm]
 check $SAS'_B = SAS_A$ 					 & & if $SAS'_A = SAS_B$ \\ [-4mm]
+<<<<<<< HEAD
 accept $Bob$ and $m$ 			 & & accept $Alice$ and $m'$ \\ [-4mm]
+=======
+accept Bob and $m$ 			 & & accept Alice and $m'$ \\ [-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -871,7 +1321,8 @@ accept $Bob$ and $m$ 			 & & accept $Alice$ and $m'$ \\ [-4mm]
 
 \subsubsection*{MANA IV Protocol}
 
-Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven Laur and Kaisa Nyberg \cite{Laur:2006kl} claimed that their proposal was more general, and had weaker security assumptions than one in ~\cite{Pasini:2006fu}. Three round cross-authentication protocol MANA IV with l-bit OOB messages is presented as follows. 
+<<<<<<< HEAD
+Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven Laur and Kaisa Nyberg~\cite{Laur:2006kl} claimed that their proposal was more general, and had weaker security assumptions than one in ~\cite{Pasini:2006fu}. Three round cross-authentication protocol MANA IV with l-bit OOB messages is presented as follows. 
 
 \begin{enumerate}
 \item $Alice$ computes $(c_A,d_A) \leftarrow commit(r_a)$ for random $r_a$, and sends $(m_A,c_A)$ to $Bob$.
@@ -880,6 +1331,26 @@ Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven L
 \item $Bob$ computes $r'_a \leftarrow Open(c_A,d_A)$ and halts if $r'_a= NULL$. Both parties compute a test value $SAS = h(r'_a,r_b,m_A,m_B)$ from received messages.
 \item $Alice$ sends $SAS_A$ to $Bob$ over a long-range public OOB channel. 
 \item Both parties accept $(m_A,m_B)$ iff the local l-bit test value $SAS_A$ and $SAS_B$ coincide. 
+=======
+Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven Laur and Kaisa Nyberg~\cite{Laur:2006kl} claimed that their proposal was more general, and had weaker security assumptions than one in ~\cite{Pasini:2006fu}. Three round cross-authentication protocol Mana IV with l-bit OOB messages is presented as follows. 
+
+\begin{enumerate}
+<<<<<<< HEAD
+\item Alice computes $(c_A,d_A) \leftarrow Commit(K_A)$ for random $K_A$, and sends $(M_A,c_A)$ to Bob.
+\item Bob chooses random $K_B$, and sends $(M_B,K_B)$ to Alice.
+\item Alice sends $d_A$ Bob.
+\item Bob computes $K_A \leftarrow Open(c_A,d_A)$ and halts if $K_A = NULL$. Both parties compute a test value $oob = h(K_A,K_B,M_A,M_B)$ from received messages.
+\item Alice sends $oob_a$ to Bob over a secure channel. 
+\item Both parties accept $(M_A,M_B)$ iff the local l-bit test value $oob_a$ and $oob_b$ coincide. 
+=======
+\item Alice computes $(c_A,d_A) \leftarrow commit(r_a)$ for random $r_a$, and sends $(m_A,c_A)$ to Bob.
+\item Bob chooses random $r_b$, and sends $(m_B,r_b)$ to Alice.
+\item Alice sends $d_A$ Bob.
+\item Bob computes $r'_a \leftarrow Open(c_A,d_A)$ and halts if $r'_a= NULL$. Both parties compute a test value $oob = h(r'_a,r_b,m_A,m_B)$ from received messages.
+\item Alice sends $oob_a$ to Bob over a secure channel. 
+\item Both parties accept $(m_A,m_B)$ iff the local l-bit test value $oob_a$ and $oob_b$ coincide. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 \end{enumerate}
 
 Specification: $h$ is a keyed hash function with sub-keys $K_A, K_B$.
@@ -888,7 +1359,21 @@ Specification: $h$ is a keyed hash function with sub-keys $K_A, K_B$.
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
  $r_a$,  $m_A$ & &  $r_b$,  $m_B$ \\[-4mm]
+=======
+<<<<<<< HEAD
+random $K_A$, data $M_A$ & & random $K_B$, data $M_B$ \\[-4mm]
+$(c_A,d_A)\rightarrow Commit(K_A)$ & $(M_A,c_A)$ & \\[- 4mm]
+						 & $(M_B,K_B)$ & \\[- 4mm]
+						 & $d_A$ & $K'_A \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
+$oob_A = h(K_A,K'_B,M_A,M'_B,)$ & & $oob_B = h(K'_A,K_B,M'_A,M_B)$\\ [-4mm]
+							&$oob_A$& \\ [-4mm]
+ 							& & $?oob_A = oob_B$ \\ [-4mm]
+accept $(M_A,M'_B)$ & & accept $(M'_A,M_B)$ \\ [-4mm]
+=======
+random $r_a$, data $m_A$ & & random $r_b$, data $m_B$ \\[-4mm]
+>>>>>>> leneutre/master
 $(c_A,d_A)\rightarrow commit(r_a)$ & $(m_A,c_A)$ & \\[- 4mm]
 						 & $(m_B,r_b)$ & \\[- 4mm]
 						 & $d_A$ & $r'_a \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
@@ -896,6 +1381,7 @@ $SAS_A = h(r_a,r'_b,m_A,m'_B)$ & & $SAS_B = h(r'_a,r_b,m'_A,m_B)$\\ [-4mm]
 							&$SAS_A$& \\ [-4mm]
  							& & $?SAS_A = SAS_B$ \\ [-4mm]
 accept $(m_A,m'_B)$ & & accept $(m'_A,m_B)$ \\ [-4mm]
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -912,19 +1398,50 @@ accept $(m_A,m'_B)$ & & accept $(m'_A,m_B)$ \\ [-4mm]
 When revising MANA IV protocol, Laur and Kyberg~\cite{Laur:2006kl} indicated that the protocol was not computational efficiency. For this reason, they proposed a new modified protocol, namely Manually Authenticated Diffie-Hellman (MA-DH). The protocol runs as follows. 
  
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ computes $(c_A,d_A) \leftarrow commit(g^a)$, and sends $(ID_A, c_A)$ to $Bob$.
 \item $Bob$ computes $g^b$ for a random $b$, and sends $ (ID_B,g^b)$ to $Alice$.
 \item $Alice$ sends $d_A$ to $Bob$. 
 \item $Bob$ computes $K'_A \leftarrow Open(c'_A,d'_A)$ and halts if $g'^a = NULL$. Both parties compute $sid = (ID_A,ID_B)$ and $SAS= h(sid,g^a,g^b)$.
 \item Both parties accept $key = (g^a)^b = (g^b)^a$ iff the l-bit test values $SAS_A$ and $SAS_B$ coincide. 
+=======
+<<<<<<< HEAD
+\item Alice computes $(c,d) \leftarrow Commit(K_A)$ for $K_A = g^a$, and sends $(ID_A, c)$ to Bob.
+\item Bob computes $K_B = g^b$ for a random $b$, and sends $ (ID_B,K_B)$ to Alice.
+\item Alice sends $d$ to Bob. 
+\item Bob computes $K'_A \leftarrow Open(c',d')$ and halts if $K'_A = NULL$. Both parties compute $sid = (ID_A,ID_B)$ and $oob= h(sid,ka,kb)$.
+=======
+\item Alice computes $(c,d) \leftarrow commit(g^a)$, and sends $(ID_A, c)$ to Bob.
+\item Bob computes $g^b$ for a random $b$, and sends $ (ID_B,g^b)$ to Alice.
+\item Alice sends $d$ to Bob. 
+\item Bob computes $K'_A \leftarrow Open(c',d')$ and halts if $g'^a = NULL$. Both parties compute $sid = (ID_A,ID_B)$ and $oob= h(sid,g^a,g^b)$.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\item Both parties accept $key = (g^a)^b = (g^b)^a$ iff the l-bit test values $oob_a$ and $oob_b$ coincide. 
+>>>>>>> leneutre/master
 \end{enumerate}
 
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
+<<<<<<< HEAD
  $g^a$		 & &  $g^b$ \\[-4mm]
 $(c_A,d_A) \leftarrow commit(g^a)$ &$(ID_A,c_A)$ & \\[- 4mm]
+=======
+<<<<<<< HEAD
+random $K_A = g^a$		 & & random $K_B = g^b$ \\[-4mm]
+$(c,d) \leftarrow Commit(K_A)$ &$(ID_A,c)$ & \\[- 4mm]
+						& $(ID_B,K_B)$ & \\[- 4mm]
+						& $d$ & $K'_A \leftarrow Open(c',d)$ \\[-4mm]
+$sid=(ID_A,id'_B)$			& & $sid=(id'_A,ID_B)$	\\[-4mm]
+$oob_a =h(sid,K_A,K'_B)$ & & $oob_b =h(sid,K'_A,K_B)$\\[-4mm]
+					 & $oob_a$& \\ [-4mm]
+ 					 & & $?oob_a = oob_b$\\ [-4mm]
+ accepts $key =(g^a)^b = (g^b)^a$ & & accepts $key =(g^a)^b = (g^b)^a$ \\ [-4mm] 
+=======
+random $g^a$		 & & random $g^b$ \\[-4mm]
+$(c,d) \leftarrow commit(g^a)$ &$(ID_A,c)$ & \\[- 4mm]
+>>>>>>> leneutre/master
 						& $(ID_B,g^b)$ & \\[- 4mm]
 						& $d_A$ & $g'^a \leftarrow Open(c'_A,d'_A)$ \\[-4mm]
 $sid=(ID_A,ID'_B)$			& & $sid=(ID'_A,ID_B)$	\\[-4mm]
@@ -932,6 +1449,7 @@ $SAS_A =h(sid,g^a,g'^b)$ & & $SAS_B =h(sid,g'^a,g^b)$\\[-4mm]
 					 & $SAS_A$& \\ [-4mm]
  					 & & $?SAS_A = SAS_B$\\ [-4mm]
  accepts $key =(g^a)^b = (g'^b)^a$ & & accepts $key =(g'^a)^b = (g^b)^a$ \\ [-4mm] 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -947,17 +1465,18 @@ $SAS_A =h(sid,g^a,g'^b)$ & & $SAS_B =h(sid,g'^a,g^b)$\\[-4mm]
 
 Vaudenay and Pasini used Bellare-Rogaway model to prove their protocols. They also claimed that attack success probability is $2^{-k}$ for k-bit SAS, and $Q_A Q_B 2^{-k}$ where $Q_A$ and $Q_B$ are a number of instance of $Alice$ and $Bob$ in network. For instance, $k$ is 50-bits in multi-party network, and 15-bits in 2-party network.
 
-However, Laur and Nyberg in \cite{Laur:2006kl} did not agree with Vaudenay results because their proofs are not sufficient, and Random Oracle(RO) model and Common Reference String (CRS) model are not suitable for ad hoc networks.
+However, Laur and Nyberg in~\cite{Laur:2006kl} did not agree with Vaudenay results because their proofs are not sufficient, and Random Oracle(RO) model and Common Reference String (CRS) model are not suitable for ad hoc networks.
 
 Laur and Nyberg showed in their model that attack success probability against MANA IV is $2^ {-k}$ where $k$ is length of SAS value.
 
 \subsubsection{Cagalj-Capkun-Huxbaux Protocols}
 
-Cagalj, Capkun and Huxbaux \cite{1580514} proposed three various protocols which are based on original DH protocol, and are assisted by human operations. The first protocol is based on visual comparison of short strings (DH-SC), the second one on distance bounding(DH-DB), and the third one on integrity codes(DH-IC). Each of them is presented below. 
+Cagalj, Capkun and Huxbaux~\cite{1580514} proposed three various protocols which are based on original DH protocol, and are assisted by human operations. The first protocol is based on visual comparison of short strings (DH-SC), the second one on distance bounding(DH-DB), and the third one on integrity codes(DH-IC). Each of them is presented below. 
  
 \subsubsection*{Diffie-Hellman key agreement protocol with String Comparison}
 
 \begin{enumerate}
+<<<<<<< HEAD
 \item $Alice$ and $Bob$ selects secret exponents $a$ and $b$, and choose random number $r_a$ and $r_b$ respectively. 
 \item $Alice$ and $Bob$ calculate DH public parameters $g^a$ and $g^b$. 
 \item $Alice$ computes $m_A \leftarrow 0,ID_A,g^a,r_a$. $Bob$ computes $m_B \leftarrow 1,ID_B,g^b,r_b$ .
@@ -968,16 +1487,60 @@ Cagalj, Capkun and Huxbaux \cite{1580514} proposed three various protocols which
  \item If the verification of $Alice$ is successful, both parties go to the next stage.
 \item $Alice$ computes $i_A \leftarrow r'_b \otimes r_a$, $Bob$ computes $i_B \leftarrow r_b \otimes r'_a$.
 \item $Bob$ sides exchange their short values over an out-of-band channel. If the received value equals the computed value, each side informs a successful signal. 
+=======
+<<<<<<< HEAD
+\item Alice and Bob selects secret exponents $X_A$ and $X_B$, and choose random number $r_a$ and $r_b$ respectively. 
+\item Alice and Bob calculate DH public parameters $g^a$ and $g^b$. 
+\item Alice computes $m_A \leftarrow 0||ID_A||g^a||r_a$. Bob computes $m_B \leftarrow 1||ID_B||g^b||r_b$ .
+\item Alice computes $(c_A,d_A) \leftarrow Commit(m_A)$ and sends $(c_A)$ to Bob.
+\item Bob computes $(c_B,d_B) \leftarrow Commit(M_B)$ , and sends $(c_B)$ to Alice.
+\item Alice sends $d_A$ to Bob. Bob computes $M'_A \leftarrow Open(c'_A,d'_A)$ and verifies that 0 appears at beginning of $M'_A$. If verification is successful, Bob sends $d_B$ to Alice.
+\item Alice computes $M'_B \leftarrow Open(c'_B,d'_B)$ and verifies that 1 appears at beginning of $M'_B$
+ \item If the verification of Alice is successful, both parties go to the next stage.
+\item Alice computes $i_A \leftarrow r'_b \oplus r_a$, Bob computes $i_B \leftarrow r_b \oplus r'_a$.
+\item Bob sides exchange their short values over an authenticated channel. If the received value equals the computed value, each side informs a successful signal. 
+\end{enumerate}
+
+Note that, 0 and 1 are public values used to prevent reflection attack. The identification $ID_A$ and $ID_B$ are human readable, e.g. email addresses or names. The authors used screens or human-voice as an authenticated channel to securely transmit authenticated values.
+=======
+\item Alice and Bob selects secret exponents $a$ and $b$, and choose random number $r_a$ and $r_b$ respectively. 
+\item Alice and Bob calculate DH public parameters $g^a$ and $g^b$. 
+\item Alice computes $m_A \leftarrow 0,ID_A,g^a,r_a$. Bob computes $m_B \leftarrow 1,ID_B,g^b,r_b$ .
+\item Alice computes $(c_A,d_A) \leftarrow commit(m_A)$ and sends $(c_A)$ to Bob.
+\item Bob computes $(c_B,d_B) \leftarrow commit(m_B)$ , and sends $(c_B)$ to Alice.
+\item Alice sends $d_A$ to Bob. Bob computes $m'_A \leftarrow Open(c'_A,d'_A)$ and verifies that 0 appears at beginning of $m'_A$. If verification is successful, Bob sends $d_B$ to Alice.
+\item Alice computes $m'_B \leftarrow Open(c'_B,d'_B)$ and verifies that 1 appears at beginning of $m'_B$
+ \item If the verification of Alice is successful, both parties go to the next stage.
+\item Alice computes $i_A \leftarrow r'_b \oplus r_a$, Bob computes $i_B \leftarrow r_b \oplus r'_a$.
+\item Bob sides exchange their short values over an out-of-band channel. If the received value equals the computed value, each side informs a successful signal. 
+>>>>>>> leneutre/master
 \end{enumerate}
 
 Note that, 0 and 1 are public values used to prevent reflection attack. The identification $ID_A$ and $ID_B$ are human readable, e.g. email addresses or names. The authors used screens or human-voice as an out-of-band channel to securely transmit authenticated values.
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
  
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
 Give $ID_A,g^a$		 & & Give $ID_B,g^b$ \\[-4mm]
+<<<<<<< HEAD
  $r_a $		 & &  $r_b $ \\[-4mm]
+=======
+Random $r_a $		 & & Random $r_b $ \\[-4mm]
+<<<<<<< HEAD
+$m_A \leftarrow 0||ID_A||g^a||r_a$ & & $m_B \leftarrow 1||ID_B||g^b||r_b$ \\[- 4mm]
+$(c_A,d_A) \leftarrow Commit(m_A)$ & & $(c_B,d_B) \leftarrow Commit(M_B)$ \\[- 4mm]
+						& $c_A$ & \\[- 4mm]
+						& $c_B$ & \\[- 4mm]
+						& $d_A$ & $M'_A \leftarrow Open(c'_A,d'_A)$\\[- 4mm]
+$M'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $M'_A$, $i_B \leftarrow r_b \oplus r'_a$\\[- 4mm]
+Verify 1 in $M'_B$, $i_A \leftarrow r'_b \oplus r_a$	& & \\[-4mm]
+						& $i_A$ & \\[-4mm]
+						& $i_B$ & \\[-4mm]
+If $i_A = i'_B$, Alice outputs $M'_B$ & & If $i'_A = i_B$, Bob outputs $M'_A$ \\ [-4mm] 
+=======
+>>>>>>> leneutre/master
 $m_A \leftarrow 0,ID_A,g^a,r_a$ & & $m_B \leftarrow 1,ID_B,g^b,r_b$ \\[- 4mm]
 $(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4mm]
 						& $c_A$ & \\[- 4mm]
@@ -987,7 +1550,12 @@ $m'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$, $i_B \leftarrow 
 Verify 1 in $m'_B$, $i_A \leftarrow r'_b \otimes r_a$	& & \\[-4mm]
 						& $i_A$ & \\[-4mm]
 						& $i_B$ & \\[-4mm]
+<<<<<<< HEAD
 If $i_A = i'_B$, $Alice$ outputs $m'_B$ & & If $i'_A = i_B$, $Bob$ outputs $m'_A$ \\ [-4mm] 
+=======
+If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -1015,7 +1583,40 @@ Finally, both devices exchange $y_A$, and $y_B$ to open the commitment $x_A, x_B
 
 Alice & & Bob\\[-4mm]
 Give $ID_A,g^a$		 & & Give $ID_B,g^b$ \\[- 4mm]
+<<<<<<< HEAD
  $r_a,r_a $		 & &  $r_b,r_b $ \\[- 4mm]
+=======
+Random $r_a,r_a $		 & & Random $r_b,r_b $ \\[- 4mm]
+<<<<<<< HEAD
+$m_A \leftarrow 0||ID_A||g^a||r_a$ & & $m_B \leftarrow 1||ID_B||g^b||r_b$ \\[- 4mm]
+$(c_A,d_A) \leftarrow Commit(m_A)$ & & $(c_B,d_B) \leftarrow Commit(M_B)$ \\[- 4mm]
+$(x_A,y_A) \leftarrow Commit(0||r_a)$ & & $(x_B,y_B) \leftarrow Commit(1||r_b)$ \\[- 4mm]
+						& $c_A,x_A$ & \\[-4mm]
+						& $c_B,x_B$ & \\[-4mm]
+						& $d_A$ & $M'_A \leftarrow Open_(c'_A,d'_A)$\\[-4mm]
+$M'_B \leftarrow Open_(c'_B,d'_B)$ & $d_B$ & Verify 0 in $M'_A$\\[-4mm]
+						& &	$i_B \leftarrow r_b \oplus r'_a$\\[-4mm]
+Verify 1 in $M'_B$ 	& & \\[-4mm]
+$i_A \leftarrow r'_b \oplus r_a$	& & \\[-2mm]
+					& \textbf{-DB Phase-} & \\[-2mm]
+$r_a$ bits = $R_{A1},..,R_{Ak}$ & & $r_b$ bits = $R_{B1},..,R_{Bk}$ \\[-4mm]
+$i_A$ bits = $i_{A1},..,i_{Ak}$ & & $i_B$ bits $= i_{B1},..,i_{Bk}$	\\[-4mm]
+$\alpha_1 \leftarrow R_{A1} \oplus i_{A1}$ & $\alpha_1$ & \\[-4mm]
+					& $\beta_1$ & 	$\beta_1 \leftarrow R_{B1} \oplus i_{B1} \oplus \alpha'_1$ \\[-4mm]
+					& ... & \\[-4mm]
+$\alpha_i \leftarrow R_{Ai} \oplus i_{Ai} \oplus \beta'_{i-1}$ & $\alpha_i$ & \\[-4mm]
+					& $\beta_i$ & 	$\beta_i \leftarrow R_{Bi} \oplus i_{Bi} \oplus \alpha'_i$ \\[-4mm]
+					& ... & \\[-4mm]
+$\alpha_k \leftarrow R_{Ak} \oplus i_{Ak} \oplus \beta'_{k-1}$ & $\alpha_k$ & \\[-4mm]
+					& $\beta_k$ & 	$\beta_k \leftarrow R_{Bk} \oplus i_{Bk} \oplus \alpha'_k$ \\[-2mm]
+					& \textbf{-End of DB Phase-} & \\[-2mm]
+					& $y_A$ & $0||r'_a \leftarrow Open(x'_A,y'_A)$ \\[-4mm]
+$1||r'_b \leftarrow Open_(x'_B,y'_B)$ & $y_B$ & \\[-4mm]
+$i'_{Bi} \leftarrow \alpha_i \oplus \beta'_i \oplus R'_{Bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \oplus R'_{A1}$ \\[-4mm] 
+& & $i'_{Ai} \leftarrow \alpha'_i \oplus \beta_{i-1} \oplus R'_{Ai}$ (i=2,..,k) \\[-4mm]
+If $i_A = i'_B$, Alice outputs $M'_B$ & & If $i'_A = i_B$, Bob outputs $M'_A$ \\ [-4mm] 
+=======
+>>>>>>> leneutre/master
 $m_A \leftarrow 0,ID_A,g^a,r_a$ & & $m_B \leftarrow 1,ID_B,g^b,r_b$ \\[- 4mm]
 $(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4mm]
 $(x_A,y_A) \leftarrow commit(0,r_a)$ & & $(x_B,y_B) \leftarrow commit(1,r_b)$ \\[- 4mm]
@@ -1040,9 +1641,16 @@ $\alpha_k \leftarrow r_{ak} \otimes i_{Ak} \otimes \beta'_{k-1}$ & $\alpha_k$ & 
 					& \textbf{-End of DB Phase-} & \\[-2mm]
 					& $y_A$ & $0,r'_a \leftarrow Open(x'_A,y'_A)$ \\[-4mm]
 $1,r'_b \leftarrow Open_(x'_B,y'_B)$ & $y_B$ & \\[-4mm]
+<<<<<<< HEAD
 $i'_{Bi} \leftarrow \alpha_i \otimes \beta'_i \otimes r'_{bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \otimes r'_{a1}$ \\[-4mm] 
 & & $i'_{Ai} \leftarrow \alpha'_i \otimes \beta_{i-1} \otimes r'_{ai}$ (i=2,..,k) \\[-4mm]
 If $i_A = i'_B$, $Alice$ outputs $m'_B$ & & If $i'_A = i_B$, $Bob$ outputs $m'_A$ \\ [-4mm] 
+=======
+$i'_{Bi} \leftarrow \alpha_i \oplus \beta'_i \oplus r'_{bi}$ (i=1,..,k) & & $i'_{A1} \leftarrow \alpha_i \oplus r'_{a1}$ \\[-4mm] 
+& & $i'_{Ai} \leftarrow \alpha'_i \oplus \beta_{i-1} \oplus r'_{ai}$ (i=2,..,k) \\[-4mm]
+If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 };
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-3.south east)--(m-1-3.south west);
@@ -1076,14 +1684,39 @@ Integrity codes (I-codes) are used with communication channel such that that the
 \item $e_c:\mathcal{M} \rightarrow \mathcal{P^l}$ is a channel modulation function satisfying rules: (i) symbol "1" is transmitted using power level $p$, symbol "0" is transmitted using power level 0. 
 \end{enumerate} 
 
+<<<<<<< HEAD
 Based on a concept of I-codes, its application on DH-SC is straightforward. $Bob$ and $Alice$ complete four steps of DH-SC protocol at beginning. $Alice$ encoded authentication value $i_A$ into $I-code$, then transmits it in an out-of-band channel to $Bob$. After reception of $I-code$, $Bob$ probably ensures that this $I-code$ is sent from Alice, and verifies if authenticated value $i'_A$ is equal to $i_B$ or not. 
+=======
+<<<<<<< HEAD
+Based on a concept of I-codes, its application on DH-SC is straightforward. Bob and Alice complete four steps of DH-SC protocol at beginning. Alice encoded authentication value $i_A$ into $I-code$, then transmits it in an authenticated channel to Bob. After reception of $I-code$, Bob probably ensures that this $I-code$ is sent from Alice, and verifies if authenticated value $i'_A$ is equal to $i_B$ or not. 
+=======
+Based on a concept of I-codes, its application on DH-SC is straightforward. Bob and Alice complete four steps of DH-SC protocol at beginning. Alice encoded authentication value $i_A$ into $I-code$, then transmits it in an out-of-band channel to Bob. After reception of $I-code$, Bob probably ensures that this $I-code$ is sent from Alice, and verifies if authenticated value $i'_A$ is equal to $i_B$ or not. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
  
 \begin{center}
 \begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
 \matrix (m)[matrix of nodes, column sep=1cm,row sep=6mm, nodes={draw=none, anchor=center,text depth=0pt} ]{
 Alice & & Bob\\[-4mm]
 Give $ID_A,g^a$		 & & Give $ID_B,g^b$ \\[-4mm]
+<<<<<<< HEAD
  $r_a $		 & &  $r_b $ \\[-4mm]
+=======
+Random $r_a $		 & & Random $r_b $ \\[-4mm]
+<<<<<<< HEAD
+$m_A \leftarrow 0||ID_A||g^a||r_a$ & & $m_B \leftarrow 1||ID_B||g^b||r_b$ \\[- 4mm]
+$(c_A,d_A) \leftarrow Commit(m_A)$ & & $(c_B,d_B) \leftarrow Commit(M_B)$ \\[- 4mm]
+						& $c_A$ & \\[- 4mm]
+						& $c_B$ & \\[- 4mm]
+						& $d_A$ & $M'_A \leftarrow Open(c'_A,d'_A)$\\[- 4mm]
+$M'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $M'_A$, $i_B \leftarrow r_b \oplus r'_a$\\[- 4mm]
+Verify 1 in $M'_B$, $i_B \leftarrow r'_b \oplus r_a$	& & \\[-4mm]
+Push a button			& $I-codes(i_A)$ & \\[-4mm]
+Inform "Message Sent" & & Push a button \\[-4mm]
+					& & Verify $i'_A = r'_b \oplus r_a$ \\[-4mm]
+If $i_A = i'_B$, Alice outputs $M'_B$ & & If $i'_A = i_B$, Bob outputs $M'_A$ \\ [-4mm] 
+=======
+>>>>>>> leneutre/master
 $m_A \leftarrow 0,ID_A,g^a,r_a$ & & $m_B \leftarrow 1,ID_B,g^b,r_b$ \\[- 4mm]
 $(c_A,d_A) \leftarrow commit(m_A)$ & & $(c_B,d_B) \leftarrow commit(m_B)$ \\[- 4mm]
 						& $c_A$ & \\[- 4mm]
@@ -1093,8 +1726,14 @@ $m'_B \leftarrow Open(c'_B,d'_B)$ & $d_B$ & Verify 0 in $m'_A$, $i_B \leftarrow 
 Verify 1 in $m'_B$, $i_B \leftarrow r'_b \otimes r_a$	& & \\[-4mm]
 Push a button			& $I-codes(i_A)$ & \\[-4mm]
 Inform "Message Sent" & & Push a button \\[-4mm]
+<<<<<<< HEAD
 					& & Verify $i'_A = r'_b \otimes r_a$ \\[-4mm]
 If $i_A = i'_B$, $Alice$ outputs $m'_B$ & & If $i'_A = i_B$, $Bob$ outputs $m'_A$ \\ [-4mm] 
+=======
+					& & Verify $i'_A = r'_b \oplus r_a$ \\[-4mm]
+If $i_A = i'_B$, Alice outputs $m'_B$ & & If $i'_A = i_B$, Bob outputs $m'_A$ \\ [-4mm] 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 };
 
 \draw[shorten <=-1.5cm,shorten >=-1.5cm] (m-1-1.south east)--(m-1-1.south west);
@@ -1116,7 +1755,11 @@ The 3-move protocol between $Alice$ and $Bob$ is as follow.
 \begin{enumerate}
 \item A device $A$ sends A's public key $PK_A$ to device $B$.
 \item A device $B$ generates two random strings, $r$ and $SRS$. Then $B$ calculates a hashed value using $PK_A$, $PK_B$, $SRS$ and $r$ and sends this value to $A$.
+<<<<<<< HEAD
+\item $B$ sends $SRS$ to $A$ over an authenticated channel. 
+=======
 \item $B$ sends $SRS$ to $A$ over an out-of-band channel. 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \item $B$ sends $r$ to $A$.
 \item $A$ verifies the hashed value received in step 2 using $PK_A$, $PK_B$, $SRS$ and $R$. If it is successful, $A$ generates agreed key using authenticated B's public key. 
 \end{enumerate}
@@ -1178,9 +1821,21 @@ MANA III	& 4	& 1 & 2  HASH	& 16-20bits K & MAC & Long-range\\ \hline
 
 Wong-Stajano MANA III & 6 & 2	& 1 MAC	& 2 *(20 bits N) & HF & \\ \hline 
 
+<<<<<<< HEAD
 Wong-Stajano Bidirectional Out-of-band Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & Long-range\\ \hline 
 
 Wong-Stajano Unidirectional Out-of-band Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & Long-range \\ \hline 
+=======
+<<<<<<< HEAD
+Wong-Stajano Bidirectional Authenticated Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & \\ \hline 
+
+Wong-Stajano Unidirectional Authenticated Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & \\ \hline 
+=======
+Wong-Stajano Bidirectional Out-of-band Channel & 4	 & 2	& 1 MAC & 2 *(20 bits N) 	 & HF	 & \\ \hline 
+
+Wong-Stajano Unidirectional Out-of-band Channel & 3 &	 1	& 1 MAC	 & 20 bits N &	 HF & \\ \hline 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 
 Improved Wong-Stajano & 4	& 1	& 1 HASH + 1 XOR	 & 1* (20 bits N) &	 HF + XOR & Long-range \\ \hline 
 
@@ -1202,7 +1857,23 @@ MA-DH & 3 &	1 &	1 CS + 1 HASH & 14bits SAS & CS + HF & Long-range \\ \hline
 
 DH-SC & 4 &	2 &	2 CS + 1 XOR & 15bits SAS & CS +XOR & Short-range\\ \hline 
 
+<<<<<<< HEAD
 DH-DB & 6 &	2 &	1 CS + 1 XOR & 15bits SAS & CS +XOR & Short-range\\ \hline 
+=======
+\textbf{ID} &\multicolumn{2}{c}{Identification} & & & & \\
+<<<<<<< HEAD
+\textbf{CS} &\multicolumn{2}{c}{Commitment Scheme} & & & & \\
+=======
+\textbf{CS} &\multicolumn{2}{c}{commitment Scheme} & & & & \\
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+\textbf{XOR} &\multicolumn{2}{c}{XOR operation} & & & & \\
+\textbf{CV} &\multicolumn{2}{c}{Check Value} & & & & \\
+\textbf{CF} &\multicolumn{2}{c}{Check Function} & & & & \\
+\textbf{HF} &\multicolumn{2}{c}{Hash Function} & & & & \\
+\textbf{N} &\multicolumn{2}{c}{Nonce} & & & & \\
+\textbf{S\_HASH} &\multicolumn{2}{c}{Short Hash} & & & & \\
+\textbf{L\_HASH} &\multicolumn{2}{c}{Long Hash} & & & & \\ \hline
+>>>>>>> leneutre/master
 \end{tabular}
 }
 \end{table}
@@ -1244,7 +1915,11 @@ $g^a,r_a$ & & $r_b,g^b$ \\[-4mm]
 
 \end{tikzpicture}
 \end{center}
+<<<<<<< HEAD
+\caption{New 2-move authenticated key agreement protocol} 
+=======
 \caption{New 2-move Authenticated Key Agreement Protocol} 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \label{improved-wong-stajano-protocol}
 \end{figure}
 
@@ -1293,14 +1968,30 @@ We say that a protocol is a secure protocol enabling authentication of DH public
 
 \begin{Lemma}\label{lemme5.1}
 
+<<<<<<< HEAD
+For any interaction between strand $st$ and $st'$, and adversary $X$, attack success probability of $X$ is lower or equal to $n.\gamma.2^{-k}$, 
+=======
 For any interaction between strand $st$ and $st'$, and attacker $X$, attack success probability of $X$ is lower or equal to $n.\gamma.2^{-k}$, 
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 where $n$ is the number of participants on the network, $\gamma$ is the maximum number of sessions for each participant, $k$ is the length of short authenticated string. 
 \end{Lemma}
 
 \begin{proof}
+<<<<<<< HEAD
 For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, attacker $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \otimes h_{r_{xb}}(g^a,g^{xb})) \otimes (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \otimes r_{xb} \otimes r_b \otimes h(g^a,g^{xb}) \otimes h(g^{xa},g^b)))$ (2). 
 
 In the simplest case where attacker $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \otimes r_{xb} \otimes r_b$ or $r_{xa} \otimes r_b = r_a \otimes r_{xb}$ (3).
+=======
+<<<<<<< HEAD
+For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, adversary $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \oplus h_{r_{xb}}(g^a,g^{xb})) \oplus (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \oplus r_{xb} \oplus r_b \oplus h(g^a,g^{xb}) \oplus h(g^{xa},g^b)))$ (2). 
+
+In the simplest case where adversary $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \oplus r_{xb} \oplus r_b$ or $r_{xa} \oplus r_b = r_a \oplus r_{xb}$ (3).
+=======
+For a normal run, the responder uses value of $r_a$ extracted from messages received on OOB channel to open the commitment $h(g^a, r_a)$. If the responder opens successfully, an Accept statue is notified. So, to win the game, attacker $X$ has to deliver $h(m)$ in the first message such that $h(m) = h(g^{xa}, (r_a \oplus h_{r_{xb}}(g^a,g^{xb})) \oplus (h_{r_b}(g^{xa},g^b)))$ (1) for some $m$. Due to our assumption on MAC function equation (1) can be rewritten in $h(m) = h(g^{xa}, (r_a \oplus r_{xb} \oplus r_b \oplus h(g^a,g^{xb}) \oplus h(g^{xa},g^b)))$ (2). 
+
+In the simplest case where attacker $X$ is able to find a pair $(g^{xa},g^{xb})$ such that $h(g^{xa},g^b) = h(g^a,g^{xb})$, we can deduce from (2) to $r_{xa} = r_a \oplus r_{xb} \oplus r_b$ or $r_{xa} \oplus r_b = r_a \oplus r_{xb}$ (3).
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+>>>>>>> leneutre/master
 
 Observe that $X$ has to submit $r_{xb}$ before actually knowing $r_a$. Similarly, $X$ has to submit $r_{xa}$ before actually seeing $r_b$. Thus irrespectively, the attacking strategy taken by $X$, $r_a$ and $r_b$ will be revealed after $r_{xa}$ and $r_{xb}$ have been generated and submitted. If it happens that both $r_a$ and $r_b$ are revealed in the same time, then we can pick an arbitrary one. 
 
@@ -1344,8 +2035,13 @@ All tests have been done in normal lab environment. We ran 10 times, and in each
  \hline
 \textbf{Function} & \textbf{Time(ms)} \\ \hline \hline
 Generating Keys & 3898 \\ \hline
+<<<<<<< HEAD
+Commitment Calculation & 15 \\ \hline
+Commitment Validation & 15 \\ \hline
+=======
 commitment Calculation & 15 \\ \hline
 commitment Validation & 15 \\ \hline
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 Transferring OOB message & 3201 \\ \hline
 Complete Protocol & 21760 \\ \hline
 \end{tabular}
@@ -1374,7 +2070,11 @@ The Wong-Stajano protocol using bidirectional channel was presented at~\ref{WS} 
 
 \begin{table}[t]
 \centering
+<<<<<<< HEAD
+\caption{\textsc{Attack scenario against Initiator's guarantee in Wong-Stajano protocol with Bidirectional Channel}}
+=======
 \caption{\textsc{Attack Scenario Against Initiator's Guarantee in Wong-Stajano Protocol with Bidirectional Channel}}
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \label{WSbiattacktable}
 {\small
 \begin{tabular}{| l | p{11cm} |}
@@ -1407,7 +2107,11 @@ The counterexample of Wong-Stajano protocol using unidirectional channel is illu
 
 \begin{table}[t]
 \centering
+<<<<<<< HEAD
+\caption{\textsc{Attack scenario against Initiator's guarantee in Wong-Stajano protocol with Unidirectional Channel}}
+=======
 \caption{\textsc{Attack Scenario Against Initiator's Guarantee in Wong-Stajano Protocol with Unidirectional Channel}}
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \label{WSuniattack}
 {\small
 \begin{tabular}{| l | p{11cm} |}
@@ -1438,7 +2142,11 @@ Attack against SRS-AKA is closely identified with one in Wong-Stajano protocol u
 
 \begin{table}[t]
 \centering
+<<<<<<< HEAD
+\caption{\textsc{Attack scenario against Initiator's guarantee in SRS-AKA protocol}}
+=======
 \caption{\textsc{Attack Scenario Against Initiator's Guarantee in SRS-AKA Protocol}}
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \label{SRSattacktable}
 {\small
 \begin{tabular}{| l | p{11cm} |}
@@ -1476,7 +2184,11 @@ Since the Hoepman protocol is quite similar to Wong-Stajano protocol with bidire
 
 \begin{table}[t]
 \centering
+<<<<<<< HEAD
+\caption{\textsc{Attack scenario against Initiator's guarantee in Hoepman protocol}}
+=======
 \caption{\textsc{Attack Scenario Against Initiator's Guarantee in Hoepman Protocol}}
+>>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 \label{Hoepmantable}
 {\small
 \begin{tabular}{| l | p{11cm} |}
