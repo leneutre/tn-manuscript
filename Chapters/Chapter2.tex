@@ -14,49 +14,46 @@ The need to secure communications between personal devices is increasing nowaday
 
 In this part, we study in depth current secure device pairing protocols. We found that current approaches are not effective in term of computation and communication for Internet of Things applications. Therefore, we introduce a new key agreement protocol between two wireless devices. This protocol, only using two wireless messages and one out-of-band message, offers better communication costs than currently existing solutions, yet still ensuring a reasonable security. Security of our proposal is validated by estimation of attack success probability in a computational model.  
 
-<<<<<<< HEAD
+
 The chapter begins with a short introduction to out-of-band channels, and existing device pairing schemes. Then, we propose a novel device pairing protocol.  Finally, we describe flaws we found in some existing protocols. 
-=======
-The chapter begins with a short introduction to out-of-band channels, and existing device pairing schemes. Then, our novel device pairing will come after that.  Finally, we are willing to introduce flaws we found in some current approaches. 
->>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
+
 
 \section{Out-of-Band Channels}
 
-Securing wireless communication is establishing an initial trust relation between dissociated devices. Such a trust initialisation process is commonly called either \textit{Secure Device Pairing}, or \textit{Secure Bootstrapping}, or \textit{Secure First Connect}. Due to heterogeneity of devices and lacking of official standards, no existing security infrastructure or schemes could provide a universal solution for this task. Additionally, unfamiliar devices with no common trust cannot take advantage from traditional cryptographic protocols (i.e. authenticated key exchange protocols) when there does not exist any pre-shared secret, or authenticated public keys.
+Securing wireless communication is establishing an initial trust relation between non associated devices. Such a trust initialisation process is commonly called either \textit{Secure Device Pairing}, or \textit{Secure Bootstrapping}, or \textit{Secure First Connect}. Due to heterogeneity of devices and lack of official standards, no existing security infrastructure or schemes could provide a universal solution for this task. Additionally, unfamiliar devices with no common trust cannot take advantage from traditional cryptographic protocols (i.e. authenticated key exchange protocols) when there does not exist any pre-shared secret, or authenticated public keys.
 
-Trying to solve these problems, a great body of work proposes some forms of human involvement in secure pairing process. This human involvement is achieved by using an auxiliary channel between the devices that is both observable and controllable by human that manages the devices. This auxiliary channel received various names such as \textit{out-of-band channel}, or \textit{human-assisted channel} or \textit{manual channel}. In this thesis, we adopt the general term out-of-band channel (OOB). 
+Trying to solve this problem, a great body of work proposes some forms of human involvement in secure pairing process. This human involvement is achieved by using an auxiliary channel between the devices that is both observable and controllable by the owner of the devices. This auxiliary channel received various names such as \textit{out-of-band channel}, or \textit{human-assisted channel}, or \textit{manual channel}. In this thesis, we adopt the general term out-of-band channel (OOB). 
 
 \subsection{OOB Security Properties}
 
-One easily misunderstands concept of security properties of data or messages versus security properties related to physical channels because they sometimes overlap. Data security properties are usually ensured using cryptographic primitives such as symmetric or asymmetric encryption algorithms, signatures or hash functions. In meanwhile, a secure physical channel is able to provide not only data security properties without help of cryptographic mechanisms, but also physical security such as stall-free, listener-ready, non-forwarding, time and distance constraint guarantees and so on. In our chapter, we consider following security properties. The notation $S$ and $R$ represents for principals, $m$ is a message, $o$ is a channel, $T$ is an interval of time:
+One easily misunderstands concept of security properties of data or messages versus security properties related to a physical channel because they sometimes overlap. Data security properties are usually ensured using cryptographic primitives such as symmetric or asymmetric encryption algorithms, signatures or hash functions. A secure physical channel not only provides data security properties without help of cryptographic mechanisms, but also physical security properties such as stall-free, listener-ready, non-forwarding, time and distance constraint guarantees and so on. In this chapter, we consider the following security properties, where $S$ and $R$ denote principals, $m$ a message, $o$ a channel, $T$ is an interval of time:
 
 \begin{itemize}
-\item \emph{Data Origin Authentication}[DOA]: Data origin authentication is also called \emph{message authentication}. Let $m$ be a message originally created by $S$, then any receiver of $m$ is able to authenticate $S$ as an original source of the message. It means that in a particular penetrator cannot modify $m$; thus message authentication includes message integrity. However, a penetrator may block or replay $m$. 
-\item \emph{Data Confidentiality}[DC]: If a sender determines that only a specified $R$ can observe content of a message $m$, then no one including penetrators, yet except $R$ is allowed to know the content of $m$.
-\item \emph{Channel Occupancy}[CO] : If a specific receiver $R$ uses a channel $o$ to communicate with someone during interval of time $T$, then there is indeed a sender using $o$ with $R$ during $T$. A penetrator cannot manipulate $o$ during $T$ if $o$ is not exclusively used by the penetrator. 
-\item \emph{Channel Origin Authentication}[COA] \cite{Mausch94}: Only a specified sender $S$ can use a channel $o$ to send messages and this fact is known to determined receivers. Thus, a penetrator cannot impersonate $S$ on $o$. However, a penetrator can suspend message transmission to know messages before they reach to their desired destination. 
-\item \emph{Channel Confidentiality}[CC] \cite{Mausch94}: Only a specified receiver $R$ can receive messages on a channel $o$, and this fact is known to determined senders. Thus, a penetrator cannot impersonate $R$ to receive message on $o$. A penetrator cannot overhear messages sent on $o$.
+\item \emph{Data Origin Authentication (DOA)}: Data origin authentication is also called \emph{message authentication}. Let $m$ be a message originally created by $S$, then any receiver of $m$ is able to authenticate $S$ as an original source of the message. It means that in a particular penetrator cannot modify $m$; thus message authentication includes message integrity. However, a penetrator may block or replay $m$. 
+\item \emph{Data Confidentiality (DC)}: If a sender determines that only a specified $R$ can observe content of a message $m$, then no one including penetrators, excepted $R$, is allowed to know the content of $m$.
+\item \emph{Channel Origin Authentication (COA)}: Only a specified sender $S$ can use a channel $o$ to send messages and this fact is known to determined receivers. Thus, a penetrator cannot impersonate $S$ on $o$. However, a penetrator can suspend message transmission to know messages before they reach their desired destination. 
+\item \emph{Channel Confidentiality (CC)}: Only a specified receiver $R$ can receive messages on a channel $o$, and this fact is known to determined senders. Thus, a penetrator cannot impersonate $R$ to receive message on $o$. A penetrator cannot overhear messages sent on $o$.
+\item \emph{Channel Occupancy (CO)}: If a specific receiver $R$ uses a channel $o$ to communicate with someone during interval of time $T$, then there is indeed a sender using $o$ with $R$ during $T$. A penetrator cannot manipulate $o$ during $T$ if $o$ is not exclusively used by the penetrator.
 \end{itemize} 
 
+Both the channel origin authentication and channel confidentiality properties were initially defined in\cite{Mausch94}. The definitions above overlap: channel confidentiality implies data confidentiality and channel origin authentication implies data origin authentication. The definition of channel occupancy is an adaptation of locale occupancy property introduced in~\cite{Thayer:2010aa}.
 <<<<<<< HEAD
 Note that, channel occupancy allows participants to ensure distance and presence of their protocol partners. Straightforwardly, penetrators cannot use forwarding or suspending attack on messages over such channels.
 =======
 Note that, channel occupancy allows participants to ensure distance and presence of their protocol partners. Straightforwardly, penetrators cannot use suspending attack on messages over such channels.
 >>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
-The definition of channel occupancy is an adaptation of locale occupancy property introduced in~\cite{Thayer:2010aa} and both the channel origin authentication and channel confidentiality properties were initially defined in\cite{Mausch94}. The definitions above overlap: channel confidentiality implies data confidentiality and channel origin authentication implies data origin authentication.
-
 \subsection{OOB Classification}
 
-In this subsection, we classify out-of-band channels in two ways based on physical types of channels, and security properties that channels offer. 
+In this subsection, we classify out-of-band channels according to their physical, but also the security properties thety offer. 
 
 \subsubsection{Physical Types of Channels}
 
-In this part, we classify existing approaches based on physical characteristics of channels into groups such as cable-based, audio-based, visual-based, tactile-based, motion-based, biometric-based, wireless-based, and combination. We refer this classification in ~\cite{KhanPathanbook}.
+Following the classification from~\cite{KhanPathanbook}, existing OOB channels can be grouped into categories depending on their  physical characteristics: cable-based channels, audio-based channels, visual-based channels, tactile-based channels, motion-based channels, biometric-based channels, wireless-based channels, or channels based on a combination of previous types.
 
 \emph{Cable-based}
 
-Authors~\cite{Stajano:2000bs} proposed a resurrecting duckling model that maps relationship between devices. A master device, so-called "Mother", is a device which imprints "duckling" slave devices. The slaves is either imprinted or imprint-able. Imprint-able state is the beginning state of a slave before it is chosen by a master. In meanwhile, the imprinted state is once a slave has got a secret from a master. The imprinted process actually bounds a slave to a master until the slave's death. As a consequence, the slave remains faithful to its master and obeys no one else. Because the secret key needs to be transferred from a master to a slave, the authors suggest that it could be sent in plain text over a physical connection (such as cable). Complex and heavy cryptographic key exchange like DH scheme is not recommended. This thing, hence, is not convenient in practice. Nevertheless, this approach takes advantages of minimal requirement of human interaction in authentication phase. 
+A cable-based connection is used in the \textit{Resurrecting duckling policy} model proposed in~\cite{Stajano:2000bs} to map relationship between devices. A master device, so-called "Mother", imprints "duckling" slave devices. The slaves is either imprinted or imprint-able. Imprint-able state is the beginning state of a slave before it is chosen by a master. In meanwhile, the imprinted state is once a slave has got a secret from a master. The imprinted process actually bounds a slave to a master until the slave's death. As a consequence, the slave remains faithful to its master and obeys no one else. Because the secret key needs to be transferred from a master to a slave, the authors suggest that it could be sent in plain text over a physical connection (such as cable). Complex and heavy cryptographic key exchange like DH scheme is not recommended. This thing, hence, is not convenient in practice. Nevertheless, this approach takes advantages of minimal requirement of human interaction in authentication phase. 
 
 \emph{Audio-based}
 
@@ -78,13 +75,13 @@ Visual-based schemes also share the limitations of audio-based ones on hardware 
 
 \emph{Tactile-based}
 
-BEDA \cite{Soriente07beda:button-enabled}, proposed by Soriente et. al, presents ways to transmit a secret among devices using very basic interfaces like buttons. There are four BEDA variants: Button-to-Button, Display to Button, Short Vibration to Button, and Long Vibration to Button. The only difference of these variants is the way a first device transfers a secret to others. 
+BEDA~\cite{Soriente07beda:button-enabled}, proposed by Soriente et. al, presents ways to transmit a secret among devices using very basic interfaces like buttons. There are four BEDA variants: Button-to-Button, Display to Button, Short Vibration to Button, and Long Vibration to Button. The only difference of these variants is the way a first device transfers a secret to others. 
 
 To transmit the secret code, two approaches are suggested. In the first approach, both devices get the same secret via the use of single button. In the Button-Button approach, the user simultaneously presses and then releases buttons on both devices until the secret is acquired. In Display to Button approach, a device equipped with an output interface signals the user to press a button on the other device. Then, idle time between two pushing actions are is to calculate the secret. 
 
 \emph{Wireless-based}
 
-In order to establish a secure channel, some types of wireless channels such as infra-red~\cite{5654588}, ultrasound~\cite{Mayrhofer06anauthentication}, RFID~\cite{Amariucai:2012aa}, Bluetooth, and NFC could be used. Talking to Stranger and other its variants \cite{5654588,Mayrhofer06anauthentication,4159919,Amariucai:2012aa} are examples. However, a drawback of those schemes is that they are strongly suffered by denial of service attacks or passive eavesdropping attacks. 
+In order to establish a secure channel, some types of wireless channels such as infra-red~\cite{5654588}, ultrasound~\cite{Mayrhofer06anauthentication}, RFID~\cite{Amariucai:2012aa}, Bluetooth, and NFC could be used. Talking to Stranger and other its variants~\cite{5654588,Mayrhofer06anauthentication,4159919,Amariucai:2012aa} are examples. However, a drawback of those schemes is that they are strongly suffered by denial of service attacks or passive eavesdropping attacks. 
 
 <<<<<<< HEAD
 Pairing scheme using Bluetooth demands 4-digits pre-shared PIN code between two devices. Unfortunately, adversaries can guest and break the PIN code from long distance. As an alternative method, NFC, an extremely short communication, is concerned on solving limitations of Bluetooth and infra-red. In many scenarios, NFC combines with Bluetooth to offer quicker setup, and better security. Nevertheless, NFC does not provide any protection against eavesdropping attacks, as well as data corruption and data modification. In spite of that, it is impractical to launch MITM attack in NFC authentication session. As this reason, NFC is still considered safety for current applications. 
@@ -94,7 +91,7 @@ Pairing scheme using Bluetooth demands 4-digits pre-shared PIN code between two 
 
 \emph{Biometric-based}
 
-A first work which tried to apply biometric data to establish a secure channel was found in Feeling-is-Believing \cite{Buhan_feelingis} in which authors proposed a method to share secret key using authenticated biometric information. 
+A first work which tried to apply biometric data to establish a secure channel was found in Feeling-is-Believing~\cite{Buhan_feelingis} in which authors proposed a method to share secret key using authenticated biometric information. 
 
 In users' point of view, biometric-based schemes sound more secure and usable than others. But in practice, biometric processing is not sufficiently accurate and requires more calculation cost. To overcome this obstacle, thank to advanced technologies, the accuracy of recognition is significantly improved in many commercial devices such as modern smartphones and laptops. The only drawback of these such schemes is that biometric scanners must be equipped on both devices. 
 
@@ -108,7 +105,7 @@ A drawback of these approaches is that embedded accelerometers sometimes are not
 
 Claude Castelluccia and Pars Mutaf introduced \emph{Shake Them Up}~\cite{Castelluccia:2005} to allow two constrained devices to share a secret in minimal requirements of both hardware and out-of-band channel. In this scheme, both involved devices are required to shake and twirl together in very proximity. During shaking process, both devices also exchange radio packets. When finishing the steps, they together get the same secret key. Attackers cannot interfere key exchange process because they cannot determine source of each radio packet. To limit the attackers' ability, the author exploited the source indistinguishability achieved by CDMA-based system, and sharking devices in close proximity. 
 
-Varshavsky et al. introduced AMIGO \cite{Scannell07amigo:proximity-based} investigated that radio signal fluctuations is too hard to predict at a specific location and time. With this result, the authors pointed that any attacker who is not physically close to the signal source would see a different pattern of signal strength. 
+Varshavsky et al. introduced AMIGO~\cite{Scannell07amigo:proximity-based} investigated that radio signal fluctuations is too hard to predict at a specific location and time. With this result, the authors pointed that any attacker who is not physically close to the signal source would see a different pattern of signal strength. 
 
 \subsubsection{Channel Security Properties}
 
@@ -416,7 +413,7 @@ The protocol requires at least 80 bits over an out-of-band channel to get enough
  
 \subsubsection{Talking to Strangers}
 
-Balfanz et al. proposed a new scheme in \cite{Smetters02talkingto} using audio, or infrared channels to transmit a hash of public keys which is considered as a fingerprinting or digest value. The protocol works as follows:
+Balfanz et al. proposed a new scheme in~\cite{Smetters02talkingto} using audio, or infrared channels to transmit a hash of public keys which is considered as a fingerprinting or digest value. The protocol works as follows:
 \begin{enumerate}
 <<<<<<< HEAD
 \item Alice and Bob initially exchange their identifications and a hash of their pubic keys over an authenticated channel.
@@ -454,7 +451,7 @@ Security of this protocol mainly depends on security properties of out-of-band c
 
 \subsubsection{Visual authentication based on Integrity Checking}
 
-Saxena et al in \cite{1624021} proposed a new pairing protocol, namely Visual authentication based on Integrity Checking(VIC) which works as follows:
+Saxena et al in~\cite{1624021} proposed a new pairing protocol, namely Visual authentication based on Integrity Checking(VIC) which works as follows:
 
 \begin{enumerate}
 \item Alice and Bob initially exchange their pubic keys.
@@ -493,7 +490,7 @@ Due to the long length of OOB messages in~\cite{1624021}, and \cite{Smetters02ta
 
 \subsubsection*{MANA I protocol}
 
-The authors presented a first example scheme \cite{Mitchell:2004p25948}, which is designed for situation in which one device has a keyboard, the other has a display. Although the scheme uses keyed check-function with short check-value (16 to 20 bits), it is proved to provide sufficient secure. 
+The authors presented a first example scheme~\cite{Mitchell:2004p25948}, which is designed for situation in which one device has a keyboard, the other has a display. Although the scheme uses keyed check-function with short check-value (16 to 20 bits), it is proved to provide sufficient secure. 
 
 \begin{enumerate}
 <<<<<<< HEAD
@@ -540,7 +537,7 @@ $MAC_A = h_K(m)$ & & \\ [-4mm]
 
 \subsubsection*{MANA II protocol}
 
-MANA II \cite{Mana2} is a variant of MANA I. In this scheme, both devices are equipped with displays and keyboards. The protocol works as follows: 
+MANA II~\cite{Mana2} is a variant of MANA I. In this scheme, both devices are equipped with displays and keyboards. The protocol works as follows: 
 
 \begin{enumerate}
 <<<<<<< HEAD
@@ -664,9 +661,9 @@ An out-of-band channel used in MANA I and II could be a public or protected chan
 \subsubsection*{Hoepman AKA Protocol}
 
 <<<<<<< HEAD
-Jaap-Henk Hoepman in \cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over authenticated channels. The detail protocol is illustrated as follows.
+Jaap-Henk Hoepman in~\cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over authenticated channels. The detail protocol is illustrated as follows.
 =======
-Jaap-Henk Hoepman in \cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over out-of-band channels. The detail protocol is illustrated as follows.
+Jaap-Henk Hoepman in~\cite{Hoepman:2004aa} proposed his protocols by exploited out-of-band channel properties. In his protocol, parties securely share their DH public keys in two phases. First, long hashes of both sides' public keys are exchanged over insecure channels. Second, short hashes are sent over out-of-band channels. The detail protocol is illustrated as follows.
 >>>>>>> 3d6cc25ad869467a057daa522b35e3cad82b4604
 
 \begin{enumerate}
@@ -1026,7 +1023,7 @@ verify Bob and $m'_B$ 			 & & verify Alice and $m'_A$ \\ [-4mm]
 
 \subsubsection*{3-Move SAS-based Mutual-Authentication}
 
-Sylvain Pasini and Serge Vaudenay \cite{Pasini:2006fu} attempted to decrease interaction cost of the protocol~\cite{Vaudenay:2005qa} down to 3 moves by advantage of a random oracle model. The protocol runs as follows. 
+Sylvain Pasini and Serge Vaudenay~\cite{Pasini:2006fu} attempted to decrease interaction cost of the protocol~\cite{Vaudenay:2005qa} down to 3 moves by advantage of a random oracle model. The protocol runs as follows. 
 
 \begin{enumerate}
 <<<<<<< HEAD
@@ -1140,7 +1137,7 @@ accept Bob and $m$ 			 & & accept Alice and $m'$ \\ [-4mm]
 
 \subsubsection*{MANA IV Protocol}
 
-Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven Laur and Kaisa Nyberg \cite{Laur:2006kl} claimed that their proposal was more general, and had weaker security assumptions than one in ~\cite{Pasini:2006fu}. Three round cross-authentication protocol Mana IV with l-bit OOB messages is presented as follows. 
+Presented a new method based on Vaudenay protocol~\cite{Vaudenay:2005qa}, Sven Laur and Kaisa Nyberg~\cite{Laur:2006kl} claimed that their proposal was more general, and had weaker security assumptions than one in ~\cite{Pasini:2006fu}. Three round cross-authentication protocol Mana IV with l-bit OOB messages is presented as follows. 
 
 \begin{enumerate}
 <<<<<<< HEAD
@@ -1255,13 +1252,13 @@ $oob_a =h(sid,g^a,g'^b)$ & & $oob_b =h(sid,g'^a,g^b)$\\[-4mm]
 
 Vaudenay and Pasini used Bellare-Rogaway model to prove their protocols. They also claimed that attack success probability is $2^{-k}$ for k-bit SAS, and $Q_A Q_B 2^{-k}$ where $Q_A$ and $Q_B$ are a number of instance of Alice and Bob in network. For instance, $k$ is 50-bits in multi-party network, and 15-bits in 2-party network.
 
-However, Laur and Nyberg in \cite{Laur:2006kl} did not agree with Vaudenay results because their proofs are not sufficient, and Random Oracle(RO) model and Common Reference String (CRS) model are not suitable for ad hoc networks.
+However, Laur and Nyberg in~\cite{Laur:2006kl} did not agree with Vaudenay results because their proofs are not sufficient, and Random Oracle(RO) model and Common Reference String (CRS) model are not suitable for ad hoc networks.
 
 Laur and Nyberg showed in their model that attack success probability against MANA IV and DA-DH is $2^ {-k}$ where $k$ is length of SAS value.
 
 \subsubsection{Cagalj-Capkun-Huxbaux Protocols}
 
-Cagalj, Capkun and Huxbaux \cite{1580514} proposed three various protocols which are based on original DH protocol, and are assisted by human operations. The first protocol is based on visual comparison of short strings (DH-SC), the second one on distance bounding(DH-DB), and the third one on integrity codes(DH-IC). Each of them is presented below. 
+Cagalj, Capkun and Huxbaux~\cite{1580514} proposed three various protocols which are based on original DH protocol, and are assisted by human operations. The first protocol is based on visual comparison of short strings (DH-SC), the second one on distance bounding(DH-DB), and the third one on integrity codes(DH-IC). Each of them is presented below. 
  
 \subsubsection*{Diffie-Hellman key agreement protocol with String Comparison}
 
