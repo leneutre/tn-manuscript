@@ -286,44 +286,6 @@ Thus, after two first messages, two principals own the same shared key $KS = g^{
 Moreover, encrypted by $KS$ in the last message, $NetPass$ cannot be obtained by any attacker. Therefore, $A$ is able to ensure secrecy of $NetPass$. Finally, both sides agree on the secured $NetPass$. 
 \end{proof}
 
-\section{An Implemetation of Device Pairing Protocol} 
-
-We produce a prototype of our device pairing protocol using two Arduino boards. Because of lacking WIFI shields, two Ethernet shields are used instead to provide a network connect between two boards. The testing system includes:
-\begin{itemize}
-\item An Arduino Uno equips with an Ethernet shield, and a LED light.
-\item An Arduino Mega equips with an Ethernet shield, and a light sensor.
-\item Two boards connect via an Ethernet cable. 
-\end{itemize}
-
-The testbed is presented at the figure~\ref{imp}. A visual light communication served as an out-of-band communication channel is intuitively established via a LED and a light sensor. Data transmitting in this channel are encoded by a sequence of blinking light. In particular, while the LED hitting the highest brightness represents for a bit "1", the LED dims to represent for a bit "0". Furthermore, distance between the LED and the light sensor is short enough so that the sensor can correctly recognise bits from the LED. The accuracy of OOB transmission strongly depends on this distance and noise of environment apparently. 
-
-All tests have been done in normal lab environment. We ran 10 times, and in each time 32-bits OOB message was transmitted between two boards. Under 3 centimetres, we get 100\% successful rate. The rate reduces to 75\% in 5 centimetres, and dramatically drops at further distance. However, in low noise environment, the results are remarkably improved. The result of executing time of some functions is presented in the table~\ref{evaluation}. With these results, we believe that our solution is practical.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.3\textwidth]{imp}
-  \caption{Prototypes}
-  \label{imp}
-\end{figure}
-
-\begin{table}[t]
-\centering
-\caption{\textsc{Performance Evaluation of Device Pairing Protocol}}
-\label{evaluation}
-{\small
-\begin{tabular}{| p{5cm} | p{3cm} |}
- \hline
-\textbf{Function} & \textbf{Time(ms)} \\ \hline \hline
-Generating Keys & 3898 \\ \hline
-commitment Calculation & 15 \\ \hline
-commitment Validation & 15 \\ \hline
-Transferring OOB message & 3201 \\ \hline
-Complete Protocol & 21760 \\ \hline
-\end{tabular}
-}
-\end{table}
-
-
 \section{Conclusion}\label{conclusion}
 
 Recapping this chapter, not only does our scheme satisfies all of our mentioned requirements, it also provides unique features helpful to bootstrapping devices in some sensitive circumstances. Compared to our scheme, current proposed schemes do not provide the same fashion in term of security, light-weight and adaptability. Particularly, pairing methods such as ~\cite{4159919} and ~\cite{5654588} do not support authorisation and rebootstrapping. In~\cite{Seung2015, Jeanning2013}, QR codes containing an initial key could introduce a weakness point for the system if they are lost. Alternative solutions using pre-shared keys in \cite{JCMjcm0708634642, Cha:2011:LSE:1968613.1968679, Ikram:2009:SLA:1582379.1582583, 6263790, rfc5191} are not sufficiently convenient to users. Finally, lost smartphone in schemes ~\cite{Seung2015, 6934398} leads to leak sensitive information such as pre-shared keys, rebootstrapping information.
