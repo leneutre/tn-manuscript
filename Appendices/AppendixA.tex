@@ -11,9 +11,9 @@ In 1997, Fabrega, Herzog and Gutman developed a new method to prove a protocol i
 Definitions used in thesis are referred from \cite{674832}, \cite{Guttman:2002:ATS:568264.568267} and~\cite{Doghmi:2007:SHS:1230146.1230260}. Furthermore, to make readers conformable with the theory, the Needham-Schroeder(NS) protocol~\cite{Needham:1978:UEA:359657.359659} presented below is used as an example through this part. 
 
 \begin{enumerate}
-\item $A \rightarrow B$: $\{N_a, A\}_{K_B}$
-\item $B \rightarrow A$: $\{N_a,N_b, B\}_{K_A}$
-\item $A \rightarrow B$: $\{N_b\}_{K_B}$
+\item $A \rightarrow B$: $\{r_a, A\}_{PK_B}$
+\item $B \rightarrow A$: $\{r_a,r_b, B\}_{PK_A}$
+\item $A \rightarrow B$: $\{r_b\}_{PK_B}$
 \end{enumerate}
 
 \section{Fundamental Theory}
@@ -38,7 +38,7 @@ For convention, from now we express the concatenation of two term $t$ and $t'$ a
 	\end{itemize} 
 \end{Definition}
 
-Remark that, $t_1\sqsubseteq t$ means $t_1$ is a subterm of $t$. A \textit{subterm} is just a term that can be easily extracted from a term with an appropriate key. In NS protocol, initiator $A$ starts sending to intentional responder $B$ a message (or a $term$) of the form $\{N_a,A\}_{K_B}$ where $K_B$ is the public key of $B$. Subterms of term $\{N_a,A\}_{K_B}$ could be $N_a, A$, or $\{N_a,A\}_{K_B}$. Since $K_B$ is a key, $K_B \not\sqsubseteq \{N_a,A\}_{K_B}$, except a case when $K_B$ is in a value of this message. 
+Remark that, $t_1\sqsubseteq t$ means $t_1$ is a subterm of $t$. A \textit{subterm} is just a term that can be easily extracted from a term with an appropriate key. In NS protocol, initiator $A$ starts sending to intentional responder $B$ a message (or a $term$) of the form $\{r_a,A\}_{PK_B}$ where $PK_B$ is the public key of $B$. Subterms of term $\{r_a,A\}_{PK_B}$ could be $r_a, A$, or $\{r_a,A\}_{PK_B}$. Since $PK_B$ is a key, $PK_B \not\sqsubseteq \{r_a,A\}_{PK_B}$, except a case when $PK_B$ is in a value of this message. 
 
 Terms are extended to $\textit{signed term}$ including a positive represented to a transmission, and a negative one represented to a reception. 
 
@@ -49,7 +49,7 @@ Note that, the unsigned term is the term without direction. For example, a signe
 
 A sequence of sending and receiving messages in a protocol is called $strand$, and a set of strands is called $\textit{Strand Spaces}$. 
 
-When modeling a protocol, the strand of a principal is a sequence of events as seen by that principal in a particular protocol run and in a particular instance of role. For example, the strand of the initiator for the NS protocol is $\langle+\{N_a,A\}_{K_B}, -\{N_a,N_b\}_{K_A},+\{N_b\}_{K_B} \rangle$. The first event is emission of $\{N_a,A\}_{K_B}$ followed by reception of $\{N_a,N_b\}_{K_A}$ and so on. 
+When modeling a protocol, the strand of a principal is a sequence of events as seen by that principal in a particular protocol run and in a particular instance of role. For example, the strand of the initiator for the NS protocol is $\langle+\{r_a,A\}_{PK_B}, -\{r_a,r_b\}_{PK_A},+\{r_b\}_{PK_B} \rangle$. The first event is emission of $\{r_a,A\}_{PK_B}$ followed by reception of $\{r_a,r_b\}_{PK_A}$ and so on. 
 
 \begin{Definition}
 A $\emph{Strand Spaces}$ is a set $\Sigma$ with a trace mapping tr: $\Sigma \rightarrow (\pm A)^*$.
@@ -78,9 +78,9 @@ For a Strand Spaces $\Sigma$:
 
 	\end{itemize}
 
-Let  the Initiator strand be $st = \langle +\{N_a,A\}_{K_B}, -\{N_a,N_b\}_{K_A},+\{N_b\}_{K_B} \rangle$, and the responder strand be $st' = \langle -\{N_a,A\}_{K_B}, +\{N_a,N_b\}_{K_A},-\{N_b\}_{K_B} \rangle$.
+Let  the Initiator strand be $st = \langle +\{r_a,A\}_{PK_B}, -\{r_a,r_b\}_{PK_A},+\{r_b\}_{PK_B} \rangle$, and the responder strand be $st' = \langle -\{r_a,A\}_{PK_B}, +\{r_a,r_b\}_{PK_A},-\{r_b\}_{PK_B} \rangle$.
 
-The first node of Initiator strand is $\langle st,1 \rangle = +\{N_a,A\}_{K_B}$. Moreover, $\langle st,1 \rangle \Rightarrow \langle st,2 \rangle$ means node $\langle st,1 \rangle$ is a causal predecessor of node $\langle st,2 \rangle$. $N_a$ occurs in $term(\langle st,1 \rangle)$. Additionally, since sign of $\langle st,1 \rangle$ is positive, and there does not exist any predecessor of $\langle st,1 \rangle$, $N_a$ uniquely originates at $\langle st,1 \rangle$.  
+The first node of Initiator strand is $\langle st,1 \rangle = +\{r_a,A\}_{PK_B}$. Moreover, $\langle st,1 \rangle \Rightarrow \langle st,2 \rangle$ means node $\langle st,1 \rangle$ is a causal predecessor of node $\langle st,2 \rangle$. $r_a$ occurs in $term(\langle st,1 \rangle)$. Additionally, since sign of $\langle st,1 \rangle$ is positive, and there does not exist any predecessor of $\langle st,1 \rangle$, $r_a$ uniquely originates at $\langle st,1 \rangle$.  
 	
 Let $\mathcal{N}$ be a set of nodes, and let $\mathcal{E}$ be the union of the sets of $\rightarrow$ and $\Rightarrow$ edges. A directed graph $\mathcal{G}$ has a structure $\mathcal{G} = \langle \mathcal{N},\mathcal{E}\rangle$. A $bundle$ is a finite subgraph of this graph in which the edges express casual dependencies of the nodes.
 
@@ -110,13 +110,13 @@ After introducing Strand Spaces fundamental theory, basing on the fact that secu
  A term $t'$ is called a \emph{component} of term $t$ if $t'$ cannot be split to another term $t''$, and $t$ is built by concatenating $t'$ with arbitrary terms.
 \end{Definition}
 
-Conveniently, we refer the example of Thayer\cite{Thayer:2010aa}. If we have a term like $B\{N_aK\{KN_b\}_{K_B}\}_{K_A}N_a$, then it contains three components: $B, \{N_aK\{KN_b\}_{K_B}\}_{K_A}$, and $N_a$. 
+Conveniently, we refer the example of Thayer\cite{Thayer:2010aa}. If we have a term like $B\{r_a,K,\{r_b\}_{PK_B}\}_{PK_A},r_a$, then it contains three components: $B, \{r_a,K,\{r_b\}_{PK_B}\}_{PK_A}$, and $r_a$. 
  
 \begin{Definition}
  For a strand s, a term t is \emph{new} at $n = \langle s,i\rangle$ if t is a component of term(n), but t is not a component of node $\langle s,j\rangle$ for every $j<i$. 
 \end{Definition}
 
-Taking NS protocol as an example, the component $\{N_a,N_b,B\}_{K_B}$ is new at node $\langle st,2 \rangle$ since it is clearly not a component of $\langle st,1 \rangle$. 
+Taking NS protocol as an example, the component $\{r_a,r_b,B\}_{PK_B}$ is new at node $\langle st,2 \rangle$ since it is clearly not a component of $\langle st,1 \rangle$. 
 
 \begin{Definition} Suppose that $n \in \mathcal{B}$ is positive, $\emph{a}$ $\in \mathcal{A}$ is a subterm of $term(n)$. The edge $n \Rightarrow^+ n'$ is a \emph{transformed edge} for $\emph{a}$ if there exits a negative node $n' \in \mathcal{B}$, and there is a new component $t_2$ of $n'$ such that $a \sqsubseteq t_2$.
 \end{Definition}
@@ -126,35 +126,35 @@ Respectively, \textit{a transforming edge} is denoted.
 \begin{Definition} Suppose that $n \in \mathcal{B}$ is negative, $\emph{a}$ $\in \mathcal{A}$ is a subterm of $term(n)$. The edge $n \Rightarrow^+ n'$ is a \emph{transforming edge} for $\emph{a}$ if there exits a positive node $n' \in \mathcal{B}$, and there is a new component $t_2$ of $n'$ such that $a \sqsubseteq t_2$.
 \end{Definition}
 
- For example, the edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ is a transformed edge for the term $N_a$, and  $\langle st',1\rangle \Rightarrow \langle st',2\rangle$ is a transforming edge for $N_a$. 
+ For example, the edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ is a transformed edge for the term $r_a$, and  $\langle st',1\rangle \Rightarrow \langle st',2\rangle$ is a transforming edge for $r_a$. 
 
 \begin{Definition} 
 The edge $n \Rightarrow^+ n'$ is \emph{a test} for $\emph{a}$ $\in \mathcal{A}$ if $\emph{a}$ uniquely originates at $n$, and $n \Rightarrow^+ n'$ is a transformed edge for $\emph{a}$. 
 \end{Definition}
 
-The transformed edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ is a test for $N_a$ since $N_a$ uniquely originates at $\langle st,1\rangle$. 
+The transformed edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ is a test for $r_a$ since $r_a$ uniquely originates at $\langle st,1\rangle$. 
 
 \begin{Definition} Suppose that $n, n' \in \mathcal{B}$.
 \begin{enumerate}
-\item The edge $n \Rightarrow^+ n'$ is \emph{a outgoing test} for $a$ $\sqsubseteq t = \{h\}_K$ if it is a test for $a$ in which $K^{-1} \not\in P$, $a$ does not occur in any component of $n$ other than t. Moreover, $t$ is a test component for $a$ in $n$.
-\item The edge $n \Rightarrow^+ n'$ is \emph{a incoming test} for $a$ $\sqsubseteq t_1 = \{h\}_K$ if it is a test for $a$ in which $K \not\in P$, and $t_1$ is a test component for $a$ in $n'$.
+\item The edge $n \Rightarrow^+ n'$ is \emph{a outgoing test} for $a$ $\sqsubseteq t = \{c\}_K$ if it is a test for $a$ in which $K^{-1} \not\in P$, $a$ does not occur in any component of $n$ other than t. Moreover, $t$ is a test component for $a$ in $n$.
+\item The edge $n \Rightarrow^+ n'$ is \emph{a incoming test} for $a$ $\sqsubseteq t_1 = \{c\}_K$ if it is a test for $a$ in which $K \not\in P$, and $t_1$ is a test component for $a$ in $n'$.
 \end{enumerate}
 \end{Definition}
 
-The transformed edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ could be considered as an incoming test for $N_a$. 
+The transformed edge $\langle st,1\rangle \Rightarrow \langle st,2\rangle$ could be considered as an incoming test for $r_a$. 
 
 Subsequently, authentication tests~\cite{authenticationtests} are provided as powerful and simple tools to guarantee existence of regular strands in a bundle. 
 
-\emph{Authentication Test 1}: Suppose that $n' \in \mathcal{B}$, and $n \Rightarrow^+ n'$ is outgoing test for $\emph{a}$ $\sqsubseteq t$ with $t = term(n)$. Then there exist regular nodes $m,m' \in \mathcal{B}$ such that $t$ is a component of $m$, and  $m \Rightarrow^+m'$ is a transforming edge for $\emph{a}$. In addition that $\emph{a}$ occurs only in component $t_1=\{h_1\}_{K_1}$ of $m'$, that $t_1$ is not a proper subterm of any regular component, and that $K^{-1}_1 \not\in P$. There is a negative regular node with $t_1$ as a component. 
+\emph{Authentication Test 1}: Suppose that $n' \in \mathcal{B}$, and $n \Rightarrow^+ n'$ is outgoing test for $\emph{a}$ $\sqsubseteq t$ with $t = term(n)$. Then there exist regular nodes $m,m' \in \mathcal{B}$ such that $t$ is a component of $m$, and  $m \Rightarrow^+m'$ is a transforming edge for $\emph{a}$. In addition that $\emph{a}$ occurs only in component $t_1=\{c_1\}_{K_1}$ of $m'$, that $t_1$ is not a proper subterm of any regular component, and that $K^{-1}_1 \not\in P$. There is a negative regular node with $t_1$ as a component. 
 
 
 \emph{Authentication Test 2}: Suppose that $n \in \mathcal{B}$, and $n \Rightarrow^+ n'$ is incoming test for $\emph{a}$ $\sqsubseteq t'$ with $t' = term(n')$. Then there exist regular nodes $m,m' \in \mathcal{B}$ such that $t'$ is a component of $m'$, and  $m \Rightarrow^+m'$ is a transforming edge for $\emph{a}$. 
 
 \begin{Definition} 
-A negative node is an \emph{unsolicited test} for $t = \{h\}_K$ if $t$ is a test component for any $a$ in $n$ and $K \not\in P$. 
+A negative node is an \emph{unsolicited test} for $t = \{c\}_K$ if $t$ is a test component for any $a$ in $n$ and $K \not\in P$. 
 \end{Definition}
 
-\emph{Authentication Test 3}: Suppose that a node $n$ is in a bundle $\mathcal{B}$, and $n$ be an unsolicited test for $t = \{h\}_K$, then there exists a positive regular node $m \in \mathcal{B}$ such that $t$ is a component of $m$. 
+\emph{Authentication Test 3}: Suppose that a node $n$ is in a bundle $\mathcal{B}$, and $n$ be an unsolicited test for $t = \{c\}_K$, then there exists a positive regular node $m \in \mathcal{B}$ such that $t$ is a component of $m$. 
  
 The proofs of these authentication tests are out of scope in this part. So if readers eager to deeply understand the proofs, please regard to the paper \cite{Guttman:2002:ATS:568264.568267}.
 
@@ -163,13 +163,13 @@ The proofs of these authentication tests are out of scope in this part. So if re
 
 In design protocol, ones always desire that there is only one possible execution of their protocol in any scenario. Nevertheless, there might exist some executions relative to the protocol's assumptions. Actually, the executions of protocols normally have very few essentially different forms that called $shapes$. Then, authentication and secrecy properties can be determined by examining the shapes.
 
-Precisely, a shape is a local execution by honest principals. Partial information about a principal's execution of a protocol is called \emph{skeleton}. Skeletons are partial-ordered structures, or fragments of message sequence chart. Moreover, a skeleton is $realised$ if it is not fragmented, i.e. it contains exactly the regular behavior of some executions. A realised skeleton is a shape if it is minimal. 
+Precisely, a shape is a local execution by honest principals. Partial information about a principal's execution of a protocol is called \emph{skeleton}. Skeletons are partial-ordered structures, or fragments of message sequence chart. Moreover, a skeleton is $realised$ if it is not fragmented, i.e. it contains exactly the regular behaviour of some executions. A realised skeleton is a shape if it is minimal. 
 
 A preskeleton describes the regular parts of a set of bundles. Formally presented, preskeleton is defined as follows.
 \begin{Definition}[Skeleton]A four-tuple $\mathcal{A} = (node, \preceq, non, unique)$ is a preskeleton if:
 	\begin{enumerate}
 	\item $node$ is a finite set of regular nodes, $n_1 \in node$ and $n_0 \Rightarrow^+ n_1$ implies $n_0 \in nodes$;
-	\item $\preceq$ is a partial ordering on $node$ such that $n_0 \Rightarrow^+ n_1$ imples $n_0 \preceq n_1$;
+	\item $\preceq$ is a partial ordering on $node$ such that $n_0 \Rightarrow^+ n_1$ implies $n_0 \preceq n_1$;
 	\item $non$ is a set of keys where if $K \in non$, then for all $n \in node, K\not\sqsubseteq term(n)$, and for some $n' \in node$, either $K$ or $K^{-1}$ is used in $term(n')$;
 	\item $unique$ is a set of atoms where $a \in unique$, for some $n \in node, a \sqsubseteq term(n)$. 
 	\end{enumerate}
@@ -196,8 +196,8 @@ Original Strand Spaces theory uses Dolev-Yao \cite{dolev-yao} model as its penet
 \item[\textbf{C.}] Concatenation $\langle-g,-h,+gh\rangle$
 \item[\textbf{S.}] Separation into components: $\langle-gh,+g,+h\rangle$
 \item[\textbf{K.}] Key: $\langle+K\rangle$ where $K \in \mathcal{K_P}$
-\item[\textbf{E.}] Encryption: $\langle-K,-h,+\{h\}_K\rangle$
-\item[\textbf{D.}] Decryption: $\langle-K^{-1},-\{h\}_K,+h\rangle$
+\item[\textbf{E.}] Encryption: $\langle-K,-h,+\{c\}_K\rangle$
+\item[\textbf{D.}] Decryption: $\langle-K^{-1},-\{c\}_K,+h\rangle$
 \end{itemize} 
 \end{Definition}
 
